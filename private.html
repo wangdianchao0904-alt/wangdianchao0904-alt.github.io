@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Dianchao WANG</title>
+  <style>
+/* ===== CSS Variables ===== */
+:root {
+  --primary: #1a365d;
+  --primary-light: #2c5282;
+  --accent: #2b6cb0;
+  --accent-light: #4299e1;
+  --bg: #f7fafc;
+  --bg-card: #ffffff;
+  --text: #2d3748;
+  --text-light: #718096;
+  --border: #e2e8f0;
+  --success: #38a169;
+  --warning: #d69e2e;
+  --danger: #e53e3e;
+  --shadow: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+  --radius: 8px;
+  --max-width: 1100px;
+  --font: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ===== Reset ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+  font-size: 15px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-light); }
+img { max-width: 100%; }
+
+/* ===== Navigation ===== */
+.navbar {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  background: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+.navbar-inner {
+  max-width: var(--max-width); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 24px; height: 56px;
+}
+.nav-brand {
+  color: #fff; font-weight: 700; font-size: 18px;
+}
+.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links a {
+  color: rgba(255,255,255,0.85); padding: 8px 14px;
+  border-radius: 6px; font-size: 14px; font-weight: 500;
+  transition: background .2s;
+}
+.nav-links a:hover, .nav-links a.active {
+  background: rgba(255,255,255,0.15); color: #fff;
+}
+.nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+
+/* ===== Hero ===== */
+.hero {
+  margin-top: 56px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: #fff; padding: 60px 24px 50px;
+}
+.hero-inner {
+  max-width: var(--max-width); margin: 0 auto;
+  display: flex; align-items: center; gap: 40px;
+}
+.hero-photo {
+  width: 160px; height: 160px; border-radius: 50%;
+  object-fit: cover; border: 4px solid rgba(255,255,255,0.3);
+  flex-shrink: 0;
+}
+.hero-text h1 { font-size: 32px; margin-bottom: 6px; }
+.hero-text .subtitle { font-size: 17px; opacity: 0.9; margin-bottom: 10px; }
+.hero-text .affiliation { font-size: 14px; opacity: 0.75; }
+.hero-keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.hero-keywords span {
+  background: rgba(255,255,255,0.18); padding: 4px 12px;
+  border-radius: 20px; font-size: 13px;
+}
+
+/* ===== Sections ===== */
+.section {
+  max-width: var(--max-width); margin: 0 auto;
+  padding: 48px 24px;
+}
+.section-title {
+  font-size: 24px; color: var(--primary); margin-bottom: 24px;
+  padding-bottom: 10px; border-bottom: 3px solid var(--accent-light);
+  display: inline-block;
+}
+
+/* ===== Cards ===== */
+.card {
+  background: var(--bg-card); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 24px;
+  margin-bottom: 16px; border: 1px solid var(--border);
+}
+.card-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.card-meta { font-size: 13px; color: var(--text-light); }
+
+/* ===== Timeline ===== */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before {
+  content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+  width: 2px; background: var(--border);
+}
+.timeline-item { position: relative; margin-bottom: 20px; }
+.timeline-item::before {
+  content: ''; position: absolute; left: -24px; top: 6px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent); border: 2px solid #fff;
+  box-shadow: var(--shadow);
+}
+.timeline-date { font-size: 13px; color: var(--text-light); font-weight: 600; }
+.timeline-content { margin-top: 4px; }
+
+/* ===== Publication list ===== */
+.pub-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.pub-item:last-child { border-bottom: none; }
+.pub-title { font-weight: 600; font-size: 14px; }
+.pub-authors { font-size: 13px; color: var(--text-light); margin-top: 2px; }
+.pub-journal { font-size: 13px; font-style: italic; color: var(--accent); }
+.pub-badge {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; font-weight: 600; margin-left: 6px;
+}
+.pub-badge.highly-cited { background: #fefcbf; color: #975a16; }
+.pub-badge.corresponding { background: #e6fffa; color: #234e52; }
+
+/* ===== Filter tabs ===== */
+.filter-tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.filter-tab {
+  padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border);
+  background: var(--bg-card); cursor: pointer; font-size: 13px;
+  transition: all .2s;
+}
+.filter-tab:hover { border-color: var(--accent); }
+.filter-tab.active {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+
+/* ===== Private Section ===== */
+.private-gate {
+  max-width: 400px; margin: 120px auto; text-align: center; padding: 24px;
+}
+.private-gate input {
+  padding: 10px 16px; border: 1px solid var(--border); border-radius: 6px;
+  width: 100%; margin: 12px 0; font-size: 15px;
+}
+.private-gate button {
+  padding: 10px 24px; background: var(--accent); color: #fff;
+  border: none; border-radius: 6px; cursor: pointer; font-size: 15px;
+}
+
+.private-content { display: none; }
+.private-content.unlocked { display: block; }
+
+/* ===== Todo / Tracker ===== */
+.tracker-section { margin-bottom: 32px; }
+.tracker-section h3 {
+  font-size: 18px; margin-bottom: 12px; color: var(--primary);
+}
+.todo-item {
+  display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 6px; margin-bottom: 8px;
+}
+.todo-item input[type="checkbox"] { margin-top: 4px; flex-shrink: 0; }
+.todo-item.done .todo-text { text-decoration: line-through; color: var(--text-light); }
+.todo-text { flex: 1; font-size: 14px; }
+.todo-priority {
+  font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600;
+  flex-shrink: 0;
+}
+.priority-high { background: #fed7d7; color: #9b2c2c; }
+.priority-medium { background: #fefcbf; color: #975a16; }
+.priority-low { background: #c6f6d5; color: #276749; }
+
+.todo-add {
+  display: flex; gap: 8px; margin-bottom: 16px;
+}
+.todo-add input {
+  flex: 1; padding: 8px 12px; border: 1px solid var(--border);
+  border-radius: 6px; font-size: 14px;
+}
+.todo-add select {
+  padding: 8px 12px; border: 1px solid var(--border);
+  border-radius: 6px; font-size: 14px;
+}
+.todo-add button {
+  padding: 8px 16px; background: var(--accent); color: #fff;
+  border: none; border-radius: 6px; cursor: pointer; font-size: 14px;
+}
+
+/* ===== Grant Tracker Table ===== */
+.tracker-table {
+  width: 100%; border-collapse: collapse; font-size: 13px;
+}
+.tracker-table th {
+  background: var(--primary); color: #fff; padding: 10px 12px;
+  text-align: left; font-weight: 600;
+}
+.tracker-table td {
+  padding: 10px 12px; border-bottom: 1px solid var(--border);
+}
+.tracker-table tr:hover { background: #edf2f7; }
+.status-badge {
+  display: inline-block; padding: 2px 10px; border-radius: 10px;
+  font-size: 11px; font-weight: 600;
+}
+.status-planning { background: #e2e8f0; color: #4a5568; }
+.status-writing { background: #bee3f8; color: #2a4365; }
+.status-submitted { background: #fefcbf; color: #975a16; }
+.status-funded { background: #c6f6d5; color: #276749; }
+.status-rejected { background: #fed7d7; color: #9b2c2c; }
+
+/* ===== Paper Tracker ===== */
+.paper-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
+}
+.paper-card h4 { font-size: 14px; margin-bottom: 6px; }
+.paper-progress {
+  height: 6px; background: #e2e8f0; border-radius: 3px;
+  margin: 8px 0; overflow: hidden;
+}
+.paper-progress-bar {
+  height: 100%; border-radius: 3px; background: var(--accent);
+  transition: width .3s;
+}
+.paper-meta-row {
+  display: flex; gap: 16px; font-size: 12px; color: var(--text-light);
+  flex-wrap: wrap;
+}
+
+/* ===== Footer ===== */
+.footer {
+  background: var(--primary); color: rgba(255,255,255,0.7);
+  text-align: center; padding: 24px; font-size: 13px;
+  margin-top: 40px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .hero-inner { flex-direction: column; text-align: center; }
+  .hero-keywords { justify-content: center; }
+  .nav-links { display: none; flex-direction: column; position: absolute;
+    top: 56px; left: 0; right: 0; background: var(--primary); padding: 12px; }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: block; }
+  .hero-text h1 { font-size: 24px; }
+  .tracker-table { font-size: 12px; }
+  .tracker-table th, .tracker-table td { padding: 6px 8px; }
+}
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand">&larr; Dianchao WANG</a>
+    <button class="nav-toggle">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="#todos">Todo</a></li>
+      <li><a href="#grants">Grants</a></li>
+      <li><a href="#papers">Papers</a></li>
+      <li><a href="#calendar">Calendar</a></li>
+      <li><a href="index.html">Public Site</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Password Gate -->
+<div class="private-gate" style="margin-top:120px">
+  <h2 style="margin-bottom:8px;color:var(--primary)">Private Dashboard</h2>
+  <p style="color:var(--text-light);font-size:14px;margin-bottom:16px">Enter password to access your workspace</p>
+  <input type="password" id="private-pwd" placeholder="Password" onkeydown="if(event.key==='Enter')unlockPrivate()">
+  <br>
+  <button onclick="unlockPrivate()">Unlock</button>
+  <p style="font-size:12px;color:var(--text-light);margin-top:12px">Default: wdc2024</p>
+</div>
+
+<!-- Private Content -->
+<div class="private-content" style="margin-top:56px;">
+
+  <!-- ===== Todo Section ===== -->
+  <section class="section" id="todos">
+    <h2 class="section-title">Todo List</h2>
+
+    <!-- Add todo -->
+    <div class="todo-add">
+      <input type="text" id="todo-input" placeholder="Add new task..." onkeydown="if(event.key==='Enter')addTodo()">
+      <select id="todo-priority">
+        <option value="high">High</option>
+        <option value="medium" selected>Medium</option>
+        <option value="low">Low</option>
+      </select>
+      <select id="todo-category">
+        <option value="research">Research</option>
+        <option value="paper">Paper</option>
+        <option value="service">Service</option>
+        <option value="teaching">Teaching</option>
+        <option value="admin">Admin</option>
+      </select>
+      <button onclick="addTodo()">Add</button>
+    </div>
+
+    <!-- Filter -->
+    <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;">
+      <span class="filter-tab todo-filter active" data-filter="all" onclick="filterTodos(this)">All</span>
+      <span class="filter-tab todo-filter" data-filter="research" onclick="filterTodos(this)">Research</span>
+      <span class="filter-tab todo-filter" data-filter="paper" onclick="filterTodos(this)">Paper</span>
+      <span class="filter-tab todo-filter" data-filter="service" onclick="filterTodos(this)">Service</span>
+      <span class="filter-tab todo-filter" data-filter="teaching" onclick="filterTodos(this)">Teaching</span>
+      <span class="filter-tab todo-filter" data-filter="admin" onclick="filterTodos(this)">Admin</span>
+    </div>
+
+    <!-- Todo list -->
+    <div id="todo-list"></div>
+  </section>
+
+  <!-- ===== Grant Tracker ===== -->
+  <section class="section" id="grants" style="background:#fff">
+    <h2 class="section-title">Grant Tracker</h2>
+
+    <!-- Add grant form -->
+    <div class="card" style="margin-bottom:20px;">
+      <h4 style="margin-bottom:12px;font-size:15px;">Add New Grant Application</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+        <input type="text" id="grant-name" placeholder="Grant name" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;">
+        <input type="text" id="grant-agency" placeholder="Funding agency" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;">
+        <input type="text" id="grant-deadline" placeholder="Period (e.g. 2026-2028)" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;">
+        <input type="text" id="grant-amount" placeholder="Amount" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;">
+        <select id="grant-status" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;">
+          <option value="planning">Planning</option>
+          <option value="writing">Writing</option>
+          <option value="submitted">Submitted</option>
+          <option value="funded">Funded</option>
+          <option value="rejected">Rejected</option>
+        </select>
+        <button onclick="addGrant()" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px;">Add Grant</button>
+      </div>
+    </div>
+
+    <!-- Grant table -->
+    <div style="overflow-x:auto;">
+      <table class="tracker-table">
+        <thead>
+          <tr>
+            <th>Grant Name</th>
+            <th>Agency</th>
+            <th>Period</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="grant-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== Paper Tracker ===== -->
+  <section class="section" id="papers">
+    <h2 class="section-title">Paper Progress Tracker</h2>
+
+    <!-- Add paper form -->
+    <div class="card" style="margin-bottom:20px;">
+      <h4 style="margin-bottom:12px;font-size:15px;">Add New Paper</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+        <input type="text" id="paper-title" placeholder="Paper title" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;">
+        <input type="text" id="paper-journal" placeholder="Target journal" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;">
+        <input type="date" id="paper-deadline" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;">
+        <select id="paper-status" style="padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:14px;">
+          <option value="planning">Planning</option>
+          <option value="writing">Writing</option>
+          <option value="submitted">Submitted</option>
+          <option value="revision">Under Revision</option>
+        </select>
+        <button onclick="addPaper()" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:14px;">Add Paper</button>
+      </div>
+    </div>
+
+    <!-- Paper list -->
+    <div id="paper-list"></div>
+  </section>
+
+  <!-- ===== Calendar / Deadlines ===== -->
+  <section class="section" id="calendar" style="background:#fff">
+    <h2 class="section-title">Upcoming Deadlines & Events</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date" style="color:var(--danger);">2026-05-01</div>
+        <div class="timeline-content"><strong>Monograph release</strong> - Woodhead Publishing</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2026-07-03</div>
+        <div class="timeline-content"><strong>Special Issue deadline</strong> - Journal of Building Design and Environment</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2026 Q3</div>
+        <div class="timeline-content"><strong>MSCA Fellowship starts</strong> - Instituto Superior Tecnico, Portugal</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px;">
+      <h4 style="margin-bottom:8px;font-size:15px;">Quick Notes</h4>
+      <textarea id="quick-notes" style="width:100%;min-height:120px;padding:12px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-family:inherit;resize:vertical;"
+        placeholder="Write quick notes here... (auto-saved to browser)"
+        oninput="localStorage.setItem('wdc_notes', this.value)"></textarea>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  &copy; 2026 Dianchao WANG | Private Dashboard - Data stored in browser localStorage
+</footer>
+
+<script>
+// ===== Navigation =====
+document.addEventListener('DOMContentLoaded', () => {
+  // Mobile nav toggle
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  if (toggle) {
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  }
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('.section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // Publication filter
+  const filterTabs = document.querySelectorAll('.filter-tab');
+  filterTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const filter = tab.dataset.filter;
+      filterTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.pub-item').forEach(item => {
+        if (filter === 'all' || item.dataset.type === filter) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+});
+
+// ===== Private Section Password =====
+function unlockPrivate() {
+  const pwd = document.getElementById('private-pwd').value;
+  // Simple client-side password (for personal use only)
+  if (pwd === 'wdc2024') {
+    document.querySelector('.private-gate').style.display = 'none';
+    document.querySelector('.private-content').classList.add('unlocked');
+    localStorage.setItem('private_unlocked', 'true');
+  } else {
+    alert('Password incorrect');
+  }
+}
+
+// Auto-unlock if previously authenticated
+document.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('private_unlocked') === 'true') {
+    const gate = document.querySelector('.private-gate');
+    const content = document.querySelector('.private-content');
+    if (gate && content) {
+      gate.style.display = 'none';
+      content.classList.add('unlocked');
+    }
+  }
+});
+
+// ===== Todo System =====
+const STORAGE_KEY = 'wdc_todos';
+const GRANT_KEY = 'wdc_grants';
+const PAPER_KEY = 'wdc_papers';
+
+function loadData(key, defaultVal) {
+  try {
+    const d = localStorage.getItem(key);
+    return d ? JSON.parse(d) : defaultVal;
+  } catch { return defaultVal; }
+}
+function saveData(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+// --- Todos ---
+let todos = [];
+
+function initTodos() {
+  todos = loadData(STORAGE_KEY, [
+    { id: 1, text: 'Prepare MSCA project kick-off materials', priority: 'high', done: false, category: 'research' },
+    { id: 2, text: 'Submit revision for CBM paper', priority: 'high', done: false, category: 'paper' },
+    { id: 3, text: 'Review manuscript for CCR journal', priority: 'medium', done: false, category: 'service' },
+    { id: 4, text: 'Update publication list on website', priority: 'low', done: false, category: 'admin' },
+  ]);
+  renderTodos();
+}
+
+function renderTodos() {
+  const container = document.getElementById('todo-list');
+  if (!container) return;
+  container.innerHTML = '';
+  const filter = document.querySelector('.todo-filter.active')?.dataset.filter || 'all';
+  const filtered = filter === 'all' ? todos : todos.filter(t => t.category === filter);
+
+  filtered.forEach(t => {
+    const div = document.createElement('div');
+    div.className = 'todo-item' + (t.done ? ' done' : '');
+    div.innerHTML = `
+      <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTodo(${t.id})">
+      <span class="todo-text">${t.text}</span>
+      <span class="todo-priority priority-${t.priority}">${t.priority}</span>
+      <button onclick="deleteTodo(${t.id})" style="background:none;border:none;color:#e53e3e;cursor:pointer;font-size:16px;">&times;</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function addTodo() {
+  const input = document.getElementById('todo-input');
+  const priority = document.getElementById('todo-priority').value;
+  const category = document.getElementById('todo-category').value;
+  if (!input.value.trim()) return;
+  const id = Date.now();
+  todos.push({ id, text: input.value.trim(), priority, done: false, category });
+  saveData(STORAGE_KEY, todos);
+  input.value = '';
+  renderTodos();
+}
+
+function toggleTodo(id) {
+  const t = todos.find(x => x.id === id);
+  if (t) t.done = !t.done;
+  saveData(STORAGE_KEY, todos);
+  renderTodos();
+}
+
+function deleteTodo(id) {
+  todos = todos.filter(x => x.id !== id);
+  saveData(STORAGE_KEY, todos);
+  renderTodos();
+}
+
+function filterTodos(btn) {
+  document.querySelectorAll('.todo-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTodos();
+}
+
+// --- Grants ---
+let grants = [];
+
+function initGrants() {
+  grants = loadData(GRANT_KEY, [
+    { id: 1, name: 'MSCA Postdoctoral Fellowship', agency: 'European Commission', deadline: '2026-2028', amount: '207,183 EUR', status: 'funded' },
+    { id: 2, name: 'KAKENHI Early-Career Scientists', agency: 'JSPS', deadline: '2024-2027', amount: '3,640,000 JPY', status: 'funded' },
+    { id: 3, name: 'NSFC Young Scientists Fund', agency: 'NSFC', deadline: '2023-2025', amount: '300,000 RMB', status: 'funded' },
+    { id: 4, name: 'Shanghai Magnolia Talent Program', agency: 'Shanghai Municipal Gov.', deadline: '2025-2028', amount: '750,000 RMB', status: 'funded' },
+  ]);
+  renderGrants();
+}
+
+function renderGrants() {
+  const tbody = document.getElementById('grant-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  grants.forEach(g => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${g.name}</td>
+      <td>${g.agency}</td>
+      <td>${g.deadline}</td>
+      <td>${g.amount}</td>
+      <td><span class="status-badge status-${g.status}">${g.status}</span></td>
+      <td><button onclick="deleteGrant(${g.id})" style="background:none;border:none;color:#e53e3e;cursor:pointer;">&times;</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function addGrant() {
+  const name = document.getElementById('grant-name').value.trim();
+  const agency = document.getElementById('grant-agency').value.trim();
+  const deadline = document.getElementById('grant-deadline').value;
+  const amount = document.getElementById('grant-amount').value.trim();
+  const status = document.getElementById('grant-status').value;
+  if (!name) return;
+  grants.push({ id: Date.now(), name, agency, deadline, amount, status });
+  saveData(GRANT_KEY, grants);
+  document.getElementById('grant-name').value = '';
+  document.getElementById('grant-agency').value = '';
+  document.getElementById('grant-amount').value = '';
+  renderGrants();
+}
+
+function deleteGrant(id) {
+  grants = grants.filter(x => x.id !== id);
+  saveData(GRANT_KEY, grants);
+  renderGrants();
+}
+
+// --- Papers ---
+let papers = [];
+
+function initPapers() {
+  papers = loadData(PAPER_KEY, [
+    { id: 1, title: 'Fully carbonated recycled aggregate concrete - mechanism study', journal: 'Cement and Concrete Research', status: 'writing', progress: 40, deadline: '2026-06-30' },
+    { id: 2, title: 'Freeze casting of cement-based materials with lamellar pores', journal: 'Composites Part B', status: 'writing', progress: 70, deadline: '2026-05-15' },
+    { id: 3, title: 'Industrial-scale carbonation using flue gas', journal: 'Journal of Cleaner Production', status: 'submitted', progress: 90, deadline: '2026-04-30' },
+  ]);
+  renderPapers();
+}
+
+function renderPapers() {
+  const container = document.getElementById('paper-list');
+  if (!container) return;
+  container.innerHTML = '';
+  papers.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'paper-card';
+    div.innerHTML = `
+      <h4>${p.title}</h4>
+      <div class="paper-meta-row">
+        <span>Target: ${p.journal}</span>
+        <span>Deadline: ${p.deadline}</span>
+        <span><span class="status-badge status-${p.status}">${p.status}</span></span>
+      </div>
+      <div class="paper-progress"><div class="paper-progress-bar" style="width:${p.progress}%"></div></div>
+      <div class="paper-meta-row">
+        <span>Progress: ${p.progress}%</span>
+        <input type="range" min="0" max="100" value="${p.progress}" style="flex:1"
+          oninput="updatePaperProgress(${p.id}, this.value)">
+        <button onclick="deletePaper(${p.id})" style="background:none;border:none;color:#e53e3e;cursor:pointer;">&times;</button>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function updatePaperProgress(id, val) {
+  const p = papers.find(x => x.id === id);
+  if (p) { p.progress = parseInt(val); saveData(PAPER_KEY, papers); renderPapers(); }
+}
+
+function addPaper() {
+  const title = document.getElementById('paper-title').value.trim();
+  const journal = document.getElementById('paper-journal').value.trim();
+  const deadline = document.getElementById('paper-deadline').value;
+  const status = document.getElementById('paper-status').value;
+  if (!title) return;
+  papers.push({ id: Date.now(), title, journal, status, progress: 0, deadline });
+  saveData(PAPER_KEY, papers);
+  document.getElementById('paper-title').value = '';
+  document.getElementById('paper-journal').value = '';
+  renderPapers();
+}
+
+function deletePaper(id) {
+  papers = papers.filter(x => x.id !== id);
+  saveData(PAPER_KEY, papers);
+  renderPapers();
+}
+
+// Init all on private page
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('todo-list')) initTodos();
+  if (document.getElementById('grant-tbody')) initGrants();
+  if (document.getElementById('paper-list')) initPapers();
+});
+</script>
+<script>
+  // Load saved notes
+  document.addEventListener('DOMContentLoaded', () => {
+    const notes = localStorage.getItem('wdc_notes');
+    if (notes) {
+      const el = document.getElementById('quick-notes');
+      if (el) el.value = notes;
+    }
+  });
+</script>
+</body>
+</html>
