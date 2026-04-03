@@ -7,23 +7,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #181c24;
-  --surface: #22283a;
-  --surface2: #2a3149;
-  --surface3: #313a55;
-  --border: #303a52;
-  --border2: #3d4a68;
-  --accent: #7ec4ff;
-  --accent2: #5aaae8;
-  --gold: #d4b06a;
-  --gold2: #b89040;
-  --green: #6dd496;
-  --red: #e87a6a;
-  --purple: #a98df5;
-  --orange: #e8a060;
-  --text: #e2e8f4;
-  --text2: #a0aec4;
-  --text3: #6272a0;
+  --bg: #f0f4f9;
+  --surface: #ffffff;
+  --surface2: #edf1f8;
+  --surface3: #e2e8f4;
+  --border: #d0d8ea;
+  --border2: #b8c4da;
+  --accent: #1e4d8c;
+  --accent2: #2563a8;
+  --gold: #9a6e20;
+  --gold2: #7a5010;
+  --green: #1a6e3c;
+  --red: #b83224;
+  --purple: #5a38b0;
+  --orange: #b05020;
+  --text: #16243e;
+  --text2: #3a4e6e;
+  --text3: #7a8aaa;
+  --nav-bg: #1e3a5f;
+  --nav-hover: #2a4f7a;
+  --nav-text: #e8eef8;
   --mono: 'JetBrains Mono', monospace;
   --serif: 'Noto Serif SC', serif;
   --display: 'Crimson Pro', Georgia, serif;
@@ -43,7 +46,7 @@ body {
 /* ─── LOCK SCREEN ─── */
 #lockScreen {
   position: fixed; inset: 0;
-  background: var(--bg);
+  background: var(--nav-bg);
   display: flex; align-items: center; justify-content: center;
   z-index: 1000;
   flex-direction: column;
@@ -115,9 +118,8 @@ body {
 /* ─── TOPBAR ─── */
 .topbar {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(11,13,17,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  background: var(--nav-bg);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   height: 52px;
   display: flex; align-items: center;
   padding: 0 24px;
@@ -126,25 +128,25 @@ body {
 .topbar-back {
   font-family: var(--mono);
   font-size: 11px;
-  color: var(--text3);
+  color: rgba(232,238,248,0.7);
   text-decoration: none;
   letter-spacing: 0.05em;
   transition: color 0.15s;
   display: flex; align-items: center; gap: 6px;
 }
-.topbar-back:hover { color: var(--accent); }
+.topbar-back:hover { color: #7ec4ff; }
 .topbar-title {
   font-family: var(--mono);
   font-size: 12px;
-  color: var(--text2);
+  color: var(--nav-text);
   letter-spacing: 0.08em;
 }
-.topbar-title span { color: var(--accent); }
+.topbar-title span { color: #7ec4ff; }
 .topbar-spacer { flex: 1; }
 .topbar-search {
   display: flex; align-items: center; gap: 8px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
   border-radius: 6px;
   padding: 6px 12px;
   width: 220px;
@@ -153,14 +155,14 @@ body {
 .topbar-search:focus-within { border-color: var(--accent2); }
 .topbar-search input {
   background: none; border: none; outline: none;
-  color: var(--text); font-family: var(--mono);
+  color: var(--nav-text); font-family: var(--mono);
   font-size: 11px; width: 100%;
 }
-.topbar-search input::placeholder { color: var(--text3); }
+.topbar-search input::placeholder { color: rgba(232,238,248,0.4); }
 .topbar-date {
   font-family: var(--mono);
   font-size: 10px;
-  color: var(--text3);
+  color: rgba(232,238,248,0.5);
   letter-spacing: 0.05em;
 }
 .lock-out-btn {
@@ -174,7 +176,7 @@ body {
   cursor: pointer;
   transition: all 0.15s;
 }
-.lock-out-btn:hover { border-color: var(--red); color: var(--red); }
+.lock-out-btn:hover { border-color: #ff9090; color: #ff9090; }
 
 /* ─── MAIN LAYOUT ─── */
 #workspace { display: none; }
@@ -188,6 +190,7 @@ body {
 .sidebar {
   background: var(--surface);
   border-right: 1px solid var(--border);
+  box-shadow: 2px 0 8px rgba(0,0,0,0.06);
   padding: 20px 0;
   position: sticky;
   top: 52px;
@@ -311,7 +314,7 @@ body {
 .stat-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
 }
-.sc-blue::before { background: linear-gradient(90deg, var(--accent), transparent); }
+.sc-blue::before { background: linear-gradient(90deg, var(--accent2), transparent); }
 .sc-gold::before { background: linear-gradient(90deg, var(--gold), transparent); }
 .sc-green::before { background: linear-gradient(90deg, var(--green), transparent); }
 .sc-purple::before { background: linear-gradient(90deg, var(--purple), transparent); }
