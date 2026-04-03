@@ -757,7 +757,7 @@ body {
 <body>
 
 <!-- ─── LOCK SCREEN ─── -->
-<div id="lockScreen">
+<div id="lockScreen" style="display:flex;">
   <div class="lock-logo">Workspace<br><span>Dianchao WANG</span></div>
   <div class="lock-box">
     <div class="lock-label" data-i18n="lock_label">Enter Password</div>
@@ -771,7 +771,7 @@ body {
 </div>
 
 <!-- ─── WORKSPACE ─── -->
-<div id="workspace">
+<div id="workspace" style="display:none;">
 
   <!-- TOPBAR -->
   <div class="topbar">
@@ -1960,7 +1960,6 @@ if (sessionStorage.getItem('wdc_auth')) {
   seedIfEmpty();
   init();
 }
-document.getElementById('lockScreen').querySelector('.lock-btn').addEventListener('click', () => {});
 
 // Override unlock to set session
 const _unlock = unlock;
