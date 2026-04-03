@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Journal · Dianchao WANG</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0f4f9;
+  --surface: #ffffff;
+  --surface2: #edf1f8;
+  --surface3: #e2e8f4;
+  --border: #d0d8ea;
+  --border2: #b8c4da;
+  --accent: #1e4d8c;
+  --accent2: #2563a8;
+  --accent-light: rgba(37,99,168,0.08);
+  --gold: #9a6e20;
+  --green: #1a6e3c;
+  --red: #b83224;
+  --purple: #5a38b0;
+  --text: #16243e;
+  --text2: #3a4e6e;
+  --text3: #7a8aaa;
+  --nav-bg: #1e3a5f;
+  --nav-text: #e8eef8;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Noto Serif SC', serif;
+  --display: 'Crimson Pro', Georgia, serif;
+  --r: 8px;
+  --shadow: 0 2px 12px rgba(30,58,95,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:var(--serif); min-height:100vh; font-size:14px; line-height:1.6; }
+
+
+/* ─── LANGUAGE TOGGLE ─── */
+.lang-toggle { display:flex; align-items:center; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:20px; overflow:hidden; }
+.lang-btn { background:none; border:none; padding:4px 10px; font-family:var(--mono); font-size:10px; font-weight:500; color:rgba(232,238,248,0.5); cursor:pointer; transition:all 0.15s; letter-spacing:0.05em; }
+.lang-btn.active { background:rgba(126,196,255,0.2); color:#7ec4ff; }
+.lang-btn:hover:not(.active) { color:rgba(232,238,248,0.8); }
+
+/* ── LOCK ── */
+#lock {
+  position:fixed; inset:0; background:var(--nav-bg);
+  display:flex; align-items:center; justify-content:center;
+  flex-direction:column; gap:28px; z-index:999;
+}
+.lock-title { font-family:var(--display); font-size:26px; font-weight:300; color:var(--nav-text); text-align:center; }
+.lock-title span { color:#7ec4ff; }
+.lock-box {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:14px; padding:28px 32px;
+  width:320px; display:flex; flex-direction:column; gap:14px;
+}
+.lock-label { font-family:var(--mono); font-size:10px; color:rgba(232,238,248,0.5); letter-spacing:0.15em; text-transform:uppercase; }
+.lock-row { display:flex; gap:8px; }
+.lock-input {
+  flex:1; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.15);
+  border-radius:var(--r); padding:9px 13px; color:var(--nav-text);
+  font-family:var(--mono); font-size:13px; outline:none; transition:border-color 0.2s;
+}
+.lock-input:focus { border-color:rgba(126,196,255,0.5); }
+.lock-btn {
+  background:#7ec4ff; color:#0a1a2e; border:none; border-radius:var(--r);
+  padding:9px 16px; font-family:var(--mono); font-size:12px; font-weight:500;
+  cursor:pointer; transition:background 0.2s; white-space:nowrap;
+}
+.lock-btn:hover { background:#a8d8ff; }
+.lock-err { font-family:var(--mono); font-size:11px; color:#ff9090; display:none; text-align:center; }
+.lock-hint { font-family:var(--mono); font-size:10px; color:rgba(232,238,248,0.3); text-align:center; }
+
+/* ── TOPBAR ── */
+.topbar {
+  position:sticky; top:0; z-index:100;
+  background:var(--nav-bg); height:52px;
+  display:flex; align-items:center; padding:0 24px; gap:16px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.t-back { font-family:var(--mono); font-size:11px; color:rgba(232,238,248,0.6); text-decoration:none; transition:color 0.15s; }
+.t-back:hover { color:#7ec4ff; }
+.t-title { font-family:var(--mono); font-size:12px; color:var(--nav-text); letter-spacing:0.08em; }
+.t-title span { color:#7ec4ff; }
+.t-space { flex:1; }
+.t-date { font-family:var(--mono); font-size:10px; color:rgba(232,238,248,0.4); }
+.t-lock {
+  background:none; border:1px solid rgba(255,255,255,0.15); border-radius:6px;
+  padding:4px 10px; font-family:var(--mono); font-size:10px;
+  color:rgba(232,238,248,0.5); cursor:pointer; transition:all 0.15s;
+}
+.t-lock:hover { border-color:#ff9090; color:#ff9090; }
+.t-dash {
+  background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:6px;
+  padding:5px 12px; font-family:var(--mono); font-size:11px;
+  color:var(--nav-text); cursor:pointer; transition:all 0.15s; text-decoration:none;
+}
+.t-dash:hover { background:rgba(126,196,255,0.15); }
+
+/* ── LAYOUT ── */
+#app { display:none; }
+.layout { display:grid; grid-template-columns:280px 1fr; min-height:calc(100vh - 52px); }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  background:var(--surface);
+  border-right:1px solid var(--border);
+  box-shadow:2px 0 8px rgba(0,0,0,0.04);
+  display:flex; flex-direction:column;
+  position:sticky; top:52px; height:calc(100vh - 52px); overflow-y:auto;
+}
+.sb-cal { padding:20px 16px; border-bottom:1px solid var(--border); }
+.cal-nav {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:14px;
+}
+.cal-nav-btn {
+  background:none; border:none; color:var(--text2); cursor:pointer;
+  font-size:16px; padding:2px 6px; transition:color 0.15s; border-radius:4px;
+}
+.cal-nav-btn:hover { color:var(--accent); background:var(--accent-light); }
+.cal-month { font-family:var(--display); font-size:16px; font-weight:400; color:var(--text); }
+.cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+.cal-dow {
+  font-family:var(--mono); font-size:9px; color:var(--text3);
+  text-align:center; padding:3px 0; letter-spacing:0.05em;
+}
+.cal-day {
+  aspect-ratio:1; border-radius:5px; display:flex; align-items:center;
+  justify-content:center; font-family:var(--mono); font-size:11px;
+  color:var(--text2); cursor:pointer; transition:all 0.15s; position:relative;
+}
+.cal-day:hover { background:var(--accent-light); color:var(--accent); }
+.cal-day.today { background:var(--accent); color:#fff; font-weight:500; }
+.cal-day.selected { background:var(--accent-light); color:var(--accent); border:1px solid var(--accent); }
+.cal-day.today.selected { background:var(--accent); color:#fff; border:none; }
+.cal-day.has-entry::after {
+  content:''; position:absolute; bottom:3px; left:50%; transform:translateX(-50%);
+  width:3px; height:3px; border-radius:50%; background:var(--gold);
+}
+.cal-day.today.has-entry::after { background:#fff; }
+.cal-day.other-month { color:var(--text3); opacity:0.4; }
+
+.sb-recents { padding:16px; flex:1; overflow-y:auto; }
+.sb-recents-title {
+  font-family:var(--mono); font-size:9px; color:var(--text3);
+  letter-spacing:0.15em; text-transform:uppercase; margin-bottom:10px;
+}
+.recent-item {
+  padding:8px 10px; border-radius:6px; cursor:pointer;
+  transition:background 0.15s; margin-bottom:2px;
+}
+.recent-item:hover { background:var(--surface2); }
+.recent-item.active { background:var(--accent-light); }
+.ri-date { font-family:var(--mono); font-size:10px; color:var(--accent2); margin-bottom:2px; }
+.ri-preview { font-size:12px; color:var(--text2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* ── MAIN CONTENT ── */
+.main { overflow-y:auto; }
+
+/* Entry editor */
+.editor-wrap { padding:28px 36px; max-width:860px; }
+.ed-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:24px; gap:16px; }
+.ed-date-display {
+  font-family:var(--display); font-size:28px; font-weight:300;
+  color:var(--text); letter-spacing:-0.01em;
+}
+.ed-date-sub { font-family:var(--mono); font-size:10px; color:var(--text3); margin-top:2px; }
+.ed-actions { display:flex; gap:8px; flex-shrink:0; }
+
+/* Mood bar */
+.mood-row {
+  display:flex; align-items:center; gap:10px; margin-bottom:20px;
+  padding:12px 16px; background:var(--surface2); border-radius:var(--r);
+}
+.mood-label { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.1em; white-space:nowrap; }
+.mood-btn {
+  background:none; border:1px solid var(--border); border-radius:20px;
+  padding:4px 12px; font-size:16px; cursor:pointer; transition:all 0.15s;
+  line-height:1;
+}
+.mood-btn:hover { border-color:var(--accent); transform:scale(1.1); }
+.mood-btn.selected { border-color:var(--accent); background:var(--accent-light); }
+.mood-tags { display:flex; gap:6px; flex-wrap:wrap; margin-left:8px; }
+.mood-tag {
+  background:none; border:1px solid var(--border); border-radius:4px;
+  padding:3px 9px; font-family:var(--mono); font-size:9px;
+  color:var(--text3); cursor:pointer; transition:all 0.15s; letter-spacing:0.06em;
+}
+.mood-tag:hover { border-color:var(--accent2); color:var(--accent); }
+.mood-tag.selected { border-color:var(--accent); background:var(--accent-light); color:var(--accent); }
+
+/* Sections */
+.ed-section { margin-bottom:20px; }
+.ed-sec-header { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+.ed-sec-icon { font-size:15px; }
+.ed-sec-title { font-family:var(--mono); font-size:10px; color:var(--text2); letter-spacing:0.12em; text-transform:uppercase; }
+.ed-sec-hint { font-family:var(--mono); font-size:9px; color:var(--text3); margin-left:auto; }
+.ed-textarea {
+  width:100%; background:var(--surface);
+  border:1px solid var(--border); border-radius:var(--r);
+  padding:13px 15px; color:var(--text);
+  font-family:var(--serif); font-size:13.5px; line-height:1.75;
+  outline:none; resize:vertical; min-height:100px;
+  transition:border-color 0.2s;
+}
+.ed-textarea:focus { border-color:var(--accent2); box-shadow:0 0 0 3px rgba(37,99,168,0.06); }
+.ed-textarea::placeholder { color:var(--text3); font-style:italic; }
+
+/* ── SUMMARY VIEW ── */
+.sum-wrap { padding:28px 36px; max-width:860px; }
+.sum-header { margin-bottom:24px; }
+.sum-title { font-family:var(--display); font-size:26px; font-weight:300; color:var(--text); }
+.sum-sub { font-family:var(--mono); font-size:10px; color:var(--text3); margin-top:3px; }
+.sum-tabs { display:flex; gap:6px; margin-bottom:20px; }
+.sum-tab {
+  background:none; border:1px solid var(--border); border-radius:6px;
+  padding:7px 16px; font-family:var(--mono); font-size:11px;
+  color:var(--text2); cursor:pointer; transition:all 0.15s;
+}
+.sum-tab:hover { border-color:var(--accent2); color:var(--accent); }
+.sum-tab.active { border-color:var(--accent); background:var(--accent-light); color:var(--accent); }
+
+/* Range picker */
+.range-row { display:flex; gap:10px; align-items:center; margin-bottom:20px; flex-wrap:wrap; }
+.range-label { font-family:var(--mono); font-size:10px; color:var(--text3); letter-spacing:0.1em; }
+.range-select {
+  background:var(--surface); border:1px solid var(--border); border-radius:var(--r);
+  padding:7px 12px; color:var(--text); font-family:var(--mono); font-size:11px;
+  outline:none; cursor:pointer; transition:border-color 0.2s;
+}
+.range-select:focus { border-color:var(--accent2); }
+
+/* Entry cards in summary */
+.entry-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; margin-bottom:12px; overflow:hidden;
+  box-shadow:var(--shadow); transition:box-shadow 0.2s;
+}
+.entry-card:hover { box-shadow:0 4px 20px rgba(30,58,95,0.12); }
+.ec-head {
+  display:flex; align-items:center; gap:12px;
+  padding:12px 18px; border-bottom:1px solid var(--border);
+  cursor:pointer;
+}
+.ec-date { font-family:var(--mono); font-size:11px; color:var(--accent2); font-weight:500; }
+.ec-mood { font-size:16px; }
+.ec-tags { display:flex; gap:5px; flex-wrap:wrap; flex:1; }
+.ec-tag {
+  background:var(--accent-light); color:var(--accent);
+  border-radius:4px; padding:1px 7px;
+  font-family:var(--mono); font-size:9px; letter-spacing:0.05em;
+}
+.ec-toggle { font-family:var(--mono); font-size:10px; color:var(--text3); }
+.ec-body { padding:14px 18px; display:none; }
+.ec-body.open { display:block; }
+.ec-section { margin-bottom:12px; }
+.ec-section:last-child { margin-bottom:0; }
+.ec-sec-title { font-family:var(--mono); font-size:9px; color:var(--text3); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:4px; }
+.ec-sec-content { font-size:13px; color:var(--text2); line-height:1.7; white-space:pre-wrap; }
+
+/* AI Summary output */
+.ai-box {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:12px; overflow:hidden; box-shadow:var(--shadow);
+  margin-bottom:20px;
+}
+.ai-box-head {
+  display:flex; align-items:center; gap:10px;
+  padding:14px 20px; background:var(--nav-bg);
+}
+.ai-box-icon { font-size:18px; }
+.ai-box-title { font-family:var(--mono); font-size:11px; color:var(--nav-text); letter-spacing:0.1em; }
+.ai-box-sub { font-family:var(--mono); font-size:10px; color:rgba(232,238,248,0.4); margin-left:auto; }
+.ai-box-body { padding:22px 24px; }
+.ai-loading {
+  display:flex; align-items:center; gap:12px;
+  font-family:var(--mono); font-size:12px; color:var(--text3);
+}
+.ai-spinner {
+  width:16px; height:16px; border:2px solid var(--border);
+  border-top-color:var(--accent); border-radius:50%;
+  animation:spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+.ai-content { font-size:13.5px; color:var(--text); line-height:1.8; }
+.ai-content h3 { font-family:var(--display); font-size:16px; font-weight:600; color:var(--accent); margin:16px 0 6px; }
+.ai-content h3:first-child { margin-top:0; }
+.ai-content ul { padding-left:20px; margin:6px 0; }
+.ai-content li { margin-bottom:4px; color:var(--text2); }
+.ai-content strong { color:var(--text); }
+.ai-content em { color:var(--gold); font-style:normal; }
+.ai-empty { font-family:var(--mono); font-size:11px; color:var(--text3); padding:16px 0; }
+
+/* Stats row in summary */
+.sum-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
+.ss-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:14px 16px; box-shadow:var(--shadow);
+}
+.ss-num { font-family:var(--mono); font-size:24px; font-weight:300; color:var(--accent); line-height:1; margin-bottom:4px; }
+.ss-label { font-family:var(--mono); font-size:9px; color:var(--text3); letter-spacing:0.08em; }
+
+/* ── BUTTONS ── */
+.btn-primary {
+  background:var(--accent); color:#fff; border:none; border-radius:var(--r);
+  padding:8px 18px; font-family:var(--mono); font-size:11px; font-weight:500;
+  cursor:pointer; transition:all 0.15s; letter-spacing:0.04em;
+}
+.btn-primary:hover { background:var(--accent2); transform:translateY(-1px); }
+.btn-ghost {
+  background:none; border:1px solid var(--border2); border-radius:var(--r);
+  padding:7px 14px; font-family:var(--mono); font-size:11px;
+  color:var(--text2); cursor:pointer; transition:all 0.15s;
+}
+.btn-ghost:hover { border-color:var(--accent2); color:var(--accent); }
+.btn-ai {
+  background:linear-gradient(135deg, var(--nav-bg), #2a5a9a);
+  color:#fff; border:none; border-radius:var(--r);
+  padding:10px 20px; font-family:var(--mono); font-size:11px; font-weight:500;
+  cursor:pointer; transition:all 0.2s; letter-spacing:0.05em;
+  display:flex; align-items:center; gap:8px;
+}
+.btn-ai:hover { opacity:0.88; transform:translateY(-1px); box-shadow:0 4px 16px rgba(30,58,95,0.25); }
+.btn-ai:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+
+/* ── SAVED STATE ── */
+.saved-badge {
+  font-family:var(--mono); font-size:10px; color:var(--green);
+  display:flex; align-items:center; gap:5px; opacity:0;
+  transition:opacity 0.3s;
+}
+.saved-badge.show { opacity:1; }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  height:60vh; gap:16px; color:var(--text3);
+}
+.empty-icon { font-size:48px; opacity:0.3; }
+.empty-title { font-family:var(--display); font-size:22px; font-weight:300; color:var(--text2); }
+.empty-sub { font-family:var(--mono); font-size:11px; color:var(--text3); text-align:center; }
+
+/* ── TOAST ── */
+.toast {
+  position:fixed; bottom:24px; right:24px;
+  background:var(--surface); border:1px solid var(--green);
+  border-radius:var(--r); padding:10px 18px;
+  font-family:var(--mono); font-size:11px; color:var(--green);
+  z-index:500; transform:translateY(60px); opacity:0;
+  transition:all 0.3s ease; pointer-events:none;
+  box-shadow:var(--shadow);
+}
+.toast.show { transform:translateY(0); opacity:1; }
+
+/* ── VIEW TOGGLE ── */
+.view-toggle { display:flex; gap:0; background:var(--surface2); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; }
+.vt-btn {
+  background:none; border:none; padding:7px 16px;
+  font-family:var(--mono); font-size:11px; color:var(--text2);
+  cursor:pointer; transition:all 0.15s;
+}
+.vt-btn.active { background:var(--surface); color:var(--accent); box-shadow:inset 0 0 0 1px var(--border); }
+
+::-webkit-scrollbar { width:4px; height:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
+</style>
+</head>
+<body>
+
+<!-- LOCK -->
+<div id="lock">
+  <div class="lock-title" data-i18n="jnl_lock_title">Research Journal<br><span>Dianchao WANG</span></div>
+  <div class="lock-box">
+    <div class="lock-label" data-i18n="lock_label">Password</div>
+    <div class="lock-row">
+      <input class="lock-input" type="password" id="pwInput" placeholder="••••••••">
+      <button class="lock-btn" onclick="unlock()" data-i18n="lock_btn_enter">Enter</button>
+    </div>
+    <div class="lock-err" id="pwErr" data-i18n="lock_err">Incorrect password</div>
+    <div class="lock-hint" data-i18n="jnl_lock_hint">Same password as Dashboard</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="topbar">
+    <a href="https://wangdianchao0904-alt.github.io/index.html" class="t-back"><span data-i18n="topbar_back">← Public Site</span></a>
+    <div class="t-title">RESEARCH JOURNAL · <span>王佃超</span></div>
+    <div class="t-space"></div>
+    <a href="https://wangdianchao0904-alt.github.io/private.html" class="t-dash" data-i18n="jnl_dashboard">Dashboard</a>
+    <div class="t-date" id="topDate"></div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="langBtnEN" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="langBtnZH" onclick="setLang('zh')">中</button>
+    </div>
+    <button class="t-lock" id="tLock" onclick="lockOut()">Lock</button>
+  </div>
+
+  <div class="layout">
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sb-cal">
+        <div class="cal-nav">
+          <button class="cal-nav-btn" onclick="prevMonth()">‹</button>
+          <div class="cal-month" id="calMonth"></div>
+          <button class="cal-nav-btn" onclick="nextMonth()">›</button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+      <div class="sb-recents">
+        <div class="sb-recents-title" data-i18n="jnl_rec_label">Recent Entries</div>
+        <div id="recentList"></div>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main" id="mainArea">
+      <!-- Views injected here -->
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PASSWORD = 'wdc2024';
+const STORE_KEY = 'wdc_journal';
+
+// ── DATA ──
+function loadEntries() { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); }
+function saveEntries(d) { localStorage.setItem(STORE_KEY, JSON.stringify(d)); }
+function getEntry(dateStr) { return loadEntries()[dateStr] || null; }
+function setEntry(dateStr, data) {
+  const d = loadEntries(); d[dateStr] = data; saveEntries(d);
+}
+
+// ── STATE ──
+let calYear, calMonth, selectedDate, currentView = 'editor';
+const today = () => new Date().toISOString().slice(0,10);
+const fmtDate = d => {
+  const dt = new Date(d + 'T00:00:00');
+  return dt.toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+};
+const fmtShort = d => {
+  const dt = new Date(d + 'T00:00:00');
+  return dt.toLocaleDateString('en-GB', {day:'2-digit', month:'short'});
+};
+const MOODS = ['😊','😐','😔','🔥','😴','🤔'];
+const TAGS = ['Research','Writing','Meeting','Reading','Lab','Admin','Travel','Insight'];
+const WEEKDAYS = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+// ── AUTH ──
+function unlock() {
+  if (document.getElementById('pwInput').value === PASSWORD) {
+    sessionStorage.setItem('wdc_journal_auth','1');
+    document.getElementById('lock').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    init();
+  } else {
+    document.getElementById('pwErr').style.display = 'block';
+    document.getElementById('pwInput').value = '';
+    setTimeout(()=>document.getElementById('pwErr').style.display='none', 2000);
+  }
+}
+function lockOut() {
+  sessionStorage.removeItem('wdc_journal_auth');
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('lock').style.display = 'flex';
+  document.getElementById('pwInput').value = '';
+}
+document.getElementById('pwInput').addEventListener('keydown', e => { if(e.key==='Enter') unlock(); });
+if (sessionStorage.getItem('wdc_journal_auth')) {
+  document.getElementById('lock').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  // init called after DOM ready
+}
+
+// ── INIT ──
+function init() {
+  jLang = localStorage.getItem('wdc_lang') || 'en';
+  document.getElementById('langBtnEN').classList.toggle('active', jLang==='en');
+  document.getElementById('langBtnZH').classList.toggle('active', jLang==='zh');
+  applyJI18n();
+  const now = new Date();
+  calYear = now.getFullYear(); calMonth = now.getMonth();
+  selectedDate = today();
+  document.getElementById('topDate').textContent = now.toLocaleDateString('en-GB',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}).toUpperCase();
+  renderCalendar();
+  renderRecents();
+  showEditor(selectedDate);
+}
+
+// ── CALENDAR ──
+function renderCalendar() {
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('calMonth').textContent = `${months[calMonth]} ${calYear}`;
+  const grid = document.getElementById('calGrid');
+  const entries = loadEntries();
+  const t = today();
+
+  // Header
+  let html = WEEKDAYS.map(d=>`<div class="cal-dow">${d}</div>`).join('');
+
+  const first = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+  const daysInPrev = new Date(calYear, calMonth, 0).getDate();
+
+  // Prev month tail
+  for (let i=0; i<first; i++) {
+    const d = daysInPrev - first + 1 + i;
+    html += `<div class="cal-day other-month">${d}</div>`;
+  }
+  // This month
+  for (let d=1; d<=daysInMonth; d++) {
+    const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = ds === t;
+    const isSel = ds === selectedDate;
+    const hasEntry = !!entries[ds];
+    const cls = [
+      isToday ? 'today' : '',
+      isSel ? 'selected' : '',
+      hasEntry ? 'has-entry' : ''
+    ].filter(Boolean).join(' ');
+    html += `<div class="cal-day ${cls}" onclick="selectDay('${ds}')">${d}</div>`;
+  }
+  // Next month
+  const total = first + daysInMonth;
+  const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+  for (let d=1; d<=remaining; d++) {
+    html += `<div class="cal-day other-month">${d}</div>`;
+  }
+  grid.innerHTML = html;
+}
+
+function prevMonth() {
+  calMonth--; if(calMonth<0){calMonth=11;calYear--;} renderCalendar();
+}
+function nextMonth() {
+  calMonth++; if(calMonth>11){calMonth=0;calYear++;} renderCalendar();
+}
+
+function selectDay(ds) {
+  selectedDate = ds;
+  renderCalendar();
+  renderRecents();
+  showEditor(ds);
+  // Scroll main to top
+  document.getElementById('mainArea').scrollTop = 0;
+}
+
+// ── RECENTS ──
+function renderRecents() {
+  const entries = loadEntries();
+  const sorted = Object.keys(entries).sort((a,b)=>b>a?1:-1).slice(0,20);
+  const el = document.getElementById('recentList');
+  if (!sorted.length) { el.innerHTML = '<div style="font-family:var(--mono);font-size:10px;color:var(--text3);padding:8px 0;">No entries yet</div>'; return; }
+  el.innerHTML = sorted.map(ds => {
+    const e = entries[ds];
+    const preview = (e.activities||'').slice(0,40) || (e.reflections||'').slice(0,40) || '(empty)';
+    const isActive = ds === selectedDate;
+    return `<div class="recent-item${isActive?' active':''}" onclick="selectDay('${ds}')">
+      <div class="ri-date">${fmtShort(ds)} ${e.mood||''}</div>
+      <div class="ri-preview">${esc(preview)}${preview.length>=40?'…':''}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── EDITOR ──
+function showEditor(ds) {
+  currentView = 'editor';
+  const entry = getEntry(ds) || {};
+  const main = document.getElementById('mainArea');
+  const isToday = ds === today();
+  const isFuture = ds > today();
+
+  main.innerHTML = `
+  <div class="editor-wrap">
+    <div class="ed-header">
+      <div>
+        <div class="ed-date-display">${fmtDate(ds)}</div>
+        <div class="ed-date-sub">${isToday?'TODAY · ':''}${ds}</div>
+      </div>
+      <div class="ed-actions">
+        <span class="saved-badge" id="savedBadge">✓ Saved</span>
+        <button class="btn-ghost" onclick="showSummaryView()">📊 Summary</button>
+        <button class="btn-primary" onclick="saveCurrentEntry()">Save</button>
+      </div>
+    </div>
+
+    <!-- Mood & Tags -->
+    <div class="mood-row">
+      <div class="mood-label">MOOD</div>
+      ${MOODS.map(m=>`<button class="mood-btn${entry.mood===m?' selected':''}" onclick="selectMood('${m}')" title="${m}">${m}</button>`).join('')}
+      <div class="mood-tags">
+        ${TAGS.map(t=>`<button class="mood-tag${(entry.tags||[]).includes(t)?' selected':''}" onclick="toggleTag('${t}')">${t}</button>`).join('')}
+      </div>
+    </div>
+
+    <!-- Activities -->
+    <div class="ed-section">
+      <div class="ed-sec-header">
+        <span class="ed-sec-icon">📌</span>
+        <span class="ed-sec-title">What I Did Today</span>
+        <span class="ed-sec-hint">Activities · Progress · Outcomes</span>
+      </div>
+      <textarea class="ed-textarea" id="ed-activities" placeholder="Wrote the Discussion section of the freeze-casting paper&#10;Revised Figure 1 with new matplotlib layout&#10;Had a meeting with Prof. Noguchi about the solvent selection...">${esc(entry.activities||'')}</textarea>
+    </div>
+
+    <!-- Reflections -->
+    <div class="ed-section">
+      <div class="ed-sec-header">
+        <span class="ed-sec-icon">💡</span>
+        <span class="ed-sec-title">Reflections & Insights</span>
+        <span class="ed-sec-hint">Ideas · Observations · Questions</span>
+      </div>
+      <textarea class="ed-textarea" id="ed-reflections" style="min-height:120px;" placeholder="I noticed that when the cooling rate increases beyond 10°C/min, the lamellar spacing becomes irregular...&#10;A new idea: what if we combine freeze-casting with...&#10;I should read more about...">${esc(entry.reflections||'')}</textarea>
+    </div>
+
+    <!-- Challenges -->
+    <div class="ed-section">
+      <div class="ed-sec-header">
+        <span class="ed-sec-icon">🔧</span>
+        <span class="ed-sec-title">Challenges & Blockers</span>
+        <span class="ed-sec-hint">What slowed me down or remains unresolved</span>
+      </div>
+      <textarea class="ed-textarea" id="ed-challenges" placeholder="Reviewer 2's comment on the statistical analysis is still unclear&#10;The COMSOL simulation keeps crashing above 200 iterations...">${esc(entry.challenges||'')}</textarea>
+    </div>
+
+    <!-- Tomorrow -->
+    <div class="ed-section">
+      <div class="ed-sec-header">
+        <span class="ed-sec-icon">➜</span>
+        <span class="ed-sec-title">Plan for Tomorrow</span>
+        <span class="ed-sec-hint">Next actions</span>
+      </div>
+      <textarea class="ed-textarea" id="ed-tomorrow" placeholder="1. Finalize the revised Methods section&#10;2. Reply to Prof. Barbara's email&#10;3. Run the batch CT analysis script...">${esc(entry.tomorrow||'')}</textarea>
+    </div>
+
+  </div>`;
+
+  // Auto-save on blur
+  ['ed-activities','ed-reflections','ed-challenges','ed-tomorrow'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('blur', autoSave);
+  });
+}
+
+let currentMood = null;
+let currentTags = [];
+
+function selectMood(m) {
+  const entry = getEntry(selectedDate) || {};
+  entry.mood = entry.mood === m ? null : m;
+  setEntry(selectedDate, entry);
+  showBadge();
+  // Re-render mood buttons only
+  document.querySelectorAll('.mood-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.textContent === entry.mood);
+  });
+  renderCalendar(); renderRecents();
+}
+
+function toggleTag(t) {
+  const entry = getEntry(selectedDate) || {};
+  entry.tags = entry.tags || [];
+  const idx = entry.tags.indexOf(t);
+  if (idx>=0) entry.tags.splice(idx,1); else entry.tags.push(t);
+  setEntry(selectedDate, entry);
+  showBadge();
+  document.querySelectorAll('.mood-tag').forEach(btn => {
+    btn.classList.toggle('selected', (entry.tags||[]).includes(btn.textContent));
+  });
+}
+
+function saveCurrentEntry() {
+  const entry = getEntry(selectedDate) || {};
+  entry.activities = document.getElementById('ed-activities')?.value || entry.activities || '';
+  entry.reflections = document.getElementById('ed-reflections')?.value || entry.reflections || '';
+  entry.challenges = document.getElementById('ed-challenges')?.value || entry.challenges || '';
+  entry.tomorrow = document.getElementById('ed-tomorrow')?.value || entry.tomorrow || '';
+  entry.updated = new Date().toISOString();
+  setEntry(selectedDate, entry);
+  showBadge();
+  renderCalendar(); renderRecents();
+  toast(jt('toast_saved'));
+}
+
+function autoSave() {
+  saveCurrentEntry();
+}
+
+function showBadge() {
+  const b = document.getElementById('savedBadge');
+  if (b) { b.classList.add('show'); setTimeout(()=>b.classList.remove('show'), 1500); }
+}
+
+// ── SUMMARY VIEW ──
+function showSummaryView() {
+  currentView = 'summary';
+  const main = document.getElementById('mainArea');
+  main.innerHTML = `
+  <div class="sum-wrap">
+    <div class="sum-header">
+      <div class="sum-title">Summary & Reflection</div>
+      <div class="sum-sub">AI-powered analysis of your journal entries</div>
+    </div>
+
+    <div class="sum-tabs">
+      <button class="sum-tab active" onclick="setSumTab('week',this)">This Week</button>
+      <button class="sum-tab" onclick="setSumTab('month',this)">This Month</button>
+      <button class="sum-tab" onclick="setSumTab('custom',this)">Custom Range</button>
+    </div>
+
+    <div id="customRange" style="display:none;" class="range-row">
+      <span class="range-label">FROM</span>
+      <input type="date" class="range-select" id="rangeFrom">
+      <span class="range-label">TO</span>
+      <input type="date" class="range-select" id="rangeTo">
+    </div>
+
+    <div id="sumStats" class="sum-stats"></div>
+
+    <div style="display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap;">
+      <button class="btn-ai" id="aiBtn" onclick="generateAISummary()">
+        ✦ Generate AI Summary
+      </button>
+      <button class="btn-ghost" onclick="showEditor(selectedDate)">← Back to Journal</button>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-left:auto;">Powered by Claude</div>
+    </div>
+
+    <div id="aiOutput"></div>
+
+    <div id="entriesPreview"></div>
+  </div>`;
+
+  setSumTab('week', document.querySelector('.sum-tab.active'));
+}
+
+let sumMode = 'week';
+function setSumTab(mode, btn) {
+  sumMode = mode;
+  document.querySelectorAll('.sum-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('customRange').style.display = mode==='custom' ? 'flex' : 'none';
+  renderSumStats();
+  renderEntriesPreview();
+}
+
+function getSumRange() {
+  const now = new Date();
+  let from, to = today();
+  if (sumMode === 'week') {
+    const day = now.getDay();
+    const d = new Date(now); d.setDate(now.getDate() - day);
+    from = d.toISOString().slice(0,10);
+  } else if (sumMode === 'month') {
+    from = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-01`;
+  } else {
+    from = document.getElementById('rangeFrom')?.value || to;
+    to = document.getElementById('rangeTo')?.value || to;
+  }
+  return { from, to };
+}
+
+function getEntriesInRange() {
+  const { from, to } = getSumRange();
+  const entries = loadEntries();
+  return Object.entries(entries)
+    .filter(([ds]) => ds >= from && ds <= to)
+    .sort(([a],[b]) => a > b ? 1 : -1);
+}
+
+function renderSumStats() {
+  const inRange = getEntriesInRange();
+  const { from, to } = getSumRange();
+  const totalDays = Math.ceil((new Date(to) - new Date(from)) / 86400000) + 1;
+  const moods = inRange.map(([,e])=>e.mood).filter(Boolean);
+  const allTags = inRange.flatMap(([,e])=>e.tags||[]);
+  const topTag = allTags.length ? [...allTags.reduce((m,t)=>(m.set(t,(m.get(t)||0)+1),m),new Map())].sort((a,b)=>b[1]-a[1])[0][0] : '—';
+
+  document.getElementById('sumStats').innerHTML = `
+    <div class="ss-card"><div class="ss-num">${inRange.length}</div><div class="ss-label">Entries Logged</div></div>
+    <div class="ss-card"><div class="ss-num">${totalDays}</div><div class="ss-label">Days in Range</div></div>
+    <div class="ss-card"><div class="ss-num">${moods.length ? moods[moods.length-1] : '—'}</div><div class="ss-label">Latest Mood</div></div>
+    <div class="ss-card"><div class="ss-num" style="font-size:14px;">${topTag}</div><div class="ss-label">Top Activity Tag</div></div>
+  `;
+}
+
+function renderEntriesPreview() {
+  const inRange = getEntriesInRange();
+  const el = document.getElementById('entriesPreview');
+  if (!inRange.length) {
+    el.innerHTML = '<div class="empty-state"><div class="empty-icon">📭</div><div class="empty-title">No entries in this range</div><div class="empty-sub">Start journaling to see your entries here</div></div>';
+    return;
+  }
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;">
+      ${inRange.length} entries · click to expand
+    </div>
+    ${inRange.reverse().map(([ds,e])=>`
+    <div class="entry-card">
+      <div class="ec-head" onclick="toggleEntryCard(this)">
+        <div class="ec-date">${fmtShort(ds)}</div>
+        <div class="ec-mood">${e.mood||''}</div>
+        <div class="ec-tags">${(e.tags||[]).map(t=>`<span class="ec-tag">${t}</span>`).join('')}</div>
+        <div class="ec-toggle">▾</div>
+      </div>
+      <div class="ec-body">
+        ${e.activities?`<div class="ec-section"><div class="ec-sec-title">Activities</div><div class="ec-sec-content">${esc(e.activities)}</div></div>`:''}
+        ${e.reflections?`<div class="ec-section"><div class="ec-sec-title">Reflections</div><div class="ec-sec-content">${esc(e.reflections)}</div></div>`:''}
+        ${e.challenges?`<div class="ec-section"><div class="ec-sec-title">Challenges</div><div class="ec-sec-content">${esc(e.challenges)}</div></div>`:''}
+        ${e.tomorrow?`<div class="ec-section"><div class="ec-sec-title">Plan</div><div class="ec-sec-content">${esc(e.tomorrow)}</div></div>`:''}
+      </div>
+    </div>`).join('')}
+  `;
+}
+
+function toggleEntryCard(head) {
+  const body = head.nextElementSibling;
+  body.classList.toggle('open');
+  head.querySelector('.ec-toggle').textContent = body.classList.contains('open') ? '▴' : '▾';
+}
+
+// ── AI SUMMARY ──
+async function generateAISummary() {
+  const inRange = getEntriesInRange();
+  const { from, to } = getSumRange();
+  if (!inRange.length) {
+    document.getElementById('aiOutput').innerHTML = '<div class="ai-box"><div class="ai-box-head"><span class="ai-box-icon">✦</span><span class="ai-box-title">AI SUMMARY</span></div><div class="ai-box-body"><div class="ai-empty">No entries found in this range. Write some journal entries first!</div></div></div>';
+    return;
+  }
+
+  const btn = document.getElementById('aiBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="ai-spinner"></div> Generating...';
+
+  document.getElementById('aiOutput').innerHTML = `
+    <div class="ai-box">
+      <div class="ai-box-head">
+        <span class="ai-box-icon">✦</span>
+        <span class="ai-box-title">AI SUMMARY</span>
+        <span class="ai-box-sub">Analyzing ${inRange.length} entries · ${from} → ${to}</span>
+      </div>
+      <div class="ai-box-body">
+        <div class="ai-loading"><div class="ai-spinner"></div>Claude is reading your journal entries...</div>
+      </div>
+    </div>`;
+
+  // Build journal text
+  const journalText = inRange.map(([ds,e]) => {
+    let t = `【${ds}】`;
+    if (e.mood) t += ` Mood: ${e.mood}`;
+    if (e.tags?.length) t += ` Tags: ${e.tags.join(', ')}`;
+    if (e.activities) t += `\nActivities: ${e.activities}`;
+    if (e.reflections) t += `\nReflections: ${e.reflections}`;
+    if (e.challenges) t += `\nChallenges: ${e.challenges}`;
+    if (e.tomorrow) t += `\nPlan: ${e.tomorrow}`;
+    return t;
+  }).join('\n\n---\n\n');
+
+  const rangeLabel = sumMode === 'week' ? 'this week' : sumMode === 'month' ? 'this month' : `${from} to ${to}`;
+  const prompt = `You are a thoughtful research mentor reviewing the journal of Dr. Dianchao Wang, a Project Assistant Professor at The University of Tokyo specializing in low-carbon concrete, freeze-casting cement materials, and CO₂ sequestration.
+
+Here are his journal entries for ${rangeLabel}:
+
+${journalText}
+
+Please provide a structured review in English with these sections:
+
+### Key Accomplishments
+Summarize the most important things achieved. Be specific.
+
+### Research Insights
+Highlight any notable ideas, observations, or intellectual breakthroughs mentioned.
+
+### Patterns & Themes
+What recurring themes, energy levels, or behavioral patterns do you notice?
+
+### Challenges & Blockers
+What obstacles appeared? Are any recurring?
+
+### Recommendations for Next Period
+Based on what you've seen, give 3–5 concrete, actionable suggestions to improve research productivity and wellbeing.
+
+### One Sentence to Remember
+A single motivating or thought-provoking sentence that captures the spirit of this period.
+
+Keep the tone warm, honest, and intellectually rigorous — like advice from a senior colleague who genuinely cares.`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content?.find(b=>b.type==='text')?.text || 'No response received.';
+    const html = text
+      .replace(/### (.*)/g, '<h3>$1</h3>')
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/^- (.*)/gm, '<li>$1</li>')
+      .replace(/(<li>.*<\/li>\n?)+/gs, m => `<ul>${m}</ul>`)
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/^(?!<[hup])/gm, '')
+      .replace(/\n/g, '<br>');
+
+    document.getElementById('aiOutput').innerHTML = `
+      <div class="ai-box">
+        <div class="ai-box-head">
+          <span class="ai-box-icon">✦</span>
+          <span class="ai-box-title">AI SUMMARY</span>
+          <span class="ai-box-sub">${from} → ${to} · ${inRange.length} entries</span>
+        </div>
+        <div class="ai-box-body">
+          <div class="ai-content">${html}</div>
+        </div>
+      </div>`;
+  } catch(err) {
+    document.getElementById('aiOutput').innerHTML = `
+      <div class="ai-box">
+        <div class="ai-box-head"><span class="ai-box-icon">✦</span><span class="ai-box-title">AI SUMMARY</span></div>
+        <div class="ai-box-body">
+          <div class="ai-empty">⚠ Could not connect to AI. Check your internet connection and try again.<br><br>
+          <span style="font-size:10px;color:var(--text3);">Error: ${err.message}</span></div>
+        </div>
+      </div>`;
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '✦ Generate AI Summary';
+}
+
+// ── UTILS ──
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function toast(msg, color='var(--green)') {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.borderColor = color; t.style.color = color;
+  t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+
+// ── i18n ──
+const JTRANSLATIONS = {
+  en: {
+    topbar_back: '← Public Site',
+    tLock: 'Lock',
+    jnl_dashboard: 'Dashboard',
+    jnl_lock_title: 'Research Journal',
+    lock_label: 'Password',
+    lock_btn_enter: 'Enter',
+    lock_err: 'Incorrect password',
+    jnl_lock_hint: 'Same password as Dashboard',
+    jnl_rec_label: 'Recent Entries',
+    jnl_no_entries: 'No entries yet',
+    jnl_today: 'TODAY',
+    jnl_saved: '✓ Saved',
+    jnl_summary_btn: '📊 Summary',
+    jnl_save_btn: 'Save',
+    jnl_mood: 'MOOD',
+    jnl_sec_did: 'What I Did Today',
+    jnl_sec_did_hint: 'Activities · Progress',
+    jnl_sec_reflect: 'Reflections & Insights',
+    jnl_sec_reflect_hint: 'Ideas · Observations',
+    jnl_sec_challenges: 'Challenges & Blockers',
+    jnl_sec_challenges_hint: 'What slowed me down',
+    jnl_sec_tomorrow: 'Plan for Tomorrow',
+    jnl_sec_tomorrow_hint: 'Next actions',
+    jnl_sum_title: 'Summary & Reflection',
+    jnl_sum_sub: 'AI-powered analysis · powered by Claude',
+    jnl_back_journal: '← Back to Journal',
+    jnl_week: 'This Week',
+    jnl_month: 'This Month',
+    jnl_custom: 'Custom',
+    jnl_from: 'FROM', jnl_to: 'TO',
+    jnl_ai_btn: '✦ Generate AI Summary',
+    jnl_entries: 'Entries', jnl_days: 'Days',
+    jnl_latest_mood: 'Latest Mood', jnl_top_tag: 'Top Tag',
+    jnl_ai_reading: 'Reading your journal...',
+    jnl_no_range: 'No entries in this range. Start writing!',
+    jnl_entry_expand: 'entries · click to expand',
+    jnl_no_preview: 'No entries in this range yet',
+    jnl_powered: 'Powered by Claude',
+    toast_saved: '✓ Entry saved',
+  },
+  zh: {
+    topbar_back: '← 公开主页',
+    tLock: '锁定',
+    jnl_dashboard: '工作台',
+    jnl_lock_title: '研究日志',
+    lock_label: '请输入密码',
+    lock_btn_enter: '进入',
+    lock_err: '密码错误',
+    jnl_lock_hint: '与工作台密码相同',
+    jnl_rec_label: '最近记录',
+    jnl_no_entries: '暂无记录',
+    jnl_today: '今天',
+    jnl_saved: '✓ 已保存',
+    jnl_summary_btn: '📊 总结',
+    jnl_save_btn: '保存',
+    jnl_mood: '心情',
+    jnl_sec_did: '今天做了什么',
+    jnl_sec_did_hint: '事项 · 进展',
+    jnl_sec_reflect: '感悟与洞见',
+    jnl_sec_reflect_hint: '想法 · 观察',
+    jnl_sec_challenges: '遇到的困难',
+    jnl_sec_challenges_hint: '阻碍 · 未解决问题',
+    jnl_sec_tomorrow: '明天的计划',
+    jnl_sec_tomorrow_hint: '下一步行动',
+    jnl_sum_title: '总结与复盘',
+    jnl_sum_sub: 'AI 智能分析 · 由 Claude 提供支持',
+    jnl_back_journal: '← 返回日志',
+    jnl_week: '本周',
+    jnl_month: '本月',
+    jnl_custom: '自定义',
+    jnl_from: '从', jnl_to: '至',
+    jnl_ai_btn: '✦ 生成 AI 总结',
+    jnl_entries: '条记录', jnl_days: '天',
+    jnl_latest_mood: '最近心情', jnl_top_tag: '最常标签',
+    jnl_ai_reading: '正在阅读你的日志...',
+    jnl_no_range: '该时间段暂无记录，先写几条日志吧！',
+    jnl_entry_expand: '条记录 · 点击展开',
+    jnl_no_preview: '该时间段暂无记录',
+    jnl_powered: '由 Claude 提供支持',
+    toast_saved: '✓ 日志已保存',
+  }
+};
+
+let jLang = localStorage.getItem('wdc_lang') || 'en';
+function jt(key) { return JTRANSLATIONS[jLang][key] || JTRANSLATIONS['en'][key] || key; }
+function setLang(lang) {
+  jLang = lang;
+  localStorage.setItem('wdc_lang', lang);
+  document.getElementById('langBtnEN').classList.toggle('active', lang==='en');
+  document.getElementById('langBtnZH').classList.toggle('active', lang==='zh');
+  applyJI18n();
+  // Re-render current view
+  renderRecents();
+  const main = document.getElementById('mainArea');
+  if (main.querySelector('.editor-wrap')) showEditor(selectedDate);
+  else if (main.querySelector('.sum-wrap')) showSummaryView();
+}
+function applyJI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = jt(key);
+    if (val && !el.querySelector('span')) el.textContent = val;
+  });
+  const lock = document.getElementById('tLock');
+  if (lock) lock.textContent = jt('tLock');
+}
+
+// ── START ──
+if (sessionStorage.getItem('wdc_journal_auth')) {
+  window.addEventListener('DOMContentLoaded', init);
+} else {
+  window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('pwInput').focus();
+  });
+}
+</script>
+</body>
+</html>
