@@ -620,6 +620,120 @@ body {
 .detail-field { margin-bottom: 14px; }
 .detail-label { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 5px; }
 .detail-value { font-size: 13px; color: var(--text); line-height: 1.6; white-space: pre-wrap; }
+
+/* ─── JOURNAL ─── */
+.jnl-layout { display: grid; grid-template-columns: 260px 1fr; height: calc(100vh - 52px); overflow: hidden; }
+.jnl-sidebar {
+  border-right: 1px solid var(--border);
+  background: var(--surface);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.jnl-cal { padding: 18px 14px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.jnl-cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.jnl-cal-nav-btn {
+  background: none; border: none; color: var(--text2); cursor: pointer;
+  font-size: 15px; padding: 2px 7px; border-radius: 4px; transition: all 0.15s;
+}
+.jnl-cal-nav-btn:hover { background: var(--surface2); color: var(--accent); }
+.jnl-cal-month { font-family: var(--display); font-size: 15px; font-weight: 400; color: var(--text); }
+.jnl-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.jnl-dow { font-family: var(--mono); font-size: 9px; color: var(--text3); text-align: center; padding: 3px 0; }
+.jnl-day {
+  aspect-ratio: 1; border-radius: 5px; display: flex; align-items: center;
+  justify-content: center; font-family: var(--mono); font-size: 11px;
+  color: var(--text2); cursor: pointer; transition: all 0.15s; position: relative;
+}
+.jnl-day:hover { background: rgba(37,99,168,0.08); color: var(--accent); }
+.jnl-day.jd-today { background: var(--accent); color: #fff; font-weight: 500; }
+.jnl-day.jd-selected { background: rgba(37,99,168,0.12); color: var(--accent); outline: 1px solid var(--accent); }
+.jnl-day.jd-today.jd-selected { background: var(--accent); color: #fff; outline: none; }
+.jnl-day.jd-has::after {
+  content: ''; position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%);
+  width: 3px; height: 3px; border-radius: 50%; background: var(--gold);
+}
+.jnl-day.jd-today.jd-has::after { background: rgba(255,255,255,0.7); }
+.jnl-day.jd-other { color: var(--text3); opacity: 0.35; pointer-events: none; }
+.jnl-recents { flex: 1; overflow-y: auto; padding: 12px 10px; }
+.jnl-rec-label { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 0.15em; text-transform: uppercase; padding: 0 4px; margin-bottom: 8px; }
+.jnl-rec-item {
+  padding: 8px 10px; border-radius: 6px; cursor: pointer;
+  transition: background 0.15s; margin-bottom: 2px;
+}
+.jnl-rec-item:hover { background: var(--surface2); }
+.jnl-rec-item.active { background: rgba(37,99,168,0.08); }
+.jnl-rec-date { font-family: var(--mono); font-size: 10px; color: var(--accent2); margin-bottom: 1px; }
+.jnl-rec-preview { font-size: 11.5px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.jnl-main { overflow-y: auto; }
+.jnl-editor { padding: 28px 32px; max-width: 800px; }
+.jnl-ed-hd { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; gap: 16px; }
+.jnl-ed-date { font-family: var(--display); font-size: 24px; font-weight: 300; color: var(--text); }
+.jnl-ed-sub { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-top: 2px; }
+.jnl-ed-actions { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+.jnl-saved { font-family: var(--mono); font-size: 10px; color: var(--green); opacity: 0; transition: opacity 0.3s; }
+.jnl-saved.show { opacity: 1; }
+.mood-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; padding: 11px 14px; background: var(--surface2); border-radius: var(--radius); }
+.mood-lbl { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 0.12em; white-space: nowrap; }
+.mood-emoji { background: none; border: 1px solid var(--border); border-radius: 20px; padding: 3px 9px; font-size: 15px; cursor: pointer; transition: all 0.15s; line-height: 1; }
+.mood-emoji:hover { border-color: var(--accent2); transform: scale(1.1); }
+.mood-emoji.sel { border-color: var(--accent); background: rgba(37,99,168,0.08); }
+.act-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-left: 4px; }
+.act-tag { background: none; border: 1px solid var(--border); border-radius: 4px; padding: 3px 8px; font-family: var(--mono); font-size: 9px; color: var(--text3); cursor: pointer; transition: all 0.15s; }
+.act-tag:hover { border-color: var(--accent2); color: var(--accent); }
+.act-tag.sel { border-color: var(--accent); background: rgba(37,99,168,0.08); color: var(--accent); }
+.jnl-sec { margin-bottom: 18px; }
+.jnl-sec-hd { display: flex; align-items: center; gap: 7px; margin-bottom: 7px; }
+.jnl-sec-icon { font-size: 14px; }
+.jnl-sec-title { font-family: var(--mono); font-size: 10px; color: var(--text2); letter-spacing: 0.1em; text-transform: uppercase; }
+.jnl-sec-hint { font-family: var(--mono); font-size: 9px; color: var(--text3); margin-left: auto; }
+.jnl-textarea {
+  width: 100%; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 14px; color: var(--text);
+  font-family: var(--serif); font-size: 13.5px; line-height: 1.75;
+  outline: none; resize: vertical; min-height: 90px; transition: border-color 0.2s;
+}
+.jnl-textarea:focus { border-color: var(--accent2); box-shadow: 0 0 0 3px rgba(37,99,168,0.05); }
+.jnl-textarea::placeholder { color: var(--text3); font-style: italic; }
+/* Summary */
+.jnl-sum { padding: 28px 32px; max-width: 800px; }
+.sum-mode-row { display: flex; gap: 6px; margin-bottom: 18px; }
+.sum-mode-btn { background: none; border: 1px solid var(--border); border-radius: 6px; padding: 7px 16px; font-family: var(--mono); font-size: 11px; color: var(--text2); cursor: pointer; transition: all 0.15s; }
+.sum-mode-btn:hover { border-color: var(--accent2); color: var(--accent); }
+.sum-mode-btn.active { border-color: var(--accent); background: rgba(37,99,168,0.08); color: var(--accent); }
+.sum-stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 18px; }
+.sum-sc { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; box-shadow: 0 2px 8px rgba(30,58,95,0.06); }
+.sum-sc-num { font-family: var(--mono); font-size: 22px; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+.sum-sc-lbl { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 0.06em; }
+.ai-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(30,58,95,0.08); margin-bottom: 20px; }
+.ai-box-head { display: flex; align-items: center; gap: 10px; padding: 13px 20px; background: var(--nav-bg); }
+.ai-box-ttl { font-family: var(--mono); font-size: 11px; color: var(--nav-text); letter-spacing: 0.1em; }
+.ai-box-sub { font-family: var(--mono); font-size: 10px; color: rgba(232,238,248,0.4); margin-left: auto; }
+.ai-box-body { padding: 20px 22px; }
+.ai-spinner { width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: jnspin 0.8s linear infinite; display: inline-block; }
+@keyframes jnspin { to { transform: rotate(360deg); } }
+.ai-content { font-size: 13.5px; color: var(--text); line-height: 1.8; }
+.ai-content h3 { font-family: var(--display); font-size: 16px; font-weight: 600; color: var(--accent); margin: 16px 0 6px; }
+.ai-content h3:first-child { margin-top: 0; }
+.ai-content ul { padding-left: 20px; margin: 6px 0; }
+.ai-content li { margin-bottom: 4px; color: var(--text2); }
+.ai-content strong { color: var(--text); }
+.btn-ai { background: linear-gradient(135deg, var(--nav-bg), #2a5a9a); color: #fff; border: none; border-radius: var(--radius); padding: 10px 20px; font-family: var(--mono); font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.2s; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 8px; }
+.btn-ai:hover { opacity: 0.88; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(30,58,95,0.2); }
+.btn-ai:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.ec-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+.ec-head { display: flex; align-items: center; gap: 10px; padding: 11px 16px; cursor: pointer; transition: background 0.15s; }
+.ec-head:hover { background: var(--surface2); }
+.ec-hdate { font-family: var(--mono); font-size: 11px; color: var(--accent2); }
+.ec-hmood { font-size: 15px; }
+.ec-htags { display: flex; gap: 4px; flex: 1; flex-wrap: wrap; }
+.ec-htag { background: rgba(37,99,168,0.08); color: var(--accent); border-radius: 4px; padding: 1px 6px; font-family: var(--mono); font-size: 9px; }
+.ec-toggle { font-family: var(--mono); font-size: 10px; color: var(--text3); }
+.ec-body { display: none; padding: 12px 16px; border-top: 1px solid var(--border); }
+.ec-body.open { display: block; }
+.ec-field { margin-bottom: 10px; }
+.ec-field:last-child { margin-bottom: 0; }
+.ec-field-lbl { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
+.ec-field-val { font-size: 13px; color: var(--text2); line-height: 1.65; white-space: pre-wrap; }
 </style>
 </head>
 <body>
@@ -710,6 +824,14 @@ body {
         <div class="sb-label">Notes</div>
         <div class="sb-item" onclick="switchTab('notes',this)">
           <span class="sb-icon">✏</span> Quick Notes
+        </div>
+      </div>
+      <div class="sb-divider"></div>
+      <div class="sb-section">
+        <div class="sb-label">Journal</div>
+        <div class="sb-item" onclick="switchTab('journal',this)">
+          <span class="sb-icon">📓</span> Daily Journal
+          <span class="sb-badge" id="badge-journal">0</span>
         </div>
       </div>
     </nav>
@@ -931,6 +1053,30 @@ body {
         </div>
         <textarea class="notes-area" id="notesArea" placeholder="Free-form notes, ideas, drafts...&#10;&#10;Auto-saved to browser."></textarea>
         <div style="margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--text3);" id="notesSaved"></div>
+      </div>
+
+
+      <!-- ── JOURNAL ── -->
+      <div class="tab-panel" id="tab-journal">
+        <div class="jnl-layout">
+          <!-- Sidebar: calendar + recents -->
+          <div class="jnl-sidebar">
+            <div class="jnl-cal">
+              <div class="jnl-cal-nav">
+                <button class="jnl-cal-nav-btn" onclick="jnlPrevMonth()">‹</button>
+                <div class="jnl-cal-month" id="jnlCalMonth"></div>
+                <button class="jnl-cal-nav-btn" onclick="jnlNextMonth()">›</button>
+              </div>
+              <div class="jnl-cal-grid" id="jnlCalGrid"></div>
+            </div>
+            <div class="jnl-recents">
+              <div class="jnl-rec-label">Recent Entries</div>
+              <div id="jnlRecentList"></div>
+            </div>
+          </div>
+          <!-- Main: editor or summary -->
+          <div class="jnl-main" id="jnlMain"></div>
+        </div>
       </div>
 
     </div><!-- /content -->
@@ -1297,6 +1443,7 @@ function switchTab(id, el) {
   document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
   document.getElementById('tab-'+id).classList.add('active');
   if (el) el.classList.add('active');
+  if (id==='journal') { initJournal(); return; }
   renderAll();
 }
 
@@ -1812,6 +1959,333 @@ window.lockOut = function() {
   document.getElementById('lockScreen').style.display = 'flex';
   document.getElementById('pwInput').value = '';
 };
+// ═══════════════════════════════════════════
+// ── JOURNAL MODULE ──
+// ═══════════════════════════════════════════
+const JNL_KEY = 'wdc_journal';
+const JNL_MOODS = ['😊','😐','😔','🔥','😴','🤔'];
+const JNL_TAGS = ['Research','Writing','Meeting','Lab','Reading','Admin','Travel'];
+const JNL_DOW = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+let jnlCalYear, jnlCalMonth, jnlSelDate, jnlSumMode = 'week';
+
+function jnlLoadAll() { return JSON.parse(localStorage.getItem(JNL_KEY) || '{}'); }
+function jnlSaveAll(d) { localStorage.setItem(JNL_KEY, JSON.stringify(d)); }
+function jnlGet(ds) { return jnlLoadAll()[ds] || {}; }
+function jnlSet(ds, data) { const d = jnlLoadAll(); d[ds] = data; jnlSaveAll(d); }
+function jnlToday() { return new Date().toISOString().slice(0,10); }
+function jnlFmtLong(ds) {
+  return new Date(ds + 'T00:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+}
+function jnlFmtShort(ds) {
+  return new Date(ds + 'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+}
+
+function initJournal() {
+  const now = new Date();
+  jnlCalYear = now.getFullYear(); jnlCalMonth = now.getMonth();
+  jnlSelDate = jnlToday();
+  jnlRenderCal(); jnlRenderRecents(); jnlShowEditor(jnlSelDate);
+  updateJnlBadge();
+}
+
+function updateJnlBadge() {
+  const count = Object.keys(jnlLoadAll()).length;
+  const el = document.getElementById('badge-journal');
+  if (el) el.textContent = count;
+}
+
+// ── Calendar ──
+function jnlRenderCal() {
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('jnlCalMonth').textContent = MONTHS[jnlCalMonth] + ' ' + jnlCalYear;
+  const entries = jnlLoadAll();
+  const t = jnlToday();
+  let html = JNL_DOW.map(d => `<div class="jnl-dow">${d}</div>`).join('');
+  const first = new Date(jnlCalYear, jnlCalMonth, 1).getDay();
+  const daysInMonth = new Date(jnlCalYear, jnlCalMonth+1, 0).getDate();
+  const daysInPrev = new Date(jnlCalYear, jnlCalMonth, 0).getDate();
+  for (let i=0; i<first; i++) html += `<div class="jnl-day jnl-day jd-other">${daysInPrev-first+1+i}</div>`;
+  for (let d=1; d<=daysInMonth; d++) {
+    const ds = `${jnlCalYear}-${String(jnlCalMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const cls = [ds===t?'jd-today':'', ds===jnlSelDate?'jd-selected':'', entries[ds]?'jd-has':''].filter(Boolean).join(' ');
+    html += `<div class="jnl-day ${cls}" onclick="jnlSelectDay('${ds}')">${d}</div>`;
+  }
+  const total = first + daysInMonth;
+  const rem = total%7===0?0:7-(total%7);
+  for (let d=1; d<=rem; d++) html += `<div class="jnl-day jd-other">${d}</div>`;
+  document.getElementById('jnlCalGrid').innerHTML = html;
+}
+
+function jnlPrevMonth() { jnlCalMonth--; if(jnlCalMonth<0){jnlCalMonth=11;jnlCalYear--;} jnlRenderCal(); }
+function jnlNextMonth() { jnlCalMonth++; if(jnlCalMonth>11){jnlCalMonth=0;jnlCalYear++;} jnlRenderCal(); }
+
+function jnlSelectDay(ds) {
+  jnlSelDate = ds;
+  jnlRenderCal(); jnlRenderRecents();
+  jnlShowEditor(ds);
+  document.getElementById('jnlMain').scrollTop = 0;
+}
+
+// ── Recents ──
+function jnlRenderRecents() {
+  const entries = jnlLoadAll();
+  const sorted = Object.keys(entries).sort((a,b)=>b>a?1:-1).slice(0,20);
+  const el = document.getElementById('jnlRecentList');
+  if (!sorted.length) { el.innerHTML='<div style="font-family:var(--mono);font-size:10px;color:var(--text3);">No entries yet</div>'; return; }
+  el.innerHTML = sorted.map(ds => {
+    const e = entries[ds];
+    const preview = (e.activities||'').slice(0,42)||(e.reflections||'').slice(0,42)||'(empty)';
+    return `<div class="jnl-rec-item${ds===jnlSelDate?' active':''}" onclick="jnlSelectDay('${ds}')">
+      <div class="jnl-rec-date">${jnlFmtShort(ds)} ${e.mood||''}</div>
+      <div class="jnl-rec-preview">${esc(preview.slice(0,42))}${preview.length>42?'…':''}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── Editor ──
+function jnlShowEditor(ds) {
+  const entry = jnlGet(ds);
+  const isToday = ds===jnlToday();
+  document.getElementById('jnlMain').innerHTML = `
+  <div class="jnl-editor">
+    <div class="jnl-ed-hd">
+      <div>
+        <div class="jnl-ed-date">${jnlFmtLong(ds)}</div>
+        <div class="jnl-ed-sub">${isToday?'TODAY · ':''}${ds}</div>
+      </div>
+      <div class="jnl-ed-actions">
+        <span class="jnl-saved" id="jnlSavedBadge">✓ Saved</span>
+        <button class="btn-ghost" style="font-size:11px;" onclick="jnlShowSummary()">📊 Summary</button>
+        <button class="btn-primary" onclick="jnlSave()">Save</button>
+      </div>
+    </div>
+    <div class="mood-row">
+      <span class="mood-lbl">MOOD</span>
+      ${JNL_MOODS.map(m=>`<button class="mood-emoji${entry.mood===m?' sel':''}" onclick="jnlSetMood('${m}')">${m}</button>`).join('')}
+      <div class="act-tags">
+        ${JNL_TAGS.map(t=>`<button class="act-tag${(entry.tags||[]).includes(t)?' sel':''}" onclick="jnlToggleTag('${t}')">${t}</button>`).join('')}
+      </div>
+    </div>
+    <div class="jnl-sec">
+      <div class="jnl-sec-hd"><span class="jnl-sec-icon">📌</span><span class="jnl-sec-title">What I Did Today</span><span class="jnl-sec-hint">Activities · Progress</span></div>
+      <textarea class="jnl-textarea" id="jnlActivities" placeholder="Revised Figure 1 for NC submission&#10;Meeting with Noguchi-sensei about solvent selection&#10;Ran batch CT analysis script...">${esc(entry.activities||'')}</textarea>
+    </div>
+    <div class="jnl-sec">
+      <div class="jnl-sec-hd"><span class="jnl-sec-icon">💡</span><span class="jnl-sec-title">Reflections & Insights</span><span class="jnl-sec-hint">Ideas · Observations</span></div>
+      <textarea class="jnl-textarea" id="jnlReflections" style="min-height:110px;" placeholder="I noticed that increasing cooling rate beyond 10°C/min makes lamellar spacing irregular...&#10;New idea: combine freeze-casting with triboelectric energy harvesting...">${esc(entry.reflections||'')}</textarea>
+    </div>
+    <div class="jnl-sec">
+      <div class="jnl-sec-hd"><span class="jnl-sec-icon">🔧</span><span class="jnl-sec-title">Challenges & Blockers</span><span class="jnl-sec-hint">What slowed me down</span></div>
+      <textarea class="jnl-textarea" id="jnlChallenges" placeholder="Reviewer 2's statistics comment still unresolved&#10;COMSOL keeps crashing above 200 iterations...">${esc(entry.challenges||'')}</textarea>
+    </div>
+    <div class="jnl-sec">
+      <div class="jnl-sec-hd"><span class="jnl-sec-icon">➜</span><span class="jnl-sec-title">Plan for Tomorrow</span><span class="jnl-sec-hint">Next actions</span></div>
+      <textarea class="jnl-textarea" id="jnlTomorrow" placeholder="1. Finalize Methods section&#10;2. Reply to Prof. Barbara's email&#10;3. Start literature clustering...">${esc(entry.tomorrow||'')}</textarea>
+    </div>
+  </div>`;
+  ['jnlActivities','jnlReflections','jnlChallenges','jnlTomorrow'].forEach(id=>{
+    document.getElementById(id)?.addEventListener('blur', jnlAutoSave);
+  });
+}
+
+function jnlSetMood(m) {
+  const e = jnlGet(jnlSelDate); e.mood = e.mood===m?null:m; jnlSet(jnlSelDate,e);
+  document.querySelectorAll('.mood-emoji').forEach(b=>b.classList.toggle('sel',b.textContent===e.mood));
+  jnlShowSavedBadge(); jnlRenderCal(); jnlRenderRecents(); updateJnlBadge();
+}
+function jnlToggleTag(t) {
+  const e = jnlGet(jnlSelDate); e.tags=e.tags||[];
+  const i=e.tags.indexOf(t); i>=0?e.tags.splice(i,1):e.tags.push(t);
+  jnlSet(jnlSelDate,e);
+  document.querySelectorAll('.act-tag').forEach(b=>b.classList.toggle('sel',(e.tags||[]).includes(b.textContent)));
+  jnlShowSavedBadge();
+}
+function jnlSave() {
+  const e = jnlGet(jnlSelDate);
+  e.activities = document.getElementById('jnlActivities')?.value||e.activities||'';
+  e.reflections = document.getElementById('jnlReflections')?.value||e.reflections||'';
+  e.challenges  = document.getElementById('jnlChallenges')?.value||e.challenges||'';
+  e.tomorrow    = document.getElementById('jnlTomorrow')?.value||e.tomorrow||'';
+  e.updated = new Date().toISOString();
+  jnlSet(jnlSelDate,e); jnlShowSavedBadge();
+  jnlRenderCal(); jnlRenderRecents(); updateJnlBadge();
+  toast('✓ Journal entry saved');
+}
+function jnlAutoSave() { jnlSave(); }
+function jnlShowSavedBadge() {
+  const b=document.getElementById('jnlSavedBadge');
+  if(b){b.classList.add('show');setTimeout(()=>b.classList.remove('show'),1500);}
+}
+
+// ── Summary ──
+function jnlShowSummary() {
+  document.getElementById('jnlMain').innerHTML = `
+  <div class="jnl-sum">
+    <div class="ph" style="margin-bottom:20px;">
+      <div class="ph-left">
+        <div class="ph-title">Summary & Reflection</div>
+        <div class="ph-sub">AI-powered analysis · powered by Claude</div>
+      </div>
+      <div class="ph-actions">
+        <button class="btn-ghost" onclick="jnlShowEditor(jnlSelDate)">← Back to Journal</button>
+      </div>
+    </div>
+    <div class="sum-mode-row">
+      <button class="sum-mode-btn active" onclick="jnlSetSumMode('week',this)">This Week</button>
+      <button class="sum-mode-btn" onclick="jnlSetSumMode('month',this)">This Month</button>
+      <button class="sum-mode-btn" onclick="jnlSetSumMode('custom',this)">Custom</button>
+    </div>
+    <div id="jnlCustomRange" style="display:none;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;" class="mood-row">
+      <span class="mood-lbl">FROM</span>
+      <input type="date" class="form-input" id="jnlRangeFrom" style="width:150px;">
+      <span class="mood-lbl">TO</span>
+      <input type="date" class="form-input" id="jnlRangeTo" style="width:150px;">
+    </div>
+    <div class="sum-stats-row" id="jnlSumStats"></div>
+    <div style="display:flex;gap:10px;margin-bottom:20px;align-items:center;">
+      <button class="btn-ai" id="jnlAiBtn" onclick="jnlGenAI()">✦ Generate AI Summary</button>
+    </div>
+    <div id="jnlAiOut"></div>
+    <div id="jnlEntriesPreview"></div>
+  </div>`;
+  jnlSetSumMode('week', document.querySelector('.sum-mode-btn.active'));
+}
+
+function jnlSetSumMode(mode, btn) {
+  jnlSumMode = mode;
+  document.querySelectorAll('.sum-mode-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const cr = document.getElementById('jnlCustomRange');
+  if(cr) cr.style.display = mode==='custom'?'flex':'none';
+  jnlRenderSumStats(); jnlRenderEntriesPreview();
+}
+
+function jnlGetRange() {
+  const now = new Date(); const t = jnlToday();
+  if (jnlSumMode==='week') {
+    const d = new Date(now); d.setDate(now.getDate()-now.getDay());
+    return { from: d.toISOString().slice(0,10), to: t };
+  } else if (jnlSumMode==='month') {
+    return { from: `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-01`, to: t };
+  } else {
+    return { from: document.getElementById('jnlRangeFrom')?.value||t, to: document.getElementById('jnlRangeTo')?.value||t };
+  }
+}
+function jnlGetInRange() {
+  const {from,to} = jnlGetRange(); const all = jnlLoadAll();
+  return Object.entries(all).filter(([ds])=>ds>=from&&ds<=to).sort(([a],[b])=>a>b?1:-1);
+}
+
+function jnlRenderSumStats() {
+  const inRange = jnlGetInRange();
+  const {from,to} = jnlGetRange();
+  const totalDays = Math.ceil((new Date(to)-new Date(from))/86400000)+1;
+  const moods = inRange.map(([,e])=>e.mood).filter(Boolean);
+  const allTags = inRange.flatMap(([,e])=>e.tags||[]);
+  const topTag = allTags.length?[...allTags.reduce((m,t)=>(m.set(t,(m.get(t)||0)+1),m),new Map())].sort((a,b)=>b[1]-a[1])[0][0]:'—';
+  const el = document.getElementById('jnlSumStats');
+  if(!el) return;
+  el.innerHTML = `
+    <div class="sum-sc"><div class="sum-sc-num">${inRange.length}</div><div class="sum-sc-lbl">Entries</div></div>
+    <div class="sum-sc"><div class="sum-sc-num">${totalDays}</div><div class="sum-sc-lbl">Days</div></div>
+    <div class="sum-sc"><div class="sum-sc-num" style="font-size:20px;">${moods.length?moods[moods.length-1]:'—'}</div><div class="sum-sc-lbl">Latest Mood</div></div>
+    <div class="sum-sc"><div class="sum-sc-num" style="font-size:13px;padding-top:4px;">${topTag}</div><div class="sum-sc-lbl">Top Tag</div></div>
+  `;
+}
+
+function jnlRenderEntriesPreview() {
+  const inRange = jnlGetInRange().reverse();
+  const el = document.getElementById('jnlEntriesPreview');
+  if(!el) return;
+  if(!inRange.length){el.innerHTML='<div class="empty">No entries in this range yet</div>';return;}
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">${inRange.length} entries · click to expand</div>
+    ${inRange.map(([ds,e])=>`
+    <div class="ec-card">
+      <div class="ec-head" onclick="jnlToggleCard(this)">
+        <div class="ec-hdate">${jnlFmtShort(ds)}</div>
+        <div class="ec-hmood">${e.mood||''}</div>
+        <div class="ec-htags">${(e.tags||[]).map(t=>`<span class="ec-htag">${t}</span>`).join('')}</div>
+        <div class="ec-toggle">▾</div>
+      </div>
+      <div class="ec-body">
+        ${e.activities?`<div class="ec-field"><div class="ec-field-lbl">Activities</div><div class="ec-field-val">${esc(e.activities)}</div></div>`:''}
+        ${e.reflections?`<div class="ec-field"><div class="ec-field-lbl">Reflections</div><div class="ec-field-val">${esc(e.reflections)}</div></div>`:''}
+        ${e.challenges?`<div class="ec-field"><div class="ec-field-lbl">Challenges</div><div class="ec-field-val">${esc(e.challenges)}</div></div>`:''}
+        ${e.tomorrow?`<div class="ec-field"><div class="ec-field-lbl">Plan</div><div class="ec-field-val">${esc(e.tomorrow)}</div></div>`:''}
+      </div>
+    </div>`).join('')}`;
+}
+
+function jnlToggleCard(head) {
+  const body = head.nextElementSibling;
+  body.classList.toggle('open');
+  head.querySelector('.ec-toggle').textContent = body.classList.contains('open')?'▴':'▾';
+}
+
+async function jnlGenAI() {
+  const inRange = jnlGetInRange();
+  const {from,to} = jnlGetRange();
+  const out = document.getElementById('jnlAiOut');
+  if(!inRange.length){
+    out.innerHTML=`<div class="ai-box"><div class="ai-box-head"><span style="color:var(--nav-text);">✦</span><span class="ai-box-ttl">AI SUMMARY</span></div><div class="ai-box-body"><div style="font-family:var(--mono);font-size:11px;color:var(--text3);">No entries in this range. Start writing!</div></div></div>`;
+    return;
+  }
+  const btn=document.getElementById('jnlAiBtn');
+  btn.disabled=true; btn.innerHTML='<span class="ai-spinner"></span> Generating...';
+  out.innerHTML=`<div class="ai-box"><div class="ai-box-head"><span style="color:var(--nav-text);">✦</span><span class="ai-box-ttl">AI SUMMARY</span><span class="ai-box-sub">Analyzing ${inRange.length} entries...</span></div><div class="ai-box-body"><div style="display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--text3);"><span class="ai-spinner"></span>Reading your journal...</div></div></div>`;
+
+  const text = inRange.map(([ds,e])=>{
+    let t=`[${ds}]`;
+    if(e.mood) t+=` Mood:${e.mood}`;
+    if(e.tags?.length) t+=` Tags:${e.tags.join(',')}`;
+    if(e.activities) t+=`\nDid: ${e.activities}`;
+    if(e.reflections) t+=`\nReflections: ${e.reflections}`;
+    if(e.challenges) t+=`\nChallenges: ${e.challenges}`;
+    if(e.tomorrow) t+=`\nPlan: ${e.tomorrow}`;
+    return t;
+  }).join('\n\n---\n\n');
+
+  const rangeLabel = jnlSumMode==='week'?'this week':jnlSumMode==='month'?'this month':`${from} to ${to}`;
+  const prompt = `You are a thoughtful research mentor reviewing the journal of Dr. Dianchao Wang, Project Assistant Professor at The University of Tokyo, specializing in low-carbon concrete, freeze-casting cement materials, and CO₂ sequestration.
+
+Journal entries for ${rangeLabel}:
+
+${text}
+
+Write a structured review with these sections (use ### headers):
+
+### Key Accomplishments
+### Research Insights  
+### Patterns & Energy
+### Challenges & Blockers
+### Recommendations for Next Period
+### One Sentence to Remember
+
+Be warm, honest, and specific. Like advice from a senior colleague who genuinely cares. Keep it concise but meaningful.`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
+    });
+    const data = await res.json();
+    const txt = data.content?.find(b=>b.type==='text')?.text||'No response.';
+    const rendered = txt
+      .replace(/### (.*)/g,'<h3>$1</h3>')
+      .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+      .replace(/^- (.*)/gm,'<li>$1</li>')
+      .replace(/(<li>.*<\/li>\n?)+/gs,m=>`<ul>${m}</ul>`)
+      .replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
+    out.innerHTML=`<div class="ai-box"><div class="ai-box-head"><span style="color:var(--nav-text);font-size:16px;">✦</span><span class="ai-box-ttl">AI SUMMARY</span><span class="ai-box-sub">${from} → ${to} · ${inRange.length} entries</span></div><div class="ai-box-body"><div class="ai-content">${rendered}</div></div></div>`;
+  } catch(err) {
+    out.innerHTML=`<div class="ai-box"><div class="ai-box-head"><span style="color:var(--nav-text);">✦</span><span class="ai-box-ttl">AI SUMMARY</span></div><div class="ai-box-body"><div style="font-family:var(--mono);font-size:11px;color:var(--red);">⚠ Connection error: ${err.message}</div></div></div>`;
+  }
+  btn.disabled=false; btn.innerHTML='✦ Generate AI Summary';
+}
+// ── end journal module ──
+
 </script>
 </body>
 </html>
