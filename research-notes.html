@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Notes - Dianchao WANG</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=JetBrains+Mono:wght@300;400;500&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f4f9;--surface:#ffffff;--surface2:#edf1f8;--surface3:#e2e8f4;
+  --border:#d0d8ea;--border2:#b8c4da;
+  --accent:#1e4d8c;--accent2:#2563a8;--alight:rgba(37,99,168,0.08);
+  --gold:#9a6e20;--green:#1a6e3c;--red:#b83224;--purple:#5a38b0;--orange:#b05020;
+  --text:#16243e;--text2:#3a4e6e;--text3:#7a8aaa;
+  --nav:#1e3a5f;--navt:#e8eef8;
+  --mono:'JetBrains Mono',monospace;
+  --serif:'Noto Serif SC',serif;
+  --display:'Crimson Pro',Georgia,serif;
+  --r:8px;--sh:0 2px 12px rgba(30,58,95,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:100vh;font-size:14px;line-height:1.65}
+
+/* LOCK */
+#lockScreen{position:fixed;inset:0;background:var(--nav);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:28px;z-index:999}
+.lock-logo{font-family:var(--display);font-size:26px;font-weight:300;color:var(--navt);text-align:center}
+.lock-logo span{color:#7ec4ff}
+.lock-box{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:28px 32px;width:320px;display:flex;flex-direction:column;gap:14px}
+.lock-lbl{font-family:var(--mono);font-size:10px;color:rgba(232,238,248,0.5);letter-spacing:.15em;text-transform:uppercase}
+.lock-row{display:flex;gap:8px}
+.lock-input{flex:1;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:var(--r);padding:9px 13px;color:var(--navt);font-family:var(--mono);font-size:13px;outline:none;transition:border-color .2s}
+.lock-input:focus{border-color:rgba(126,196,255,.5)}
+.lock-btn{background:#7ec4ff;color:#0a1a2e;border:none;border-radius:var(--r);padding:9px 16px;font-family:var(--mono);font-size:12px;font-weight:500;cursor:pointer;transition:background .2s}
+.lock-btn:hover{background:#a8d8ff}
+.lock-err{font-family:var(--mono);font-size:11px;color:#ff9090;display:none;text-align:center}
+.lock-hint{font-family:var(--mono);font-size:10px;color:rgba(232,238,248,.3);text-align:center}
+.lang-toggle{display:flex;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;overflow:hidden}
+.lang-btn{background:none;border:none;padding:4px 10px;font-family:var(--mono);font-size:10px;font-weight:500;color:rgba(232,238,248,.5);cursor:pointer;transition:all .15s;letter-spacing:.05em}
+.lang-btn.active{background:rgba(126,196,255,.2);color:#7ec4ff}
+.lang-btn:hover:not(.active){color:rgba(232,238,248,.8)}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:100;background:var(--nav);height:52px;display:flex;align-items:center;padding:0 24px;gap:16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar-back{font-family:var(--mono);font-size:11px;color:rgba(232,238,248,.6);text-decoration:none;transition:color .15s}
+.topbar-back:hover{color:#7ec4ff}
+.topbar-title{font-family:var(--mono);font-size:12px;color:var(--navt);letter-spacing:.08em}
+.topbar-title span{color:#7ec4ff}
+.topbar-spacer{flex:1}
+.topbar-date{font-family:var(--mono);font-size:10px;color:rgba(232,238,248,.4)}
+.lock-out-btn{background:none;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:4px 10px;font-family:var(--mono);font-size:10px;color:rgba(232,238,248,.55);cursor:pointer;transition:all .15s}
+.lock-out-btn:hover{border-color:#ff9090;color:#ff9090}
+
+/* LAYOUT */
+#workspace{display:none}
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 52px)}
+
+/* SIDEBAR (TOC) */
+.sidebar{background:var(--surface);border-right:1px solid var(--border);box-shadow:2px 0 8px rgba(0,0,0,.04);padding:20px 0;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;display:flex;flex-direction:column;gap:2px}
+.sb-section{padding:0 10px;margin-bottom:6px}
+.sb-label{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;padding:3px 8px 5px}
+.sb-item{display:flex;align-items:center;gap:9px;padding:8px;border-radius:6px;cursor:pointer;transition:all .15s;font-size:12.5px;color:var(--text2);user-select:none;text-decoration:none}
+.sb-item:hover{background:var(--surface2);color:var(--text)}
+.sb-item.active{background:var(--alight);color:var(--accent)}
+.sb-icon{width:18px;text-align:center;font-size:13px;flex-shrink:0}
+
+/* CONTENT */
+.content{overflow-y:auto;max-width:920px;padding:36px 44px 80px}
+.page-title{font-family:var(--display);font-size:30px;font-weight:300;color:var(--text);letter-spacing:-.01em;margin-bottom:6px}
+.page-sub{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:.06em;margin-bottom:32px}
+
+.section{margin-bottom:48px;scroll-margin-top:70px}
+.sec-h{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;border-bottom:1px solid var(--border);padding-bottom:8px}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--accent2);letter-spacing:.1em}
+.sec-title{font-family:var(--display);font-size:22px;font-weight:400;color:var(--text)}
+.sec-sub{font-family:var(--mono);font-size:10px;color:var(--text3);margin-left:auto;letter-spacing:.05em}
+
+.sec p{margin-bottom:12px;color:var(--text2)}
+.sec h4{font-family:var(--display);font-size:16px;font-weight:600;color:var(--text);margin:18px 0 8px}
+.sec ul,.sec ol{margin:8px 0 14px 20px;color:var(--text2)}
+.sec li{margin-bottom:6px}
+.sec strong{color:var(--text)}
+
+/* STAT CARDS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.sc-blue::before{background:linear-gradient(90deg,var(--accent2),transparent)}
+.sc-gold::before{background:linear-gradient(90deg,var(--gold),transparent)}
+.sc-green::before{background:linear-gradient(90deg,var(--green),transparent)}
+.sc-purple::before{background:linear-gradient(90deg,var(--purple),transparent)}
+.stat-num{font-family:var(--mono);font-size:26px;font-weight:300;line-height:1;margin-bottom:5px}
+.sc-blue .stat-num{color:var(--accent)}
+.sc-gold .stat-num{color:var(--gold)}
+.sc-green .stat-num{color:var(--green)}
+.sc-purple .stat-num{color:var(--purple)}
+.stat-lbl{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.06em}
+.stat-sub{font-family:var(--mono);font-size:9px;color:var(--text3);margin-top:7px}
+
+/* PAPER CARDS */
+.paper-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:14px;position:relative}
+.paper-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--accent2);border-radius:10px 0 0 10px}
+.pc-title{font-family:var(--display);font-size:16px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.4}
+.pc-meta{font-family:var(--mono);font-size:10px;color:var(--text3);margin-bottom:10px;letter-spacing:.04em}
+.pc-meta strong{color:var(--accent);font-weight:500}
+.pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.pc-cell{background:var(--surface2);border-radius:6px;padding:10px 12px}
+.pc-cell-lbl{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.pc-cell-body{font-size:12.5px;color:var(--text2);line-height:1.55}
+.pc-row{margin-top:10px}
+.pc-row-lbl{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.pc-row-body{font-size:13px;color:var(--text2)}
+
+/* TABLE */
+.t-cite{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:12px;background:var(--surface);border-radius:8px;overflow:hidden;border:1px solid var(--border)}
+.t-cite th{background:var(--surface2);color:var(--text2);font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:9px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.t-cite td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text2)}
+.t-cite tr:last-child td{border-bottom:none}
+.t-cite tr:hover td{background:var(--surface2)}
+.t-cite .num{font-family:var(--mono);color:var(--accent);font-weight:500;text-align:right}
+
+/* CALLOUT */
+.callout{border-left:3px solid var(--gold);background:rgba(154,110,32,.06);padding:12px 16px;border-radius:0 6px 6px 0;margin:14px 0;font-size:13px;color:var(--text2)}
+.callout.green{border-color:var(--green);background:rgba(26,110,60,.06)}
+.callout.red{border-color:var(--red);background:rgba(184,50,36,.06)}
+.callout-lbl{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.callout.green .callout-lbl{color:var(--green)}
+.callout.red .callout-lbl{color:var(--red)}
+
+/* TAGS */
+.tag{display:inline-flex;align-items:center;padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:9px;letter-spacing:.06em;font-weight:500;white-space:nowrap;margin-right:4px}
+.t-blue{background:rgba(37,99,168,.1);color:var(--accent2)}
+.t-gold{background:rgba(154,110,32,.1);color:var(--gold)}
+.t-green{background:rgba(26,110,60,.1);color:var(--green)}
+.t-red{background:rgba(184,50,36,.1);color:var(--red)}
+.t-purple{background:rgba(90,56,176,.1);color:var(--purple)}
+
+/* NOTES AREA */
+.notes-area{width:100%;min-height:240px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;color:var(--text);font-family:var(--mono);font-size:12px;line-height:1.7;outline:none;resize:vertical;transition:border-color .2s}
+.notes-area:focus{border-color:var(--accent2)}
+.notes-meta{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:6px}
+
+/* RESPONSIVE */
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:relative;height:auto;top:0;border-right:none;border-bottom:1px solid var(--border);flex-direction:row;flex-wrap:wrap;padding:10px}
+  .sb-section{padding:0}
+  .sb-label{display:none}
+  .content{padding:24px 18px 60px;max-width:100%}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .pc-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+  <div class="lock-logo">Research <span>Notes</span></div>
+  <div class="lock-box">
+    <div class="lock-lbl" id="lbl_pw">ENTER PASSWORD</div>
+    <div class="lock-row">
+      <input class="lock-input" type="password" id="pwInput" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+      <button class="lock-btn" id="btn_unlock" onclick="doUnlock()">Unlock</button>
+    </div>
+    <div class="lock-err" id="pwErr">Incorrect password</div>
+    <div class="lock-hint" id="lbl_hint">Private notes &middot; wdc2024</div>
+  </div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="lang_en" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="lang_zh" onclick="setLang('zh')">中文</button>
+  </div>
+</div>
+
+<!-- WORKSPACE -->
+<div id="workspace">
+
+<div class="topbar">
+  <a href="index.html" class="topbar-back" id="lbl_back">&larr; Public Site</a>
+  <div class="topbar-title">Research <span>/ Notes</span></div>
+  <div class="topbar-spacer"></div>
+  <div class="topbar-date" id="topbarDate"></div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="lang_en2" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="lang_zh2" onclick="setLang('zh')">中文</button>
+  </div>
+  <button class="lock-out-btn" onclick="doLock()" id="btn_lock">Lock</button>
+</div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sb-section">
+      <div class="sb-label" id="lbl_toc">Table of Contents</div>
+      <a href="#sec-overview" class="sb-item active"><span class="sb-icon">&#9678;</span><span id="lbl_s1">Overview</span></a>
+      <a href="#sec-metrics" class="sb-item"><span class="sb-icon">&#8758;</span><span id="lbl_s2">Citation Metrics</span></a>
+      <a href="#sec-highlights" class="sb-item"><span class="sb-icon">&#9733;</span><span id="lbl_s3">Highly-Cited Papers</span></a>
+      <a href="#sec-network" class="sb-item"><span class="sb-icon">&#9901;</span><span id="lbl_s4">Citing Communities</span></a>
+      <a href="#sec-lit" class="sb-item"><span class="sb-icon">&#9776;</span><span id="lbl_s5">Lit-Review Supplements</span></a>
+      <a href="#sec-obs" class="sb-item"><span class="sb-icon">&#9758;</span><span id="lbl_s6">Research Observations</span></a>
+      <a href="#sec-log" class="sb-item"><span class="sb-icon">&#9998;</span><span id="lbl_s7">Reading Log</span></a>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="page-title" id="lbl_page_title">Research Notes &amp; Citation Analysis</div>
+    <div class="page-sub" id="lbl_page_sub">Private &middot; supplementary observations on my own research output</div>
+
+    <!-- ===== OVERVIEW ===== -->
+    <section class="section" id="sec-overview">
+      <div class="sec-h">
+        <span class="sec-num">01</span>
+        <span class="sec-title" id="lbl_h1">Overview</span>
+        <span class="sec-sub" id="lbl_h1s">scope &amp; purpose</span>
+      </div>
+      <div class="sec" id="sec1_body">
+        <p>This is a private working notebook for my own research output: how it is being read, cited, contested, or extended in the field. It is <strong>not</strong> a publication record &mdash; the public site already lists papers and patents. Here I keep the analysis behind those numbers: who is citing what, in which context, and what that tells me about where the field is moving.</p>
+        <p>Sources I rely on: Google Scholar, Web of Science, Scopus, Dimensions, plus occasional manual sweeps of recent preprints. Numbers are refreshed roughly every two months and dated below.</p>
+        <div class="callout">
+          <div class="callout-lbl">Last refresh</div>
+          <span id="lastRefresh">edit this line manually after each update.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== METRICS ===== -->
+    <section class="section" id="sec-metrics">
+      <div class="sec-h">
+        <span class="sec-num">02</span>
+        <span class="sec-title" id="lbl_h2">Citation Metrics</span>
+        <span class="sec-sub" id="lbl_h2s">snapshot</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card sc-blue"><div class="stat-num">&mdash;</div><div class="stat-lbl">TOTAL CITATIONS</div><div class="stat-sub">Google Scholar</div></div>
+        <div class="stat-card sc-gold"><div class="stat-num">&mdash;</div><div class="stat-lbl">H-INDEX</div><div class="stat-sub">Scopus / WoS</div></div>
+        <div class="stat-card sc-green"><div class="stat-num">&mdash;</div><div class="stat-lbl">i10-INDEX</div><div class="stat-sub">Google Scholar</div></div>
+        <div class="stat-card sc-purple"><div class="stat-num">46+</div><div class="stat-lbl">SCI PAPERS</div><div class="stat-sub">as of public site</div></div>
+      </div>
+      <p id="lbl_metrics_p">Numbers above are placeholders &mdash; edit <code>research-notes.html</code> directly to fill them in. I deliberately keep them out of the public site to avoid the noise around incremental changes.</p>
+
+      <h4 id="lbl_h2_yearly">Yearly citation growth</h4>
+      <table class="t-cite">
+        <thead><tr><th id="lbl_year">Year</th><th id="lbl_cites">Citations received</th><th id="lbl_self">Of which self-citation</th><th id="lbl_note">Note</th></tr></thead>
+        <tbody>
+          <tr><td>2021</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>&mdash;</td></tr>
+          <tr><td>2022</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>&mdash;</td></tr>
+          <tr><td>2023</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>&mdash;</td></tr>
+          <tr><td>2024</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>&mdash;</td></tr>
+          <tr><td>2025</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ===== HIGHLY CITED ===== -->
+    <section class="section" id="sec-highlights">
+      <div class="sec-h">
+        <span class="sec-num">03</span>
+        <span class="sec-title" id="lbl_h3">Highly-Cited Papers</span>
+        <span class="sec-sub" id="lbl_h3s">per-paper analysis</span>
+      </div>
+
+      <div class="paper-card">
+        <div class="pc-title">[Paper title #1 &mdash; replace with actual title]</div>
+        <div class="pc-meta">Journal &middot; Year &middot; <strong>Citations: &mdash;</strong> &middot; <span class="tag t-blue">CO&#8322; carbonation</span></div>
+        <div class="pc-grid">
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing authors</div>
+            <div class="pc-cell-body">&mdash; list 3-5 names and affiliations</div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">&mdash; e.g. Cement &amp; Concrete Research, J. Cleaner Production</div>
+          </div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citation context</div>
+          <div class="pc-row-body">How is this paper cited? Supporting an argument / extending the method / benchmark / critiqued? Note one or two representative phrases.</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body">What did the paper get right / wrong in hindsight? What follow-up would I prioritise?</div>
+        </div>
+      </div>
+
+      <div class="paper-card">
+        <div class="pc-title">[Paper title #2]</div>
+        <div class="pc-meta">Journal &middot; Year &middot; <strong>Citations: &mdash;</strong> &middot; <span class="tag t-green">Recycled aggregate</span></div>
+        <div class="pc-grid">
+          <div class="pc-cell"><div class="pc-cell-lbl">Top citing authors</div><div class="pc-cell-body">&mdash;</div></div>
+          <div class="pc-cell"><div class="pc-cell-lbl">Top citing journals</div><div class="pc-cell-body">&mdash;</div></div>
+        </div>
+        <div class="pc-row"><div class="pc-row-lbl">Citation context</div><div class="pc-row-body">&mdash;</div></div>
+        <div class="pc-row"><div class="pc-row-lbl">My reflection</div><div class="pc-row-body">&mdash;</div></div>
+      </div>
+
+      <div class="paper-card">
+        <div class="pc-title">[Paper title #3]</div>
+        <div class="pc-meta">Journal &middot; Year &middot; <strong>Citations: &mdash;</strong> &middot; <span class="tag t-purple">Vibration control</span></div>
+        <div class="pc-grid">
+          <div class="pc-cell"><div class="pc-cell-lbl">Top citing authors</div><div class="pc-cell-body">&mdash;</div></div>
+          <div class="pc-cell"><div class="pc-cell-lbl">Top citing journals</div><div class="pc-cell-body">&mdash;</div></div>
+        </div>
+        <div class="pc-row"><div class="pc-row-lbl">Citation context</div><div class="pc-row-body">&mdash;</div></div>
+        <div class="pc-row"><div class="pc-row-lbl">My reflection</div><div class="pc-row-body">&mdash;</div></div>
+      </div>
+
+      <p style="font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:8px">
+        &uarr; duplicate the <code>.paper-card</code> block to add more papers.
+      </p>
+    </section>
+
+    <!-- ===== NETWORK ===== -->
+    <section class="section" id="sec-network">
+      <div class="sec-h">
+        <span class="sec-num">04</span>
+        <span class="sec-title" id="lbl_h4">Citing Communities</span>
+        <span class="sec-sub" id="lbl_h4s">who is reading my work</span>
+      </div>
+      <div class="sec">
+        <p>Rough clustering of where citations come from. Useful for picking conferences, reviewers, and collaborators.</p>
+        <table class="t-cite">
+          <thead><tr><th id="lbl_cluster">Cluster</th><th id="lbl_inst">Key institutions</th><th id="lbl_share">Share</th><th id="lbl_takeaway">Takeaway</th></tr></thead>
+          <tbody>
+            <tr><td>Carbonation chemistry</td><td>&mdash;</td><td class="num">&mdash;%</td><td>&mdash;</td></tr>
+            <tr><td>Recycled aggregate / concrete</td><td>&mdash;</td><td class="num">&mdash;%</td><td>&mdash;</td></tr>
+            <tr><td>LCA &amp; low-carbon construction</td><td>&mdash;</td><td class="num">&mdash;%</td><td>&mdash;</td></tr>
+            <tr><td>Structural vibration control</td><td>&mdash;</td><td class="num">&mdash;%</td><td>&mdash;</td></tr>
+            <tr><td>Industrial / patent citations</td><td>&mdash;</td><td class="num">&mdash;%</td><td>&mdash;</td></tr>
+          </tbody>
+        </table>
+        <div class="callout green">
+          <div class="callout-lbl">Pattern to watch</div>
+          Note when an unexpected community starts citing &mdash; that is usually a signal of crossover potential before it becomes obvious.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LIT REVIEW SUPPLEMENTS ===== -->
+    <section class="section" id="sec-lit">
+      <div class="sec-h">
+        <span class="sec-num">05</span>
+        <span class="sec-title" id="lbl_h5">Lit-Review Supplements</span>
+        <span class="sec-sub" id="lbl_h5s">things cut from published reviews</span>
+      </div>
+      <div class="sec">
+        <p>Material that did not make the final version of a review article, or arrived too late, but still informs my own thinking. Keep it here so it is not lost.</p>
+        <h4>Open questions in CO&#8322; carbonation kinetics</h4>
+        <ul>
+          <li>&mdash; replace with bullet</li>
+          <li>&mdash; replace with bullet</li>
+        </ul>
+        <h4>Disputed claims worth re-checking</h4>
+        <ul>
+          <li>&mdash; replace with bullet</li>
+        </ul>
+        <h4>Datasets / standards I want to revisit</h4>
+        <ul>
+          <li>&mdash; replace with bullet</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== OBSERVATIONS ===== -->
+    <section class="section" id="sec-obs">
+      <div class="sec-h">
+        <span class="sec-num">06</span>
+        <span class="sec-title" id="lbl_h6">Research Observations</span>
+        <span class="sec-sub" id="lbl_h6s">informal &middot; not for publication</span>
+      </div>
+      <div class="sec">
+        <p>Free-form reflections, hunches, and trends. Dated entries so I can track how my thinking shifts.</p>
+        <div class="callout">
+          <div class="callout-lbl">2026-XX-XX</div>
+          Replace with observation. Keep one entry per callout.
+        </div>
+        <div class="callout">
+          <div class="callout-lbl">2026-XX-XX</div>
+          &mdash;
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== READING LOG ===== -->
+    <section class="section" id="sec-log">
+      <div class="sec-h">
+        <span class="sec-num">07</span>
+        <span class="sec-title" id="lbl_h7">Reading Log</span>
+        <span class="sec-sub" id="lbl_h7s">auto-saved in this browser</span>
+      </div>
+      <div class="sec">
+        <p id="lbl_log_help">Quick scratch space &mdash; saved to this browser's local storage. Not synced anywhere.</p>
+        <textarea class="notes-area" id="notesArea" placeholder="Free-form notes, paper-of-the-day, ideas..."></textarea>
+        <div class="notes-meta" id="notesSaved"></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</div>
+
+<script>
+var PASSWORD = 'wdc2024';
+var LANG_KEY = 'wdc_rn_lang';
+var NOTES_KEY = 'wdc_rn_notes';
+var AUTH_KEY = 'wdc_rn_auth';
+
+var currentLang = localStorage.getItem(LANG_KEY) || 'en';
+
+var I18N = {
+  en:{
+    lbl_pw:'ENTER PASSWORD', btn_unlock:'Unlock', lbl_err:'Incorrect password',
+    lbl_hint:'Private notes · wdc2024',
+    lbl_back:'← Public Site', btn_lock:'Lock',
+    lbl_toc:'Table of Contents',
+    lbl_s1:'Overview', lbl_s2:'Citation Metrics', lbl_s3:'Highly-Cited Papers',
+    lbl_s4:'Citing Communities', lbl_s5:'Lit-Review Supplements',
+    lbl_s6:'Research Observations', lbl_s7:'Reading Log',
+    lbl_page_title:'Research Notes & Citation Analysis',
+    lbl_page_sub:'Private · supplementary observations on my own research output',
+    lbl_h1:'Overview', lbl_h1s:'scope & purpose',
+    lbl_h2:'Citation Metrics', lbl_h2s:'snapshot',
+    lbl_h2_yearly:'Yearly citation growth',
+    lbl_year:'Year', lbl_cites:'Citations received', lbl_self:'Of which self-citation', lbl_note:'Note',
+    lbl_h3:'Highly-Cited Papers', lbl_h3s:'per-paper analysis',
+    lbl_h4:'Citing Communities', lbl_h4s:'who is reading my work',
+    lbl_cluster:'Cluster', lbl_inst:'Key institutions', lbl_share:'Share', lbl_takeaway:'Takeaway',
+    lbl_h5:'Lit-Review Supplements', lbl_h5s:'things cut from published reviews',
+    lbl_h6:'Research Observations', lbl_h6s:'informal · not for publication',
+    lbl_h7:'Reading Log', lbl_h7s:'auto-saved in this browser',
+    lbl_log_help:"Quick scratch space — saved to this browser's local storage. Not synced anywhere.",
+    saved_at:'Saved at '
+  },
+  zh:{
+    lbl_pw:'请输入密码', btn_unlock:'解锁', lbl_err:'密码错误',
+    lbl_hint:'私人笔记 · wdc2024',
+    lbl_back:'← 公开主页', btn_lock:'锁定',
+    lbl_toc:'目录',
+    lbl_s1:'概述', lbl_s2:'引用指标', lbl_s3:'高被引论文',
+    lbl_s4:'引用者圈层', lbl_s5:'综述补遗',
+    lbl_s6:'研究观察', lbl_s7:'阅读日志',
+    lbl_page_title:'研究笔记与引文分析',
+    lbl_page_sub:'私人用 · 对自己研究产出的补充观察',
+    lbl_h1:'概述', lbl_h1s:'范围与目的',
+    lbl_h2:'引用指标', lbl_h2s:'快照',
+    lbl_h2_yearly:'逐年引用增长',
+    lbl_year:'年份', lbl_cites:'当年被引', lbl_self:'其中自引', lbl_note:'备注',
+    lbl_h3:'高被引论文', lbl_h3s:'按论文分析',
+    lbl_h4:'引用者圈层', lbl_h4s:'谁在读我的工作',
+    lbl_cluster:'圈层', lbl_inst:'代表机构', lbl_share:'占比', lbl_takeaway:'启示',
+    lbl_h5:'综述补遗', lbl_h5s:'已发表综述中被删掉的内容',
+    lbl_h6:'研究观察', lbl_h6s:'非正式 · 不用于发表',
+    lbl_h7:'阅读日志', lbl_h7s:'自动保存在本浏览器',
+    lbl_log_help:'临时记事本 — 仅保存在当前浏览器的本地存储中，不同步。',
+    saved_at:'已保存于 '
+  }
+};
+
+function applyLang(){
+  var d = I18N[currentLang];
+  for(var k in d){
+    var el = document.getElementById(k);
+    if(el) el.textContent = d[k];
+  }
+  document.getElementById('pwErr').textContent = d.lbl_err;
+  document.title = (currentLang==='zh' ? '研究笔记 - 王佃超' : 'Research Notes - Dianchao WANG');
+  ['en','zh'].forEach(function(l){
+    var a = document.getElementById('lang_'+l);
+    var b = document.getElementById('lang_'+l+'2');
+    if(a) a.classList.toggle('active', l===currentLang);
+    if(b) b.classList.toggle('active', l===currentLang);
+  });
+}
+function setLang(l){
+  currentLang = l;
+  localStorage.setItem(LANG_KEY,l);
+  applyLang();
+}
+
+function doUnlock(){
+  var pw = document.getElementById('pwInput').value;
+  if(pw === PASSWORD){
+    sessionStorage.setItem(AUTH_KEY,'1');
+    document.getElementById('lockScreen').style.display='none';
+    document.getElementById('workspace').style.display='block';
+  } else {
+    var err = document.getElementById('pwErr');
+    err.style.display='block';
+    document.getElementById('pwInput').value='';
+    document.getElementById('pwInput').focus();
+  }
+}
+function doLock(){
+  sessionStorage.removeItem(AUTH_KEY);
+  document.getElementById('workspace').style.display='none';
+  document.getElementById('lockScreen').style.display='flex';
+  document.getElementById('pwInput').value='';
+  document.getElementById('pwErr').style.display='none';
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  applyLang();
+  document.getElementById('pwInput').addEventListener('keydown', function(e){
+    if(e.key === 'Enter') doUnlock();
+  });
+
+  // Date in topbar
+  var d = new Date();
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('topbarDate').textContent = d.getFullYear()+' '+months[d.getMonth()]+' '+String(d.getDate()).padStart(2,'0');
+
+  // Notes (reading log)
+  var ta = document.getElementById('notesArea');
+  ta.value = localStorage.getItem(NOTES_KEY) || '';
+  var saveTimer;
+  ta.addEventListener('input', function(){
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){
+      localStorage.setItem(NOTES_KEY, ta.value);
+      var now = new Date();
+      document.getElementById('notesSaved').textContent =
+        I18N[currentLang].saved_at + now.toLocaleTimeString();
+    }, 400);
+  });
+
+  // TOC active highlight on scroll
+  var items = document.querySelectorAll('.sb-item');
+  items.forEach(function(it){
+    it.addEventListener('click', function(){
+      items.forEach(function(i){i.classList.remove('active')});
+      it.classList.add('active');
+    });
+  });
+
+  // Auto-unlock if session is valid
+  if(sessionStorage.getItem(AUTH_KEY)){
+    document.getElementById('lockScreen').style.display='none';
+    document.getElementById('workspace').style.display='block';
+  } else {
+    setTimeout(function(){ document.getElementById('pwInput').focus(); }, 50);
+  }
+});
+</script>
+</body>
+</html>
