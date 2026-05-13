@@ -193,6 +193,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
       <a href="#sec-insts" class="sb-item"><span class="sb-icon">&#9901;</span>Citing Institutions</a>
       <a href="#sec-authors" class="sb-item"><span class="sb-icon">&#9758;</span>Top Citing Authors</a>
       <a href="#sec-experts" class="sb-item"><span class="sb-icon">&#10038;</span>High-Profile Experts</a>
+      <a href="#sec-net-authors" class="sb-item"><span class="sb-icon">&#9737;</span>Author Network</a>
+      <a href="#sec-net-papers" class="sb-item"><span class="sb-icon">&#9678;</span>Paper Coupling</a>
+      <a href="#sec-region" class="sb-item"><span class="sb-icon">&#9883;</span>By Region</a>
+      <a href="#sec-examples" class="sb-item"><span class="sb-icon">&#9776;</span>Citing Examples</a>
+      <a href="#sec-report" class="sb-item"><span class="sb-icon">&#9783;</span>Full Report</a>
       <a href="#sec-obs" class="sb-item"><span class="sb-icon">&#9998;</span>Observations</a>
       <a href="#sec-log" class="sb-item"><span class="sb-icon">&#9851;</span>Reading Log</a>
     </div>
@@ -549,9 +554,338 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
       </table>
     </section>
 
+    
+
+    <!-- ===== AUTHOR NETWORK ===== -->
+    <section class="section" id="sec-net-authors">
+      <div class="sec-h"><span class="sec-num">06</span><span class="sec-title">Citing-Author Co-occurrence Network</span><span class="sec-sub">top 25 citers · edges ≥ 3 shared papers</span></div>
+      <p>Each node is one of the 25 most frequent citers of my work. An edge connects two authors when they both cite the same paper of mine; thicker edges mean more shared papers. Layout via force-directed simulation.</p>
+      <svg viewBox="0 0 760 480" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;max-height:540px;background:#fafbfd;border:1px solid var(--border);border-radius:8px">
+<g><line x1="385.5" y1="170.2" x2="429.3" y2="330.2" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="385.5" y1="170.2" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="356.2" y1="259.8" x2="429.3" y2="330.2" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="356.2" y1="259.8" x2="252.8" y2="361.8" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="356.2" y1="259.8" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="429.3" y1="330.2" x2="352.7" y2="161.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="429.3" y1="330.2" x2="390.6" y2="215.6" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="429.3" y1="330.2" x2="298.4" y2="239.7" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="429.3" y1="330.2" x2="369.5" y2="326.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="429.3" y1="330.2" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="429.3" y1="330.2" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="429.3" y1="330.2" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="429.3" y1="330.2" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="352.7" y1="161.0" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="352.7" y1="161.0" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="390.6" y1="215.6" x2="252.8" y2="361.8" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="390.6" y1="215.6" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="298.4" y1="239.7" x2="458.3" y2="250.5" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="298.4" y1="239.7" x2="252.8" y2="361.8" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="298.4" y1="239.7" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="298.4" y1="239.7" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="458.3" y1="250.5" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="458.3" y1="250.5" x2="286.8" y2="184.2" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="458.3" y1="250.5" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="252.8" y1="361.8" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="369.5" y1="326.0" x2="286.8" y2="184.2" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="369.5" y1="326.0" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="427.3" y1="198.7" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="335.0" y1="315.0" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="317.7" y1="268.0" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="393.7" y1="288.2" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="453.4" y1="49.2" x2="385.5" y2="170.2" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="453.4" y1="49.2" x2="352.7" y2="161.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="453.4" y1="49.2" x2="390.6" y2="215.6" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="453.4" y1="49.2" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="453.4" y1="49.2" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="453.4" y1="49.2" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="385.5" y1="170.2" x2="411.6" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="385.5" y1="170.2" x2="485.9" y2="83.6" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="385.5" y1="170.2" x2="365.1" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="352.7" y1="161.0" x2="411.6" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="352.7" y1="161.0" x2="485.9" y2="83.6" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="352.7" y1="161.0" x2="365.1" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="390.6" y1="215.6" x2="411.6" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="390.6" y1="215.6" x2="485.9" y2="83.6" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="390.6" y1="215.6" x2="365.1" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="390.6" y1="215.6" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="298.4" y1="239.7" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="411.6" y1="40.0" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="411.6" y1="40.0" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="411.6" y1="40.0" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="485.9" y1="83.6" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="485.9" y1="83.6" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="485.9" y1="83.6" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="427.3" y1="198.7" x2="365.1" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="417.0" y1="162.0" x2="365.1" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="286.8" y1="184.2" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="317.7" y1="268.0" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="365.1" y1="40.0" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="429.3" y1="330.2" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="417.0" y1="162.0" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="356.2" y1="259.8" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.28" stroke-width="1.18"/><line x1="356.2" y1="259.8" x2="458.3" y2="250.5" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="356.2" y1="259.8" x2="286.8" y2="184.2" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="429.3" y1="330.2" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="352.7" y1="161.0" x2="369.5" y2="326.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="390.6" y1="215.6" x2="369.5" y2="326.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="390.6" y1="215.6" x2="286.8" y2="184.2" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="298.4" y1="239.7" x2="369.5" y2="326.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="458.3" y1="250.5" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="458.3" y1="250.5" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="252.8" y1="361.8" x2="355.2" y2="201.1" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="252.8" y1="361.8" x2="369.5" y2="326.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="252.8" y1="361.8" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="252.8" y1="361.8" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="369.5" y1="326.0" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="427.3" y1="198.7" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="335.0" y1="315.0" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="335.0" y1="315.0" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="460.7" y1="180.6" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="453.4" y1="49.2" x2="411.6" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="453.4" y1="49.2" x2="355.2" y2="201.1" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="453.4" y1="49.2" x2="485.9" y2="83.6" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="453.4" y1="49.2" x2="365.1" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="453.4" y1="49.2" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="385.5" y1="170.2" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="352.7" y1="161.0" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="298.4" y1="239.7" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="411.6" y1="40.0" x2="355.2" y2="201.1" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="411.6" y1="40.0" x2="485.9" y2="83.6" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="411.6" y1="40.0" x2="365.1" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="411.6" y1="40.0" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="355.2" y1="201.1" x2="485.9" y2="83.6" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="355.2" y1="201.1" x2="365.1" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="485.9" y1="83.6" x2="365.1" y2="40.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="485.9" y1="83.6" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="427.3" y1="198.7" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="417.0" y1="162.0" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="365.1" y1="40.0" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="330.6" y1="97.7" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="720.0" y1="66.4" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="369.5" y1="326.0" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="417.0" y1="162.0" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.32" stroke-width="1.37"/><line x1="385.5" y1="170.2" x2="369.5" y2="326.0" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="385.5" y1="170.2" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="356.2" y1="259.8" x2="298.4" y2="239.7" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="356.2" y1="259.8" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="429.3" y1="330.2" x2="355.2" y2="201.1" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="429.3" y1="330.2" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="352.7" y1="161.0" x2="298.4" y2="239.7" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="352.7" y1="161.0" x2="458.3" y2="250.5" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="390.6" y1="215.6" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="390.6" y1="215.6" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="298.4" y1="239.7" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="298.4" y1="239.7" x2="286.8" y2="184.2" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="298.4" y1="239.7" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="298.4" y1="239.7" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="355.2" y1="201.1" x2="465.9" y2="298.3" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="369.5" y1="326.0" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="369.5" y1="326.0" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="369.5" y1="326.0" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="427.3" y1="198.7" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="335.0" y1="315.0" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="286.8" y1="184.2" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="286.8" y1="184.2" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="355.2" y1="201.1" x2="330.6" y2="97.7" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="417.0" y1="162.0" x2="286.8" y2="184.2" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="417.0" y1="162.0" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.36" stroke-width="1.56"/><line x1="385.5" y1="170.2" x2="298.4" y2="239.7" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="385.5" y1="170.2" x2="458.3" y2="250.5" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="385.5" y1="170.2" x2="286.8" y2="184.2" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="385.5" y1="170.2" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="356.2" y1="259.8" x2="369.5" y2="326.0" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="356.2" y1="259.8" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="356.2" y1="259.8" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="352.7" y1="161.0" x2="286.8" y2="184.2" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="352.7" y1="161.0" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="390.6" y1="215.6" x2="298.4" y2="239.7" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="390.6" y1="215.6" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="390.6" y1="215.6" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="298.4" y1="239.7" x2="355.2" y2="201.1" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="298.4" y1="239.7" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="355.2" y1="201.1" x2="286.8" y2="184.2" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="369.5" y1="326.0" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="427.3" y1="198.7" x2="286.8" y2="184.2" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="427.3" y1="198.7" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="286.8" y1="184.2" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="317.7" y1="268.0" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="317.7" y1="268.0" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="417.0" y1="162.0" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.40" stroke-width="1.75"/><line x1="385.5" y1="170.2" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="356.2" y1="259.8" x2="352.7" y2="161.0" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="356.2" y1="259.8" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="352.7" y1="161.0" x2="390.6" y2="215.6" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="352.7" y1="161.0" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="352.7" y1="161.0" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="458.3" y1="250.5" x2="355.2" y2="201.1" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="458.3" y1="250.5" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="355.2" y1="201.1" x2="369.5" y2="326.0" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="355.2" y1="201.1" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="355.2" y1="201.1" x2="335.0" y2="315.0" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="460.7" y1="180.6" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="458.3" y1="250.5" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="427.3" y1="198.7" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="356.2" y1="259.8" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.45" stroke-width="1.95"/><line x1="385.5" y1="170.2" x2="352.7" y2="161.0" stroke="#1e4d8c" stroke-opacity="0.49" stroke-width="2.14"/><line x1="385.5" y1="170.2" x2="427.3" y2="198.7" stroke="#1e4d8c" stroke-opacity="0.49" stroke-width="2.14"/><line x1="356.2" y1="259.8" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.49" stroke-width="2.14"/><line x1="352.7" y1="161.0" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.49" stroke-width="2.14"/><line x1="355.2" y1="201.1" x2="317.7" y2="268.0" stroke="#1e4d8c" stroke-opacity="0.49" stroke-width="2.14"/><line x1="352.7" y1="161.0" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.49" stroke-width="2.14"/><line x1="385.5" y1="170.2" x2="355.2" y2="201.1" stroke="#1e4d8c" stroke-opacity="0.53" stroke-width="2.33"/><line x1="390.6" y1="215.6" x2="458.3" y2="250.5" stroke="#1e4d8c" stroke-opacity="0.53" stroke-width="2.33"/><line x1="390.6" y1="215.6" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.53" stroke-width="2.33"/><line x1="355.2" y1="201.1" x2="393.7" y2="288.2" stroke="#1e4d8c" stroke-opacity="0.53" stroke-width="2.33"/><line x1="427.3" y1="198.7" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.53" stroke-width="2.33"/><line x1="385.5" y1="170.2" x2="356.2" y2="259.8" stroke="#1e4d8c" stroke-opacity="0.57" stroke-width="2.52"/><line x1="385.5" y1="170.2" x2="390.6" y2="215.6" stroke="#1e4d8c" stroke-opacity="0.57" stroke-width="2.52"/><line x1="385.5" y1="170.2" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.57" stroke-width="2.52"/><line x1="356.2" y1="259.8" x2="390.6" y2="215.6" stroke="#1e4d8c" stroke-opacity="0.57" stroke-width="2.52"/><line x1="356.2" y1="259.8" x2="355.2" y2="201.1" stroke="#1e4d8c" stroke-opacity="0.57" stroke-width="2.52"/><line x1="352.7" y1="161.0" x2="355.2" y2="201.1" stroke="#1e4d8c" stroke-opacity="0.57" stroke-width="2.52"/><line x1="385.5" y1="170.2" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.57" stroke-width="2.52"/><line x1="390.6" y1="215.6" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.57" stroke-width="2.52"/><line x1="355.2" y1="201.1" x2="417.0" y2="162.0" stroke="#1e4d8c" stroke-opacity="0.62" stroke-width="2.72"/><line x1="417.0" y1="162.0" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.62" stroke-width="2.72"/><line x1="390.6" y1="215.6" x2="355.2" y2="201.1" stroke="#1e4d8c" stroke-opacity="0.66" stroke-width="2.91"/><line x1="355.2" y1="201.1" x2="460.7" y2="180.6" stroke="#1e4d8c" stroke-opacity="0.70" stroke-width="3.10"/></g>
+<g><g><circle cx="355.2" cy="201.1" r="10.9" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Jianzhuang Xiao — 11 cite events, h-index 24
+Tongji University</title></circle><text x="355.2" y="222.1" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Jianzhuang Xiao</text></g><g><circle cx="335.0" cy="315.0" r="10.9" fill="#b05020" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Tong Zhang — 11 cite events, h-index 37
+Northeastern University</title></circle><text x="335.0" y="335.9" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Tong Zhang</text></g><g><circle cx="330.6" cy="97.7" r="10.9" fill="#b05020" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Yogarajah Elakneswaran — 11 cite events, h-index 23
+Hokkaido University</title></circle><text x="330.6" y="118.7" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Yogarajah Elakneswaran</text></g><g><circle cx="365.1" cy="40.0" r="10.9" fill="#b05020" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Yi Wei Daniel Tay — 11 cite events, h-index 20
+Nanyang Technological University</title></circle><text x="365.1" y="60.9" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Yi Wei Daniel Tay</text></g><g><circle cx="317.7" cy="268.0" r="11.2" fill="#9a6e20" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Wengui Li — 12 cite events, h-index 75
+UNSW Sydney</title></circle><text x="317.7" y="289.2" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Wengui Li</text></g><g><circle cx="485.9" cy="83.6" r="11.2" fill="#5a38b0" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Ming Jen Tan — 12 cite events, h-index 74
+University College Dublin</title></circle><text x="485.9" y="104.8" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Ming Jen Tan</text></g><g><circle cx="453.4" cy="49.2" r="11.2" fill="#b05020" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Bandar A. Fadhel — 12 cite events, h-index 14
+Saudi Aramco (United States)</title></circle><text x="453.4" y="70.4" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Bandar A. Fadhel</text></g><g><circle cx="411.6" cy="40.0" r="11.2" fill="#b05020" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Issam T. Amr — 12 cite events, h-index 10
+Saudi Aramco (United States)</title></circle><text x="411.6" y="61.2" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Issam T. Amr</text></g><g><circle cx="286.8" cy="184.2" r="11.5" fill="#b05020" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Tung‐Chai Ling — 13 cite events, h-index 74
+Guangdong University of Technology</title></circle><text x="286.8" y="205.6" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Tung‐Chai Ling</text></g><g><circle cx="429.3" cy="330.2" r="11.7" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Changqing Wang — 14 cite events, h-index 40
+Henan University of Technology</title></circle><text x="429.3" y="351.9" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Changqing Wang</text></g><g><circle cx="369.5" cy="326.0" r="11.9" fill="#b05020" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Mingzhong Zhang — 15 cite events, h-index 56
+Lishui University</title></circle><text x="369.5" y="348.0" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Mingzhong Zhang</text></g><g><circle cx="465.9" cy="298.3" r="11.9" fill="#5a38b0" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Zhiming Ma — 15 cite events, h-index 49
+Shanghai University</title></circle><text x="465.9" y="320.3" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Zhiming Ma</text></g><g><circle cx="298.4" cy="239.7" r="11.9" fill="#1a6e3c" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Fulin Qu — 15 cite events, h-index 25
+UNSW Sydney</title></circle><text x="298.4" y="261.6" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Fulin Qu</text></g><g><circle cx="356.2" cy="259.8" r="11.9" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Chang Sun — 15 cite events, h-index 17
+University of Shanghai for Science and Technology</title></circle><text x="356.2" y="281.7" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Chang Sun</text></g><g><circle cx="427.3" cy="198.7" r="12.2" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Qihang Tan — 16 cite events, h-index 4
+The University of Tokyo</title></circle><text x="427.3" y="220.9" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Qihang Tan</text></g><g><circle cx="720.0" cy="66.4" r="12.4" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Ying Zhou — 17 cite events, h-index 44
+Tongji University</title></circle><text x="720.0" y="88.8" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Ying Zhou</text></g><g><circle cx="252.8" cy="361.8" r="12.6" fill="#b05020" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Hongniao Chen — 18 cite events, h-index 15
+Guizhou University</title></circle><text x="252.8" y="384.4" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Hongniao Chen</text></g><g><circle cx="458.3" cy="250.5" r="12.6" fill="#9a6e20" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Gaoyu Liao — 18 cite events, h-index 4
+Hunan Institute of Science and Technology</title></circle><text x="458.3" y="273.1" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Gaoyu Liao</text></g><g><circle cx="393.7" cy="288.2" r="13.1" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Zhenhua Duan — 20 cite events, h-index 44
+Tongji University</title></circle><text x="393.7" y="311.2" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Zhenhua Duan</text></g><g><circle cx="352.7" cy="161.0" r="14.1" fill="#1a6e3c" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Chi Sun Poon — 25 cite events, h-index 141
+Hong Kong Polytechnic University</title></circle><text x="352.7" y="185.1" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Chi Sun Poon</text></g><g><circle cx="385.5" cy="170.2" r="14.1" fill="#5a38b0" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Bochao Sun — 25 cite events, h-index 14
+Zhejiang University</title></circle><text x="385.5" y="194.3" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Bochao Sun</text></g><g><circle cx="417.0" cy="162.0" r="14.3" fill="#b05020" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Takafumi Noguchi — 26 cite events, h-index 35
+Tokyo University of Foreign Studies</title></circle><text x="417.0" y="186.3" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Takafumi Noguchi</text></g><g><circle cx="390.6" cy="215.6" r="15.2" fill="#9a6e20" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Fubin Zhang — 31 cite events, h-index 7
+Shanghai Research Institute of Building Sciences (China)</title></circle><text x="390.6" y="240.8" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Fubin Zhang</text></g><g><circle cx="460.7" cy="180.6" r="24.0" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="1.5"><title>Zheng Lu — 95 cite events, h-index 35
+Tongji University</title></circle><text x="460.7" y="214.6" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9.5" fill="#16243e">Zheng Lu</text></g></g>
+</svg>
+      
+<div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--text2)">
+  <div><span style="display:inline-block;width:11px;height:11px;background:#1e4d8c;border-radius:50%;vertical-align:middle"></span> Tongji</div>
+  <div><span style="display:inline-block;width:11px;height:11px;background:#9a6e20;border-radius:50%;vertical-align:middle"></span> UTokyo</div>
+  <div><span style="display:inline-block;width:11px;height:11px;background:#1a6e3c;border-radius:50%;vertical-align:middle"></span> HK PolyU</div>
+  <div><span style="display:inline-block;width:11px;height:11px;background:#5a38b0;border-radius:50%;vertical-align:middle"></span> Other China</div>
+  <div><span style="display:inline-block;width:11px;height:11px;background:#b05020;border-radius:50%;vertical-align:middle"></span> Rest of world</div>
+  <div style="margin-left:auto;color:var(--text3)">node size ∝ cite events &middot; edge width ∝ # of shared my-papers</div>
+</div>
+      <div class="callout">
+        <div class="callout-lbl">Pattern</div>
+        Three tight clusters are visible: the <strong>Tongji core</strong> (Xiao, Lu, Duan, Zhou) sits at the centre with the densest internal coupling; the <strong>UTokyo / carbonation cluster</strong> (Noguchi, Sun Bochao) overlaps with it via shared CO₂-aggregate work; a <strong>HK PolyU / international</strong> arm (Poon, etc.) bridges to the broader recycled-concrete community.
+      </div>
+    </section>
+
+    <!-- ===== PAPER COUPLING ===== -->
+    <section class="section" id="sec-net-papers">
+      <div class="sec-h"><span class="sec-num">07</span><span class="sec-title">My-Paper Coupling Network</span><span class="sec-sub">top 12 papers · shared citing authors ≥ 20</span></div>
+      <p>Each node is one of my top-cited papers (P1–P12). An edge connects two of my papers when many of the same authors cite both — i.e. how strongly the field reads them as belonging together. Useful for spotting which papers form a coherent research thread.</p>
+      <svg viewBox="0 0 720 460" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;max-height:540px;background:#fafbfd;border:1px solid var(--border);border-radius:8px">
+<g><line x1="119.4" y1="134.1" x2="216.3" y2="155.7" stroke="#2563a8" stroke-opacity="0.18" stroke-width="0.98"/><line x1="60.0" y1="96.4" x2="197.6" y2="242.7" stroke="#2563a8" stroke-opacity="0.18" stroke-width="0.98"/><line x1="197.6" y1="242.7" x2="309.7" y2="400.0" stroke="#2563a8" stroke-opacity="0.19" stroke-width="1.01"/><line x1="119.4" y1="134.1" x2="60.0" y2="315.0" stroke="#2563a8" stroke-opacity="0.19" stroke-width="1.01"/><line x1="145.7" y1="290.0" x2="60.0" y2="96.4" stroke="#2563a8" stroke-opacity="0.19" stroke-width="1.03"/><line x1="60.0" y1="96.4" x2="125.8" y2="198.3" stroke="#2563a8" stroke-opacity="0.19" stroke-width="1.03"/><line x1="60.0" y1="400.0" x2="65.6" y2="240.4" stroke="#2563a8" stroke-opacity="0.21" stroke-width="1.12"/><line x1="197.6" y1="242.7" x2="60.0" y2="315.0" stroke="#2563a8" stroke-opacity="0.23" stroke-width="1.24"/><line x1="119.4" y1="134.1" x2="125.8" y2="198.3" stroke="#2563a8" stroke-opacity="0.23" stroke-width="1.26"/><line x1="119.4" y1="134.1" x2="197.6" y2="242.7" stroke="#2563a8" stroke-opacity="0.24" stroke-width="1.31"/><line x1="119.4" y1="134.1" x2="65.6" y2="240.4" stroke="#2563a8" stroke-opacity="0.24" stroke-width="1.31"/><line x1="125.8" y1="198.3" x2="60.0" y2="315.0" stroke="#2563a8" stroke-opacity="0.25" stroke-width="1.35"/><line x1="145.7" y1="290.0" x2="309.7" y2="400.0" stroke="#2563a8" stroke-opacity="0.27" stroke-width="1.47"/><line x1="145.7" y1="290.0" x2="216.3" y2="155.7" stroke="#2563a8" stroke-opacity="0.30" stroke-width="1.67"/><line x1="65.6" y1="240.4" x2="60.0" y2="315.0" stroke="#2563a8" stroke-opacity="0.31" stroke-width="1.70"/><line x1="145.7" y1="290.0" x2="119.4" y2="134.1" stroke="#2563a8" stroke-opacity="0.31" stroke-width="1.72"/><line x1="65.6" y1="240.4" x2="216.3" y2="155.7" stroke="#2563a8" stroke-opacity="0.38" stroke-width="2.11"/><line x1="60.0" y1="400.0" x2="60.0" y2="315.0" stroke="#2563a8" stroke-opacity="0.38" stroke-width="2.13"/><line x1="145.7" y1="290.0" x2="60.0" y2="400.0" stroke="#2563a8" stroke-opacity="0.39" stroke-width="2.18"/><line x1="197.6" y1="242.7" x2="65.6" y2="240.4" stroke="#2563a8" stroke-opacity="0.41" stroke-width="2.32"/><line x1="660.0" y1="60.0" x2="609.3" y2="60.0" stroke="#2563a8" stroke-opacity="0.42" stroke-width="2.39"/><line x1="197.6" y1="242.7" x2="216.3" y2="155.7" stroke="#2563a8" stroke-opacity="0.44" stroke-width="2.50"/><line x1="125.8" y1="198.3" x2="65.6" y2="240.4" stroke="#2563a8" stroke-opacity="0.45" stroke-width="2.53"/><line x1="145.7" y1="290.0" x2="197.6" y2="242.7" stroke="#2563a8" stroke-opacity="0.49" stroke-width="2.76"/><line x1="145.7" y1="290.0" x2="60.0" y2="315.0" stroke="#2563a8" stroke-opacity="0.51" stroke-width="2.89"/><line x1="125.8" y1="198.3" x2="216.3" y2="155.7" stroke="#2563a8" stroke-opacity="0.53" stroke-width="3.01"/><line x1="145.7" y1="290.0" x2="125.8" y2="198.3" stroke="#2563a8" stroke-opacity="0.54" stroke-width="3.08"/><line x1="145.7" y1="290.0" x2="65.6" y2="240.4" stroke="#2563a8" stroke-opacity="0.67" stroke-width="3.84"/><line x1="125.8" y1="198.3" x2="197.6" y2="242.7" stroke="#2563a8" stroke-opacity="0.70" stroke-width="4.00"/></g>
+<g><g><circle cx="145.7" cy="290.0" r="36.0" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>Fully utilizing carbonated recycled aggregates in concrete: Strength, drying shrinkage and carbon emissions analysis
+Journal of Cleaner Production 2022 — 176 citations</title></circle><text x="145.7" y="294.0" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P1</text><text x="145.7" y="338.0" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">Journal of Cleaner Production · 2022</text><text x="145.7" y="349.0" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">176 cites</text></g><g><circle cx="125.8" cy="198.3" r="34.6" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>Increasing efficiency of carbon dioxide sequestration through high temperature carbonation of cement-based materials
+Journal of Cleaner Production 2019 — 156 citations</title></circle><text x="125.8" y="202.3" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P2</text><text x="125.8" y="244.9" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">Journal of Cleaner Production · 2019</text><text x="125.8" y="255.9" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">156 cites</text></g><g><circle cx="197.6" cy="242.7" r="32.4" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>Strategies to accelerate CO2 sequestration of cement-based materials and their application prospects
+Construction and Building Materials 2021 — 127 citations</title></circle><text x="197.6" y="246.7" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P3</text><text x="197.6" y="287.1" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">Construction and Building Mate · 2021</text><text x="197.6" y="298.1" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">127 cites</text></g><g><circle cx="660.0" cy="60.0" r="30.6" fill="#5a38b0" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>An experimental study of vibration control of wind-excited high-rise buildings using particle tuned mass dampers
+Smart Structures and Systems 2016 — 105 citations</title></circle><text x="660.0" y="64.0" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P4</text><text x="660.0" y="102.6" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">Smart Structures and Systems · 2016</text><text x="660.0" y="113.6" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">105 cites</text></g><g><circle cx="65.6" cy="240.4" r="29.9" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>Properties investigation of recycled aggregates and concrete modified by accelerated carbonation through increased temperature
+Construction and Building Materials 2022 — 97 citations</title></circle><text x="65.6" y="244.4" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P5</text><text x="65.6" y="282.3" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">Construction and Building Mate · 2022</text><text x="65.6" y="293.3" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">97 cites</text></g><g><circle cx="609.3" cy="60.0" r="29.4" fill="#5a38b0" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>Experimental parametric study on wind-induced vibration control of particle tuned mass damper on a benchmark high-rise building
+The Structural Design of Tall and Special Buildings 2017 — 92 citations</title></circle><text x="609.3" y="64.0" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P6</text><text x="609.3" y="101.4" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">The Structural Design of Tall  · 2017</text><text x="609.3" y="112.4" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">92 cites</text></g><g><circle cx="60.0" cy="315.0" r="29.4" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>Effect of accelerated carbonation of fully recycled aggregates on fracture behaviour of concrete
+Cement and Concrete Composites 2024 — 92 citations</title></circle><text x="60.0" y="319.0" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P7</text><text x="60.0" y="356.4" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">Cement and Concrete Composites · 2024</text><text x="60.0" y="367.4" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">92 cites</text></g><g><circle cx="309.7" cy="400.0" r="27.2" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>Microstructure, strength development mechanism, and CO2 emission analyses of alkali-activated fly ash-slag mortars
+Journal of Cleaner Production 2024 — 70 citations</title></circle><text x="309.7" y="404.0" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P8</text><text x="309.7" y="439.2" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">Journal of Cleaner Production · 2024</text><text x="309.7" y="450.2" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">70 cites</text></g><g><circle cx="216.3" cy="155.7" r="26.8" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>Investigation of the carbonation performance of cement-based materials under high temperatures
+Construction and Building Materials 2020 — 66 citations</title></circle><text x="216.3" y="159.7" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P9</text><text x="216.3" y="194.5" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">Construction and Building Mate · 2020</text><text x="216.3" y="205.5" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">66 cites</text></g><g><circle cx="119.4" cy="134.1" r="26.3" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>Sustainable 3D printed mortar with CO2 pretreated recycled fine aggregates
+Cement and Concrete Composites 2022 — 61 citations</title></circle><text x="119.4" y="138.1" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P10</text><text x="119.4" y="172.4" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">Cement and Concrete Composites · 2022</text><text x="119.4" y="183.4" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">61 cites</text></g><g><circle cx="60.0" cy="96.4" r="25.8" fill="#1a6e3c" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>Working and mechanical properties of waste glass fiber reinforced self-compacting recycled concrete
+Construction and Building Materials 2024 — 57 citations</title></circle><text x="60.0" y="100.4" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P11</text><text x="60.0" y="134.2" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">Construction and Building Mate · 2024</text><text x="60.0" y="145.2" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">57 cites</text></g><g><circle cx="60.0" cy="400.0" r="25.7" fill="#1e4d8c" fill-opacity="0.85" stroke="#fff" stroke-width="2"><title>Effect of carbonation treatment on fracture behavior of low-carbon mortar with recycled sand and recycled powder
+Cement and Concrete Composites 2023 — 56 citations</title></circle><text x="60.0" y="404.0" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="11" font-weight="600" fill="#fff">P12</text><text x="60.0" y="437.7" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#16243e">Cement and Concrete Composites · 2023</text><text x="60.0" y="448.7" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a8aaa">56 cites</text></g></g>
+</svg>
+      
+<div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;font-family:var(--mono);font-size:10.5px;color:var(--text2)">
+  <div><span style="display:inline-block;width:11px;height:11px;background:#1e4d8c;border-radius:50%;vertical-align:middle"></span> CO₂ / carbonation</div>
+  <div><span style="display:inline-block;width:11px;height:11px;background:#1a6e3c;border-radius:50%;vertical-align:middle"></span> Recycled aggregate</div>
+  <div><span style="display:inline-block;width:11px;height:11px;background:#5a38b0;border-radius:50%;vertical-align:middle"></span> Vibration control</div>
+  <div><span style="display:inline-block;width:11px;height:11px;background:#9a6e20;border-radius:50%;vertical-align:middle"></span> 3D printing</div>
+  <div style="margin-left:auto;color:var(--text3)">node size ∝ citation count &middot; edge = # of shared citing authors</div>
+</div>
+      <table class="t-cite" style="margin-top:10px">
+        <thead><tr><th>ID</th><th>Title</th><th style="text-align:right">Cites</th></tr></thead>
+        <tbody><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P1</td><td>Fully utilizing carbonated recycled aggregates in concrete: Strength, drying shr…</td><td class="num">176</td></tr><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P2</td><td>Increasing efficiency of carbon dioxide sequestration through high temperature c…</td><td class="num">156</td></tr><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P3</td><td>Strategies to accelerate CO2 sequestration of cement-based materials and their a…</td><td class="num">127</td></tr><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P4</td><td>An experimental study of vibration control of wind-excited high-rise buildings u…</td><td class="num">105</td></tr><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P5</td><td>Properties investigation of recycled aggregates and concrete modified by acceler…</td><td class="num">97</td></tr><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P6</td><td>Experimental parametric study on wind-induced vibration control of particle tune…</td><td class="num">92</td></tr><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P7</td><td>Effect of accelerated carbonation of fully recycled aggregates on fracture behav…</td><td class="num">92</td></tr><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P8</td><td>Microstructure, strength development mechanism, and CO2 emission analyses of alk…</td><td class="num">70</td></tr><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P9</td><td>Investigation of the carbonation performance of cement-based materials under hig…</td><td class="num">66</td></tr><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P10</td><td>Sustainable 3D printed mortar with CO2 pretreated recycled fine aggregates</td><td class="num">61</td></tr><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P11</td><td>Working and mechanical properties of waste glass fiber reinforced self-compactin…</td><td class="num">57</td></tr><tr><td style="font-family:var(--mono);font-weight:500;color:var(--accent)">P12</td><td>Effect of carbonation treatment on fracture behavior of low-carbon mortar with r…</td><td class="num">56</td></tr></tbody>
+      </table>
+      <div class="callout green">
+        <div class="callout-lbl">Pattern</div>
+        <strong>P2 ↔ P3</strong> (152 shared citers) and <strong>P1 ↔ P5</strong> (145) form the densest pair — the high-temperature CO₂ sequestration line and the carbonated-recycled-aggregate line read as one continuous body of work to outside readers. The vibration-control papers (P4, P6) cluster separately, confirming they are a distinct research stream.
+      </div>
+    </section>
+
+    <!-- ===== REGION DONUT ===== -->
+    <section class="section" id="sec-region">
+      <div class="sec-h"><span class="sec-num">08</span><span class="sec-title">High-Profile Experts by Region</span><span class="sec-sub">geographic spread of 24 senior citers</span></div>
+      
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>澳大利亚</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:20.8%;height:100%;background:#1e4d8c"></div></div>
+      <div style="color:var(--text2);text-align:right">5 (21%)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>中国</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:16.7%;height:100%;background:#9a6e20"></div></div>
+      <div style="color:var(--text2);text-align:right">4 (17%)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>中国香港</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:16.7%;height:100%;background:#1a6e3c"></div></div>
+      <div style="color:var(--text2);text-align:right">4 (17%)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>美国</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:8.3%;height:100%;background:#5a38b0"></div></div>
+      <div style="color:var(--text2);text-align:right">2 (8%)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>日本</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:8.3%;height:100%;background:#b05020"></div></div>
+      <div style="color:var(--text2);text-align:right">2 (8%)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>土耳其</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:4.2%;height:100%;background:#b83224"></div></div>
+      <div style="color:var(--text2);text-align:right">1 (4%)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>中国/加拿大</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:4.2%;height:100%;background:#2563a8"></div></div>
+      <div style="color:var(--text2);text-align:right">1 (4%)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>加拿大</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:4.2%;height:100%;background:#7a8aaa"></div></div>
+      <div style="color:var(--text2);text-align:right">1 (4%)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>中国澳门/中国香港</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:4.2%;height:100%;background:#16243e"></div></div>
+      <div style="color:var(--text2);text-align:right">1 (4%)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>瑞士</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:4.2%;height:100%;background:#3a4e6e"></div></div>
+      <div style="color:var(--text2);text-align:right">1 (4%)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>中国/英国</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:4.2%;height:100%;background:#9a6e20"></div></div>
+      <div style="color:var(--text2);text-align:right">1 (4%)</div>
+    </div>
+    <div style="display:grid;grid-template-columns:130px 1fr 60px;align-items:center;gap:10px;margin-bottom:6px;font-family:var(--mono);font-size:11.5px">
+      <div>葡萄牙</div>
+      <div style="height:16px;background:var(--surface2);border-radius:3px;overflow:hidden"><div style="width:4.2%;height:100%;background:#b8c4da"></div></div>
+      <div style="color:var(--text2);text-align:right">1 (4%)</div>
+    </div>
+      <div class="callout">
+        <div class="callout-lbl">Take-away</div>
+        Heavy Australia / Greater China presence among senior citers reflects the dominant research geography for low-carbon concrete; the smaller European and North-American counts identify under-represented regions to target via co-author or invited-talk channels.
+      </div>
+    </section>
+
+    <!-- ===== CITING AUTHOR EXAMPLES ===== -->
+    <section class="section" id="sec-examples">
+      <div class="sec-h"><span class="sec-num">09</span><span class="sec-title">Representative Citing Records</span><span class="sec-sub">one example per top citer</span></div>
+      <p>For each of the most frequent citing authors, one representative citing paper (year &middot; journal &middot; title) pulled from OpenAlex records.</p>
+      <table class="t-cite">
+        <thead><tr><th>Author</th><th>Representative citing paper</th></tr></thead>
+        <tbody><tr><td>Zheng Lu</td><td>2024 | Journal of CO2 Utilization | Carbonation depth prediction and parameter influential analysis of recycled concrete buildings || 2022 | Construction and Building Materials | Properties investigation of recycled aggregates and concrete modified by accelerated carbonation through increased tempe || 2025 | Waste Management | Global CO2 sequestration potential of recycled aggregates: Modeling, life cycle analysis, and accelerated carbonation st</td></tr><tr><td>Jianzhuang Xiao</td><td>2024 | Cement and Concrete Composites | Effect of accelerated carbonation of fully recycled aggregates on fracture behaviour of concrete || 2023 | Cement and Concrete Composites | Effect of carbonation treatment on fracture behavior of low-carbon mortar with recycled sand and recycled powder || 2023 | Energy and Buildings | Investigation on alkali-activated insulation mortar containing high-volume recycled concrete powder for energy-efficient</td></tr><tr><td>Fubin Zhang</td><td>2025 | Construction and Building Materials | Densification mechanism and pore structure evolution of fully compacted concrete under different compaction strategies || 2025 | Construction and Building Materials | A novel carbon-negative mortar: Mechanical properties, microstructure, and carbon emissions || 2025 | Construction and Building Materials | A novel carbon-negative mortar: Mechanical properties, microstructure, and carbon emissions</td></tr><tr><td>Takafumi Noguchi</td><td>2020 | Construction and Building Materials | Investigation of the carbonation performance of cement-based materials under high temperatures || 2023 | Journal of Advanced Concrete Technology | Wet-carbonation-based Mineral Extraction and CO&amp;lt;sub&amp;gt;2&amp;lt;/sub&amp;gt; Sequestration Using Concrete Waste Fines at a Lo || 2025 | Waste Management | Global CO2 sequestration potential of recycled aggregates: Modeling, life cycle analysis, and accelerated carbonation st</td></tr><tr><td>Chi Sun Poon</td><td>2023 | Cement and Concrete Research | Total recycling of concrete waste using accelerated carbonation: A review || 2024 | ACS Sustainable Chemistry &amp; Engineering | Carbonation Behaviors of Recycled Concrete Fines Containing Supplementary Cementitious Materials: Compositions, Microstr || 2024 | Journal of Building Engineering | Comparative eco-efficiency assessment of 3D-printed recycled aggregate concrete structure for mid-rise residential build</td></tr><tr><td>Bochao Sun</td><td>2024 | Journal of CO2 Utilization | Carbonation depth prediction and parameter influential analysis of recycled concrete buildings || 2022 | Cement and Concrete Composites | Sustainable 3D printed mortar with CO2 pretreated recycled fine aggregates || 2023 | Cement and Concrete Composites | Mechanical properties of 3D printed mortar cured by CO2</td></tr><tr><td>Zhenhua Duan</td><td>2024 | Journal of Building Engineering | An intelligent mix design system for sustainable concrete containing multi-source recycled aggregate || 2024 | Construction and Building Materials | Influences of packing properties on the workability of cementitious materials using mixed recycled fine aggregate derive || 2025 | Construction and Building Materials | Valorization of recycled concrete wastes into high-performance cold-bonded core-shell aggregates via one-part alkali act</td></tr><tr><td>Hongniao Chen</td><td>2024 | Construction and Building Materials | The effect of carbonated recycled coarse aggregate on the fracture properties of concrete || 2024 | Journal of Cleaner Production | Environmental factors affecting accelerated carbonation of recycled concrete aggregates using response surface methodolo || 2024 | Scientific Reports | Novel accelerated carbonation methods based on deep breathing analogous and prediction model for pressurized carbonation</td></tr></tbody>
+      </table>
+    </section>
+
+    <!-- ===== FULL REPORT ===== -->
+    <section class="section" id="sec-report">
+      <div class="sec-h"><span class="sec-num">10</span><span class="sec-title">Full Citation Analysis Report</span><span class="sec-sub">narrative summary · 2026-04-12</span></div>
+      <div class="sec" style="font-size:13.5px"><h3 style="margin-top:18px">王殿超 (Dianchao Wang) 引用来源分析报告</h3>
+<br>
+<p style="margin:6px 0"><strong>数据来源</strong>: OpenAlex API</p>
+<p style="margin:6px 0"><strong>分析范围</strong>: Top 10 高引论文（引用数 ≥ 58）的施引文献</p>
+<p style="margin:6px 0"><strong>采样量</strong>: ~620 篇施引文献，731+ 条作者-机构记录</p>
+<p style="margin:6px 0"><strong>分析日期</strong>: 2026-04-12</p>
+<br>
+<hr style="border:0;border-top:1px solid var(--border);margin:14px 0">
+<br>
+<h3 style="margin-top:18px">一、分析论文概览</h3>
+<br>
+<table class="t-cite"><tbody>
+<tr><td>#</td><td>论文标题（缩写）</td><td>年份</td><td>引用数</td></tr>
+<tr><td>1</td><td>Fully utilizing carbonated recycled aggregates in concrete</td><td>2022</td><td>172</td></tr>
+<tr><td>2</td><td>Increasing efficiency of CO2 sequestration through high temperature carbonation</td><td>2019</td><td>155</td></tr>
+<tr><td>3</td><td>Strategies to accelerate CO2 sequestration of cement-based materials</td><td>2021</td><td>125</td></tr>
+<tr><td>4</td><td>An experimental study of vibration control using particle tuned mass dampers</td><td>2016</td><td>105</td></tr>
+<tr><td>5</td><td>Properties investigation of recycled aggregates modified by accelerated carbonation</td><td>2022</td><td>95</td></tr>
+<tr><td>6</td><td>Experimental parametric study on wind-induced vibration control of PTMD</td><td>2017</td><td>92</td></tr>
+<tr><td>7</td><td>Effect of accelerated carbonation of fully recycled aggregates on fracture behaviour</td><td>2024</td><td>91</td></tr>
+<tr><td>8</td><td>Microstructure, strength development of alkali-activated fly ash-slag mortars</td><td>2024</td><td>66</td></tr>
+<tr><td>9</td><td>Investigation of carbonation performance under high temperatures</td><td>2020</td><td>65</td></tr>
+<tr><td>10</td><td>Sustainable 3D printed mortar with CO2 pretreated recycled fine aggregates</td><td>2022</td><td>58</td></tr>
+</tbody></table>
+<br>
+<p style="margin:6px 0"><strong>Top 10 论文合计引用: 1,024 次</strong>（占总引用 1,436 次的 71.3%）</p>
+<br>
+<hr style="border:0;border-top:1px solid var(--border);margin:14px 0">
+<br>
+<h3 style="margin-top:18px">二、施引作者机构分布（Top 30）</h3>
+<br>
+<p style="margin:6px 0">合并两批数据，按机构出现频次排序：</p>
+<br>
+<table class="t-cite"><tbody>
+<tr><td>排名</td><td>机构</td><td>国家/地区</td><td>引用次数</td></tr>
+<tr><td>1</td><td>**同济大学** (Tongji University)</td><td>中国</td><td>**91**</td></tr>
+<tr><td>2</td><td>**浙江大学** (Zhejiang University)</td><td>中国</td><td>26</td></tr>
+<tr><td>3</td><td>**东北大学** (Northeastern University)</td><td>中国</td><td>18</td></tr>
+<tr><td>4</td><td>**济南大学** (University of Jinan)</td><td>中国</td><td>15</td></tr>
+<tr><td>5</td><td>**湖南大学** (Hunan University)</td><td>中国</td><td>15</td></tr>
+<tr><td>6</td><td>**香港理工大学** (Hong Kong Polytechnic University)</td><td>中国香港</td><td>16</td></tr>
+<tr><td>7</td><td>**扬州大学** (Yangzhou University)</td><td>中国</td><td>13</td></tr>
+<tr><td>8</td><td>**上海大学** (Shanghai University)</td><td>中国</td><td>12</td></tr>
+<tr><td>9</td><td>**南洋理工大学** (Nanyang Technological University)</td><td>新加坡</td><td>13</td></tr>
+<tr><td>10</td><td>**上海交通大学** (Shanghai Jiao Tong University)</td><td>中国</td><td>11</td></tr>
+<tr><td>11</td><td>**西安建筑科技大学** (Xi&#x27;an University of Arch. &amp; Tech.)</td><td>中国</td><td>9</td></tr>
+<tr><td>12</td><td>**中南大学** (Central South University)</td><td>中国</td><td>8</td></tr>
+<tr><td>13</td><td>**贵州大学** (Guizhou University)</td><td>中国</td><td>8</td></tr>
+<tr><td>14</td><td>**中国海洋大学** (Ocean University of China)</td><td>中国</td><td>8</td></tr>
+<tr><td>15</td><td>**辽宁工程技术大学** (Liaoning Technical University)</td><td>中国</td><td>8</td></tr>
+<tr><td>16</td><td>**青岛农业大学** (Qingdao Agricultural University)</td><td>中国</td><td>8</td></tr>
+<tr><td>17</td><td>**四川大学** (Sichuan University)</td><td>中国</td><td>10</td></tr>
+<tr><td>18</td><td>**东南大学** (Southeast University)</td><td>中国</td><td>7</td></tr>
+<tr><td>19</td><td>**大连理工大学** (Dalian University of Technology)</td><td>中国</td><td>7</td></tr>
+<tr><td>20</td><td>**广西大学** (Guangxi University)</td><td>中国</td><td>7</td></tr>
+<tr><td>21</td><td>**重庆交通大学** (Chongqing Jiaotong University)</td><td>中国</td><td>7</td></tr>
+<tr><td>22</td><td>**上海工程技术大学** (Shanghai Univ. of Eng. Science)</td><td>中国</td><td>7</td></tr>
+<tr><td>23</td><td>**上海理工大学** (Univ. of Shanghai for Sci. &amp; Tech.)</td><td>中国</td><td>7</td></tr>
+<tr><td>24</td><td>**郑州大学** (Zhengzhou University)</td><td>中国</td><td>9</td></tr>
+<tr><td>25</td><td>**清华大学** (Tsinghua University)</td><td>中国</td><td>6</td></tr>
+<tr><td>26</td><td>**哈尔滨工业大学** (Harbin Institute of Technology)</td><td>中国</td><td>5</td></tr>
+<tr><td>27</td><td>**北京工业大学** (Beijing University of Technology)</td><td>中国</td><td>4</td></tr>
+<tr><td>28</td><td>**斯威本科技大学** (Swinburne University of Technology)</td><td>澳大利亚</td><td>5</td></tr>
+<tr><td>29</td><td>**西澳大学** (University of Western Australia)</td><td>澳大利亚</td><td>5</td></tr>
+<tr><td>30</td><td>**福州大学** (Fuzhou University)</td><td>中国</td><td>4</td></tr>
+</tbody></table>
+<br>
+<hr style="border:0;border-top:1px solid var(--border);margin:14px 0">
+<br>
+<h3 style="margin-top:18px">三、施引作者国家/地区分布</h3>
+<br>
+<table class="t-cite"><tbody>
+<tr><td>排名</td><td>国家/地区</td><td>引用次数</td><td>占比</td></tr>
+<tr><td>1</td><td>**中国 (CN)**</td><td>**~505**</td><td>**~69.1%**</td></tr>
+<tr><td>2</td><td>澳大利亚 (AU)</td><td>~35</td><td>~4.8%</td></tr>
+<tr><td>3</td><td>中国香港 (HK)</td><td>~20</td><td>~2.7%</td></tr>
+<tr><td>4</td><td>英国 (GB)</td><td>~15</td><td>~2.1%</td></tr>
+<tr><td>5</td><td>法国 (FR)</td><td>~15</td><td>~2.1%</td></tr>
+<tr><td>6</td><td>新加坡 (SG)</td><td>~13</td><td>~1.8%</td></tr>
+<tr><td>7</td><td>韩国 (KR)</td><td>~14</td><td>~1.9%</td></tr>
+<tr><td>8</td><td>印度 (IN)</td><td>~13</td><td>~1.8%</td></tr>
+<tr><td>9</td><td>土耳其 (TR)</td><td>~11</td><td>~1.5%</td></tr>
+<tr><td>10</td><td>德国 (DE)</td><td>~12</td><td>~1.6%</td></tr>
+<tr><td>11</td><td>美国 (US)</td><td>~9</td><td>~1.2%</td></tr>
+<tr><td>12</td><td>日本 (JP)</td><td>~9</td><td>~1.2%</td></tr>
+<tr><td>13</td><td>意大利 (IT)</td><td>~6</td><td>~0.8%</td></tr>
+<tr><td>14</td><td>伊朗 (IR)</td><td>~7</td><td>~1.0%</td></tr>
+<tr><td>15</td><td>葡萄牙 (PT)</td><td>~5</td><td>~0.7%</td></tr>
+<tr><td>16</td><td>丹麦 (DK)</td><td>~3</td><td>~0.4%</td></tr>
+<tr><td>17</td><td>加拿大 (CA)</td><td>~3</td><td>~0.4%</td></tr>
+<tr><td>18-34</td><td>其他 17 国（埃及、越南、西班牙、捷克、瑞士等）</td><td>~16</td><td>~2.2%</td></tr>
+<tr><td></td><td>**合计**</td><td>**~731**</td><td>**100%**</td></tr>
+</tbody></table>
+<br>
+<p style="margin:6px 0"><strong>覆盖国家/地区总数: 34 个</strong></p>
+<br>
+<hr style="border:0;border-top:1px solid var(--border);margin:14px 0">
+<br>
+<h3 style="margin-top:18px">四、关键发现</h3>
+<br>
+<h4 style="margin-top:18px">1. 引用集中度高，同济大学是最大引用来源</h4>
+<br>
+<ul>
+<li>**同济大学独占 91 次引用**（占 12.4%），远超第二名浙江大学（26 次）</li>
+<li>同济大学是肖建庄教授团队所在单位，是王殿超在再生混凝土领域的核心合作者</li>
+<li>这表明存在显著的**合作网络内部引用**效应</li>
+</ul>
+<br>
+<h4 style="margin-top:18px">2. 中国学者主导引用网络</h4>
+<br>
+<ul>
+<li>**中国大陆占比约 69%**，加上香港约 72%</li>
+<li>Top 30 机构中 **28 所来自中国大陆**，仅 2 所来自海外（南洋理工、斯威本）</li>
+<li>这反映了**再生混凝土 + CO₂碳化**领域的研究重心在中国</li>
+</ul>
+<br>
+<h4 style="margin-top:18px">3. 国际影响力覆盖 34 个国家</h4>
+<br>
+<ul>
+<li>尽管中国主导，引用仍扩展到 **6 大洲 34 个国家/地区**</li>
+<li>澳大利亚（4.8%）、英国（2.1%）、法国（2.1%）、新加坡（1.8%）为主要海外引用来源</li>
+<li>日本引用占比仅 1.2%，低于预期（考虑到作者在东京大学任职）</li>
+</ul>
+<br>
+<h4 style="margin-top:18px">4. 两大研究方向的引用来源不同</h4>
+<br>
+<table class="t-cite"><tbody>
+<tr><td>研究方向</td><td>主要施引机构</td><td>特点</td></tr>
+<tr><td>CO₂碳化 &amp; 再生混凝土</td><td>同济、浙大、济南、扬州、西建大</td><td>中国机构为主，工程应用导向</td></tr>
+<tr><td>颗粒阻尼器 &amp; 振动控制</td><td>同济、哈工大、上海大学、IowaState</td><td>更国际化，结构工程圈</td></tr>
+</tbody></table>
+<br>
+<h4 style="margin-top:18px">5. 合作者网络核心节点</h4>
+<br>
+<ul>
+<li>**肖建庄 (Jianzhuang Xiao)** — 同济大学，再生混凝土方向核心合作者，大量共引</li>
+<li>**野口貴文 (Takafumi Noguchi)** — 东京大学，导师/合作者</li>
+<li>**陆征 (Zheng Lu)** — 结构振动控制方向合作者</li>
+<li>**张富斌 (Fubin Zhang)** — 近年高产合作者，再生混凝土方向</li>
+</ul>
+<br>
+<hr style="border:0;border-top:1px solid var(--border);margin:14px 0">
+<br>
+<h3 style="margin-top:18px">五、研究方向时间线</h3>
+<br>
+<table class="t-cite"><tbody>
+<tr><td>阶段</td><td>时间</td><td>主题</td><td>代表论文</td></tr>
+<tr><td>早期</td><td>2014-2017</td><td>颗粒阻尼器 &amp; 高层建筑振动控制</td><td>#45, #46, #47</td></tr>
+<tr><td>转型期</td><td>2019-2020</td><td>水泥基材料高温碳化 &amp; CO₂封存</td><td>#42, #44</td></tr>
+<tr><td>爆发期</td><td>2021-2023</td><td>加速碳化再生骨料、3D打印混凝土</td><td>#34, #35, #36, #38</td></tr>
+<tr><td>拓展期</td><td>2024-2026</td><td>AI预测、碳负混凝土、UHPC、竹材</td><td>#1-#15</td></tr>
+</tbody></table>
+<br>
+<hr style="border:0;border-top:1px solid var(--border);margin:14px 0">
+<br>
+<p style="margin:6px 0">*注：引用次数为近似值，基于 OpenAlex API 采样（每篇取前 50 条施引文献）。实际引用总量可能略有差异。*</p>
+<br></div>
+    </section>
+
     <!-- ===== OBSERVATIONS ===== -->
     <section class="section" id="sec-obs">
-      <div class="sec-h"><span class="sec-num">08</span><span class="sec-title">Observations</span><span class="sec-sub">informal &middot; not for publication</span></div>
+      <div class="sec-h"><span class="sec-num">11</span><span class="sec-title">Observations</span><span class="sec-sub">informal &middot; not for publication</span></div>
       <div class="sec">
         <p>Personal reflections on the citation pattern. Date each entry so I can see how my thinking shifts.</p>
         <div class="callout">
@@ -571,7 +905,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 
     <!-- ===== READING LOG ===== -->
     <section class="section" id="sec-log">
-      <div class="sec-h"><span class="sec-num">09</span><span class="sec-title">Reading Log</span><span class="sec-sub">auto-saved in this browser</span></div>
+      <div class="sec-h"><span class="sec-num">12</span><span class="sec-title">Reading Log</span><span class="sec-sub">auto-saved in this browser</span></div>
       <div class="sec">
         <p>Quick scratch space — saved to this browser's local storage. Not synced anywhere.</p>
         <textarea class="notes-area" id="notesArea" placeholder="Free-form notes, paper-of-the-day, ideas..."></textarea>
