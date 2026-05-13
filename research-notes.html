@@ -22,7 +22,6 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:100vh;font-size:14px;line-height:1.65}
 
-/* LOCK */
 #lockScreen{position:fixed;inset:0;background:var(--nav);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:28px;z-index:999}
 .lock-logo{font-family:var(--display);font-size:26px;font-weight:300;color:var(--navt);text-align:center}
 .lock-logo span{color:#7ec4ff}
@@ -40,7 +39,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 .lang-btn.active{background:rgba(126,196,255,.2);color:#7ec4ff}
 .lang-btn:hover:not(.active){color:rgba(232,238,248,.8)}
 
-/* TOPBAR */
 .topbar{position:sticky;top:0;z-index:100;background:var(--nav);height:52px;display:flex;align-items:center;padding:0 24px;gap:16px;border-bottom:1px solid rgba(255,255,255,.08)}
 .topbar-back{font-family:var(--mono);font-size:11px;color:rgba(232,238,248,.6);text-decoration:none;transition:color .15s}
 .topbar-back:hover{color:#7ec4ff}
@@ -51,11 +49,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 .lock-out-btn{background:none;border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:4px 10px;font-family:var(--mono);font-size:10px;color:rgba(232,238,248,.55);cursor:pointer;transition:all .15s}
 .lock-out-btn:hover{border-color:#ff9090;color:#ff9090}
 
-/* LAYOUT */
 #workspace{display:none}
 .layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 52px)}
 
-/* SIDEBAR (TOC) */
 .sidebar{background:var(--surface);border-right:1px solid var(--border);box-shadow:2px 0 8px rgba(0,0,0,.04);padding:20px 0;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto;display:flex;flex-direction:column;gap:2px}
 .sb-section{padding:0 10px;margin-bottom:6px}
 .sb-label{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.18em;text-transform:uppercase;padding:3px 8px 5px}
@@ -64,8 +60,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 .sb-item.active{background:var(--alight);color:var(--accent)}
 .sb-icon{width:18px;text-align:center;font-size:13px;flex-shrink:0}
 
-/* CONTENT */
-.content{overflow-y:auto;max-width:920px;padding:36px 44px 80px}
+.content{overflow-y:auto;max-width:960px;padding:36px 44px 80px}
 .page-title{font-family:var(--display);font-size:30px;font-weight:300;color:var(--text);letter-spacing:-.01em;margin-bottom:6px}
 .page-sub{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:.06em;margin-bottom:32px}
 
@@ -81,7 +76,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 .sec li{margin-bottom:6px}
 .sec strong{color:var(--text)}
 
-/* STAT CARDS */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden}
 .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
@@ -97,37 +91,35 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 .stat-lbl{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.06em}
 .stat-sub{font-family:var(--mono);font-size:9px;color:var(--text3);margin-top:7px}
 
-/* PAPER CARDS */
 .paper-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:14px;position:relative}
 .paper-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--accent2);border-radius:10px 0 0 10px}
-.pc-title{font-family:var(--display);font-size:16px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.4}
-.pc-meta{font-family:var(--mono);font-size:10px;color:var(--text3);margin-bottom:10px;letter-spacing:.04em}
+.pc-title{font-family:var(--display);font-size:15.5px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.4}
+.pc-meta{font-family:var(--mono);font-size:10.5px;color:var(--text3);margin-bottom:10px;letter-spacing:.02em}
 .pc-meta strong{color:var(--accent);font-weight:500}
 .pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 .pc-cell{background:var(--surface2);border-radius:6px;padding:10px 12px}
 .pc-cell-lbl{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
-.pc-cell-body{font-size:12.5px;color:var(--text2);line-height:1.55}
+.pc-cell-body{font-size:12px;color:var(--text2);line-height:1.55}
 .pc-row{margin-top:10px}
 .pc-row-lbl{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
-.pc-row-body{font-size:13px;color:var(--text2)}
+.pc-row-body{font-size:12.5px;color:var(--text2)}
 
-/* TABLE */
 .t-cite{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:12px;background:var(--surface);border-radius:8px;overflow:hidden;border:1px solid var(--border)}
 .t-cite th{background:var(--surface2);color:var(--text2);font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:9px 12px;text-align:left;border-bottom:1px solid var(--border)}
-.t-cite td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text2)}
+.t-cite td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
 .t-cite tr:last-child td{border-bottom:none}
 .t-cite tr:hover td{background:var(--surface2)}
-.t-cite .num{font-family:var(--mono);color:var(--accent);font-weight:500;text-align:right}
+.t-cite .num{font-family:var(--mono);color:var(--accent);font-weight:500;text-align:right;white-space:nowrap}
 
-/* CALLOUT */
 .callout{border-left:3px solid var(--gold);background:rgba(154,110,32,.06);padding:12px 16px;border-radius:0 6px 6px 0;margin:14px 0;font-size:13px;color:var(--text2)}
 .callout.green{border-color:var(--green);background:rgba(26,110,60,.06)}
 .callout.red{border-color:var(--red);background:rgba(184,50,36,.06)}
+.callout.blue{border-color:var(--accent2);background:rgba(37,99,168,.06)}
 .callout-lbl{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
 .callout.green .callout-lbl{color:var(--green)}
 .callout.red .callout-lbl{color:var(--red)}
+.callout.blue .callout-lbl{color:var(--accent2)}
 
-/* TAGS */
 .tag{display:inline-flex;align-items:center;padding:2px 7px;border-radius:4px;font-family:var(--mono);font-size:9px;letter-spacing:.06em;font-weight:500;white-space:nowrap;margin-right:4px}
 .t-blue{background:rgba(37,99,168,.1);color:var(--accent2)}
 .t-gold{background:rgba(154,110,32,.1);color:var(--gold)}
@@ -135,12 +127,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 .t-red{background:rgba(184,50,36,.1);color:var(--red)}
 .t-purple{background:rgba(90,56,176,.1);color:var(--purple)}
 
-/* NOTES AREA */
 .notes-area{width:100%;min-height:240px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;color:var(--text);font-family:var(--mono);font-size:12px;line-height:1.7;outline:none;resize:vertical;transition:border-color .2s}
 .notes-area:focus{border-color:var(--accent2)}
 .notes-meta{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:6px}
 
-/* RESPONSIVE */
+/* Simple bar chart */
+.bar-row{display:grid;grid-template-columns:60px 1fr 50px;align-items:center;gap:10px;margin-bottom:4px;font-family:var(--mono);font-size:11px}
+.bar-track{height:14px;background:var(--surface2);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--accent2),#7ec4ff);border-radius:3px}
+.bar-num{color:var(--text2);text-align:right}
+
 @media (max-width:900px){
   .layout{grid-template-columns:1fr}
   .sidebar{position:relative;height:auto;top:0;border-right:none;border-bottom:1px solid var(--border);flex-direction:row;flex-wrap:wrap;padding:10px}
@@ -154,7 +150,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 </head>
 <body>
 
-<!-- LOCK SCREEN -->
 <div id="lockScreen">
   <div class="lock-logo">Research <span>Notes</span></div>
   <div class="lock-box">
@@ -172,7 +167,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
   </div>
 </div>
 
-<!-- WORKSPACE -->
 <div id="workspace">
 
 <div class="topbar">
@@ -191,204 +185,395 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 
   <aside class="sidebar">
     <div class="sb-section">
-      <div class="sb-label" id="lbl_toc">Table of Contents</div>
-      <a href="#sec-overview" class="sb-item active"><span class="sb-icon">&#9678;</span><span id="lbl_s1">Overview</span></a>
-      <a href="#sec-metrics" class="sb-item"><span class="sb-icon">&#8758;</span><span id="lbl_s2">Citation Metrics</span></a>
-      <a href="#sec-highlights" class="sb-item"><span class="sb-icon">&#9733;</span><span id="lbl_s3">Highly-Cited Papers</span></a>
-      <a href="#sec-network" class="sb-item"><span class="sb-icon">&#9901;</span><span id="lbl_s4">Citing Communities</span></a>
-      <a href="#sec-lit" class="sb-item"><span class="sb-icon">&#9776;</span><span id="lbl_s5">Lit-Review Supplements</span></a>
-      <a href="#sec-obs" class="sb-item"><span class="sb-icon">&#9758;</span><span id="lbl_s6">Research Observations</span></a>
-      <a href="#sec-log" class="sb-item"><span class="sb-icon">&#9998;</span><span id="lbl_s7">Reading Log</span></a>
+      <div class="sb-label">Table of Contents</div>
+      <a href="#sec-overview" class="sb-item active"><span class="sb-icon">&#9678;</span>Overview</a>
+      <a href="#sec-metrics" class="sb-item"><span class="sb-icon">&#8758;</span>Citation Metrics</a>
+      <a href="#sec-highlights" class="sb-item"><span class="sb-icon">&#9733;</span>Top Cited Papers</a>
+      <a href="#sec-journals" class="sb-item"><span class="sb-icon">&#9776;</span>Citing Journals</a>
+      <a href="#sec-insts" class="sb-item"><span class="sb-icon">&#9901;</span>Citing Institutions</a>
+      <a href="#sec-authors" class="sb-item"><span class="sb-icon">&#9758;</span>Top Citing Authors</a>
+      <a href="#sec-experts" class="sb-item"><span class="sb-icon">&#10038;</span>High-Profile Experts</a>
+      <a href="#sec-obs" class="sb-item"><span class="sb-icon">&#9998;</span>Observations</a>
+      <a href="#sec-log" class="sb-item"><span class="sb-icon">&#9851;</span>Reading Log</a>
     </div>
   </aside>
 
   <main class="content">
-    <div class="page-title" id="lbl_page_title">Research Notes &amp; Citation Analysis</div>
-    <div class="page-sub" id="lbl_page_sub">Private &middot; supplementary observations on my own research output</div>
+    <div class="page-title">Research Notes &amp; Citation Analysis</div>
+    <div class="page-sub">Private &middot; data snapshot 2026-05-13 &middot; source: OpenAlex (author A5067944950)</div>
 
     <!-- ===== OVERVIEW ===== -->
     <section class="section" id="sec-overview">
-      <div class="sec-h">
-        <span class="sec-num">01</span>
-        <span class="sec-title" id="lbl_h1">Overview</span>
-        <span class="sec-sub" id="lbl_h1s">scope &amp; purpose</span>
-      </div>
-      <div class="sec" id="sec1_body">
-        <p>This is a private working notebook for my own research output: how it is being read, cited, contested, or extended in the field. It is <strong>not</strong> a publication record &mdash; the public site already lists papers and patents. Here I keep the analysis behind those numbers: who is citing what, in which context, and what that tells me about where the field is moving.</p>
-        <p>Sources I rely on: Google Scholar, Web of Science, Scopus, Dimensions, plus occasional manual sweeps of recent preprints. Numbers are refreshed roughly every two months and dated below.</p>
-        <div class="callout">
-          <div class="callout-lbl">Last refresh</div>
-          <span id="lastRefresh">edit this line manually after each update.</span>
+      <div class="sec-h"><span class="sec-num">01</span><span class="sec-title">Overview</span><span class="sec-sub">scope &amp; purpose</span></div>
+      <div class="sec">
+        <p>This page summarises how my published work is being read, cited and re-used in the field. Numbers below are pulled from OpenAlex and cross-checked against an in-house workbook (<code>Dianchao_Wang_All_Citations.xlsx</code>) covering all 48 publications.</p>
+        <p>It is a working notebook, not a publication record. The public site already lists papers and patents; this view focuses on the citation graph behind them — who cites what, in which venue, and from which research community.</p>
+        <div class="callout blue">
+          <div class="callout-lbl">Data snapshot</div>
+          Generated <strong>2026-05-13</strong> from OpenAlex. 39 of 48 papers have citing-work records expanded (1455 total citing-paper records, 1167 unique by DOI). Re-run the export pipeline to refresh.
         </div>
       </div>
     </section>
 
     <!-- ===== METRICS ===== -->
     <section class="section" id="sec-metrics">
-      <div class="sec-h">
-        <span class="sec-num">02</span>
-        <span class="sec-title" id="lbl_h2">Citation Metrics</span>
-        <span class="sec-sub" id="lbl_h2s">snapshot</span>
-      </div>
+      <div class="sec-h"><span class="sec-num">02</span><span class="sec-title">Citation Metrics</span><span class="sec-sub">OpenAlex 2026-05-13</span></div>
       <div class="stats-row">
-        <div class="stat-card sc-blue"><div class="stat-num">&mdash;</div><div class="stat-lbl">TOTAL CITATIONS</div><div class="stat-sub">Google Scholar</div></div>
-        <div class="stat-card sc-gold"><div class="stat-num">&mdash;</div><div class="stat-lbl">H-INDEX</div><div class="stat-sub">Scopus / WoS</div></div>
-        <div class="stat-card sc-green"><div class="stat-num">&mdash;</div><div class="stat-lbl">i10-INDEX</div><div class="stat-sub">Google Scholar</div></div>
-        <div class="stat-card sc-purple"><div class="stat-num">46+</div><div class="stat-lbl">SCI PAPERS</div><div class="stat-sub">as of public site</div></div>
+        <div class="stat-card sc-blue"><div class="stat-num">1,472</div><div class="stat-lbl">TOTAL CITATIONS</div><div class="stat-sub">OpenAlex aggregate</div></div>
+        <div class="stat-card sc-gold"><div class="stat-num">48</div><div class="stat-lbl">PUBLICATIONS</div><div class="stat-sub">indexed by OpenAlex</div></div>
+        <div class="stat-card sc-green"><div class="stat-num">1,167</div><div class="stat-lbl">UNIQUE CITING PAPERS</div><div class="stat-sub">deduplicated by DOI</div></div>
+        <div class="stat-card sc-purple"><div class="stat-num">4,227</div><div class="stat-lbl">CITING AUTHORS</div><div class="stat-sub">24 high-profile experts flagged</div></div>
       </div>
-      <p id="lbl_metrics_p">Numbers above are placeholders &mdash; edit <code>research-notes.html</code> directly to fill them in. I deliberately keep them out of the public site to avoid the noise around incremental changes.</p>
 
-      <h4 id="lbl_h2_yearly">Yearly citation growth</h4>
-      <table class="t-cite">
-        <thead><tr><th id="lbl_year">Year</th><th id="lbl_cites">Citations received</th><th id="lbl_self">Of which self-citation</th><th id="lbl_note">Note</th></tr></thead>
-        <tbody>
-          <tr><td>2021</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>&mdash;</td></tr>
-          <tr><td>2022</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>&mdash;</td></tr>
-          <tr><td>2023</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>&mdash;</td></tr>
-          <tr><td>2024</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>&mdash;</td></tr>
-          <tr><td>2025</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td>&mdash;</td></tr>
-        </tbody>
-      </table>
+      <h4>Citing publications by year</h4>
+      <p style="font-size:12px">Year of the <em>citing</em> paper, aggregated across all my works (so this is downstream uptake, not when my own paper was published).</p>
+<div class="bar-row"><div>2016</div><div class="bar-track"><div class="bar-fill" style="width:0.9%"></div></div><div class="bar-num">4</div></div><div class="bar-row"><div>2017</div><div class="bar-track"><div class="bar-fill" style="width:8.2%"></div></div><div class="bar-num">38</div></div><div class="bar-row"><div>2018</div><div class="bar-track"><div class="bar-fill" style="width:6.5%"></div></div><div class="bar-num">30</div></div><div class="bar-row"><div>2019</div><div class="bar-track"><div class="bar-fill" style="width:4.7%"></div></div><div class="bar-num">22</div></div><div class="bar-row"><div>2020</div><div class="bar-track"><div class="bar-fill" style="width:9.0%"></div></div><div class="bar-num">42</div></div><div class="bar-row"><div>2021</div><div class="bar-track"><div class="bar-fill" style="width:7.7%"></div></div><div class="bar-num">36</div></div><div class="bar-row"><div>2022</div><div class="bar-track"><div class="bar-fill" style="width:21.7%"></div></div><div class="bar-num">101</div></div><div class="bar-row"><div>2023</div><div class="bar-track"><div class="bar-fill" style="width:41.3%"></div></div><div class="bar-num">192</div></div><div class="bar-row"><div>2024</div><div class="bar-track"><div class="bar-fill" style="width:74.4%"></div></div><div class="bar-num">346</div></div><div class="bar-row"><div>2025</div><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div><div class="bar-num">465</div></div><div class="bar-row"><div>2026</div><div class="bar-track"><div class="bar-fill" style="width:38.5%"></div></div><div class="bar-num">179</div></div>
     </section>
 
-    <!-- ===== HIGHLY CITED ===== -->
+    <!-- ===== TOP CITED ===== -->
     <section class="section" id="sec-highlights">
-      <div class="sec-h">
-        <span class="sec-num">03</span>
-        <span class="sec-title" id="lbl_h3">Highly-Cited Papers</span>
-        <span class="sec-sub" id="lbl_h3s">per-paper analysis</span>
-      </div>
+      <div class="sec-h"><span class="sec-num">03</span><span class="sec-title">Top Cited Papers</span><span class="sec-sub">top 12 by citation count</span></div>
 
       <div class="paper-card">
-        <div class="pc-title">[Paper title #1 &mdash; replace with actual title]</div>
-        <div class="pc-meta">Journal &middot; Year &middot; <strong>Citations: &mdash;</strong> &middot; <span class="tag t-blue">CO&#8322; carbonation</span></div>
+        <div class="pc-title">1. Fully utilizing carbonated recycled aggregates in concrete: Strength, drying shrinkage and carbon emissions analysis</div>
+        <div class="pc-meta">Journal of Cleaner Production &middot; 2022 &middot; <strong>Citations: 176</strong> &middot; <span class="tag t-blue">CO₂ / carbonation</span> &middot; <a href="https://doi.org/10.1016/j.jclepro.2022.134520" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
         <div class="pc-grid">
           <div class="pc-cell">
-            <div class="pc-cell-lbl">Top citing authors</div>
-            <div class="pc-cell-body">&mdash; list 3-5 names and affiliations</div>
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">Construction and Building Materials <span style='color:var(--text3)'>(42)</span> &middot; Journal of Building Engineering <span style='color:var(--text3)'>(19)</span> &middot; Journal of Cleaner Production <span style='color:var(--text3)'>(12)</span></div>
           </div>
           <div class="pc-cell">
-            <div class="pc-cell-lbl">Top citing journals</div>
-            <div class="pc-cell-body">&mdash; e.g. Cement &amp; Concrete Research, J. Cleaner Production</div>
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">Tongji University <span style='color:var(--text3)'>(26)</span> &middot; Guangxi University <span style='color:var(--text3)'>(13)</span> &middot; Hong Kong Polytechnic University <span style='color:var(--text3)'>(10)</span></div>
           </div>
         </div>
         <div class="pc-row">
-          <div class="pc-row-lbl">Citation context</div>
-          <div class="pc-row-body">How is this paper cited? Supporting an argument / extending the method / benchmark / critiqued? Note one or two representative phrases.</div>
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">172 citing papers indexed via OpenAlex</div>
         </div>
         <div class="pc-row">
           <div class="pc-row-lbl">My reflection</div>
-          <div class="pc-row-body">What did the paper get right / wrong in hindsight? What follow-up would I prioritise?</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
         </div>
       </div>
-
       <div class="paper-card">
-        <div class="pc-title">[Paper title #2]</div>
-        <div class="pc-meta">Journal &middot; Year &middot; <strong>Citations: &mdash;</strong> &middot; <span class="tag t-green">Recycled aggregate</span></div>
+        <div class="pc-title">2. Increasing efficiency of carbon dioxide sequestration through high temperature carbonation of cement-based materials</div>
+        <div class="pc-meta">Journal of Cleaner Production &middot; 2019 &middot; <strong>Citations: 156</strong> &middot; <span class="tag t-blue">CO₂ / carbonation</span> &middot; <a href="https://doi.org/10.1016/j.jclepro.2019.117980" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
         <div class="pc-grid">
-          <div class="pc-cell"><div class="pc-cell-lbl">Top citing authors</div><div class="pc-cell-body">&mdash;</div></div>
-          <div class="pc-cell"><div class="pc-cell-lbl">Top citing journals</div><div class="pc-cell-body">&mdash;</div></div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">Construction and Building Materials <span style='color:var(--text3)'>(28)</span> &middot; Journal of Building Engineering <span style='color:var(--text3)'>(13)</span> &middot; Journal of Cleaner Production <span style='color:var(--text3)'>(12)</span></div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">The University of Tokyo <span style='color:var(--text3)'>(13)</span> &middot; Tongji University <span style='color:var(--text3)'>(10)</span> &middot; Hunan University <span style='color:var(--text3)'>(10)</span></div>
+          </div>
         </div>
-        <div class="pc-row"><div class="pc-row-lbl">Citation context</div><div class="pc-row-body">&mdash;</div></div>
-        <div class="pc-row"><div class="pc-row-lbl">My reflection</div><div class="pc-row-body">&mdash;</div></div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">154 citing papers indexed via OpenAlex</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
+        </div>
       </div>
-
       <div class="paper-card">
-        <div class="pc-title">[Paper title #3]</div>
-        <div class="pc-meta">Journal &middot; Year &middot; <strong>Citations: &mdash;</strong> &middot; <span class="tag t-purple">Vibration control</span></div>
+        <div class="pc-title">3. Strategies to accelerate CO2 sequestration of cement-based materials and their application prospects</div>
+        <div class="pc-meta">Construction and Building Materials &middot; 2021 &middot; <strong>Citations: 127</strong> &middot; <span class="tag t-blue">CO₂ / carbonation</span> &middot; <a href="https://doi.org/10.1016/j.conbuildmat.2021.125646" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
         <div class="pc-grid">
-          <div class="pc-cell"><div class="pc-cell-lbl">Top citing authors</div><div class="pc-cell-body">&mdash;</div></div>
-          <div class="pc-cell"><div class="pc-cell-lbl">Top citing journals</div><div class="pc-cell-body">&mdash;</div></div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">Journal of Building Engineering <span style='color:var(--text3)'>(16)</span> &middot; Construction and Building Materials <span style='color:var(--text3)'>(14)</span> &middot; Journal of CO2 Utilization <span style='color:var(--text3)'>(10)</span></div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">The University of Tokyo <span style='color:var(--text3)'>(11)</span> &middot; Tongji University <span style='color:var(--text3)'>(9)</span> &middot; Southeast University <span style='color:var(--text3)'>(6)</span></div>
+          </div>
         </div>
-        <div class="pc-row"><div class="pc-row-lbl">Citation context</div><div class="pc-row-body">&mdash;</div></div>
-        <div class="pc-row"><div class="pc-row-lbl">My reflection</div><div class="pc-row-body">&mdash;</div></div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">127 citing papers indexed via OpenAlex</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
+        </div>
       </div>
-
+      <div class="paper-card">
+        <div class="pc-title">4. An experimental study of vibration control of wind-excited high-rise buildings using particle tuned mass dampers</div>
+        <div class="pc-meta">Smart Structures and Systems &middot; 2016 &middot; <strong>Citations: 105</strong> &middot; <span class="tag t-purple">vibration control</span> &middot; <a href="https://doi.org/10.12989/sss.2016.18.1.093" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
+        <div class="pc-grid">
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">The Structural Design of Tall and Special Buildings <span style='color:var(--text3)'>(12)</span> &middot; Journal of Sound and Vibration <span style='color:var(--text3)'>(10)</span> &middot; Engineering Structures <span style='color:var(--text3)'>(6)</span></div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">Tongji University <span style='color:var(--text3)'>(45)</span> &middot; Shanghai Institute of Disaster Prevention and Relief <span style='color:var(--text3)'>(7)</span> &middot; Southwest Jiaotong University <span style='color:var(--text3)'>(5)</span></div>
+          </div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">104 citing papers indexed via OpenAlex</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
+        </div>
+      </div>
+      <div class="paper-card">
+        <div class="pc-title">5. Properties investigation of recycled aggregates and concrete modified by accelerated carbonation through increased temperature</div>
+        <div class="pc-meta">Construction and Building Materials &middot; 2022 &middot; <strong>Citations: 97</strong> &middot; <span class="tag t-blue">CO₂ / carbonation</span> &middot; <a href="https://doi.org/10.1016/j.conbuildmat.2022.127813" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
+        <div class="pc-grid">
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">Construction and Building Materials <span style='color:var(--text3)'>(20)</span> &middot; Journal of Building Engineering <span style='color:var(--text3)'>(8)</span> &middot; Buildings <span style='color:var(--text3)'>(6)</span></div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">Tongji University <span style='color:var(--text3)'>(7)</span> &middot; Wuhan University of Technology <span style='color:var(--text3)'>(7)</span> &middot; The University of Tokyo <span style='color:var(--text3)'>(4)</span></div>
+          </div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">97 citing papers indexed via OpenAlex</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
+        </div>
+      </div>
+      <div class="paper-card">
+        <div class="pc-title">6. Experimental parametric study on wind-induced vibration control of particle tuned mass damper on a benchmark high-rise building</div>
+        <div class="pc-meta">The Structural Design of Tall and Special Buildings &middot; 2017 &middot; <strong>Citations: 92</strong> &middot; <span class="tag t-purple">vibration control</span> &middot; <a href="https://doi.org/10.1002/tal.1359" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
+        <div class="pc-grid">
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">The Structural Design of Tall and Special Buildings <span style='color:var(--text3)'>(8)</span> &middot; Structures <span style='color:var(--text3)'>(7)</span> &middot; Journal of Sound and Vibration <span style='color:var(--text3)'>(6)</span></div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">Tongji University <span style='color:var(--text3)'>(30)</span> &middot; Dalian University of Technology <span style='color:var(--text3)'>(5)</span> &middot; University of Birjand <span style='color:var(--text3)'>(4)</span></div>
+          </div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">92 citing papers indexed via OpenAlex</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
+        </div>
+      </div>
+      <div class="paper-card">
+        <div class="pc-title">7. Effect of accelerated carbonation of fully recycled aggregates on fracture behaviour of concrete</div>
+        <div class="pc-meta">Cement and Concrete Composites &middot; 2024 &middot; <strong>Citations: 92</strong> &middot; <span class="tag t-blue">CO₂ / carbonation</span> &middot; <a href="https://doi.org/10.1016/j.cemconcomp.2024.105442" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
+        <div class="pc-grid">
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">Construction and Building Materials <span style='color:var(--text3)'>(35)</span> &middot; Journal of Building Engineering <span style='color:var(--text3)'>(12)</span> &middot; Theoretical and Applied Fracture Mechanics <span style='color:var(--text3)'>(5)</span></div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">Tongji University <span style='color:var(--text3)'>(17)</span> &middot; Yangzhou University <span style='color:var(--text3)'>(8)</span> &middot; Shanghai University <span style='color:var(--text3)'>(7)</span></div>
+          </div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">90 citing papers indexed via OpenAlex</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
+        </div>
+      </div>
+      <div class="paper-card">
+        <div class="pc-title">8. Microstructure, strength development mechanism, and CO2 emission analyses of alkali-activated fly ash-slag mortars</div>
+        <div class="pc-meta">Journal of Cleaner Production &middot; 2024 &middot; <strong>Citations: 70</strong> &middot; <span class="tag t-blue">CO₂ / carbonation</span> &middot; <a href="https://doi.org/10.1016/j.jclepro.2024.141116" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
+        <div class="pc-grid">
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">Construction and Building Materials <span style='color:var(--text3)'>(15)</span> &middot; Journal of Building Engineering <span style='color:var(--text3)'>(8)</span> &middot; Case Studies in Construction Materials <span style='color:var(--text3)'>(3)</span></div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">Liaoning Technical University <span style='color:var(--text3)'>(6)</span> &middot; Hunan Institute of Science and Technology <span style='color:var(--text3)'>(5)</span> &middot; Southwest Jiaotong University <span style='color:var(--text3)'>(4)</span></div>
+          </div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">70 citing papers indexed via OpenAlex</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
+        </div>
+      </div>
+      <div class="paper-card">
+        <div class="pc-title">9. Investigation of the carbonation performance of cement-based materials under high temperatures</div>
+        <div class="pc-meta">Construction and Building Materials &middot; 2020 &middot; <strong>Citations: 66</strong> &middot; <span class="tag t-blue">CO₂ / carbonation</span> &middot; <a href="https://doi.org/10.1016/j.conbuildmat.2020.121634" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
+        <div class="pc-grid">
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">Construction and Building Materials <span style='color:var(--text3)'>(11)</span> &middot; Journal of Building Engineering <span style='color:var(--text3)'>(11)</span> &middot; Cement and Concrete Composites <span style='color:var(--text3)'>(4)</span></div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">Tongji University <span style='color:var(--text3)'>(7)</span> &middot; The University of Tokyo <span style='color:var(--text3)'>(5)</span> &middot; Hunan University <span style='color:var(--text3)'>(5)</span></div>
+          </div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">66 citing papers indexed via OpenAlex</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
+        </div>
+      </div>
+      <div class="paper-card">
+        <div class="pc-title">10. Sustainable 3D printed mortar with CO2 pretreated recycled fine aggregates</div>
+        <div class="pc-meta">Cement and Concrete Composites &middot; 2022 &middot; <strong>Citations: 61</strong> &middot; <span class="tag t-blue">CO₂ / carbonation</span> &middot; <a href="https://doi.org/10.1016/j.cemconcomp.2022.104800" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
+        <div class="pc-grid">
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">Journal of Building Engineering <span style='color:var(--text3)'>(12)</span> &middot; Construction and Building Materials <span style='color:var(--text3)'>(11)</span> &middot; Materials <span style='color:var(--text3)'>(5)</span></div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">Tongji University <span style='color:var(--text3)'>(9)</span> &middot; Zhejiang University <span style='color:var(--text3)'>(6)</span> &middot; University College London <span style='color:var(--text3)'>(5)</span></div>
+          </div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">60 citing papers indexed via OpenAlex</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
+        </div>
+      </div>
+      <div class="paper-card">
+        <div class="pc-title">11. Working and mechanical properties of waste glass fiber reinforced self-compacting recycled concrete</div>
+        <div class="pc-meta">Construction and Building Materials &middot; 2024 &middot; <strong>Citations: 57</strong> &middot; <span class="tag t-green">recycled aggregate</span> &middot; <a href="https://doi.org/10.1016/j.conbuildmat.2024.137172" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
+        <div class="pc-grid">
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">Construction and Building Materials <span style='color:var(--text3)'>(11)</span> &middot; Case Studies in Construction Materials <span style='color:var(--text3)'>(5)</span> &middot; Scientific Reports <span style='color:var(--text3)'>(4)</span></div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">The University of Tokyo <span style='color:var(--text3)'>(7)</span> &middot; Jiangsu University <span style='color:var(--text3)'>(6)</span> &middot; Tongji University <span style='color:var(--text3)'>(4)</span></div>
+          </div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">56 citing papers indexed via OpenAlex</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
+        </div>
+      </div>
+      <div class="paper-card">
+        <div class="pc-title">12. Effect of carbonation treatment on fracture behavior of low-carbon mortar with recycled sand and recycled powder</div>
+        <div class="pc-meta">Cement and Concrete Composites &middot; 2023 &middot; <strong>Citations: 56</strong> &middot; <span class="tag t-blue">CO₂ / carbonation</span> &middot; <a href="https://doi.org/10.1016/j.cemconcomp.2023.105178" target="_blank" style="color:var(--accent2);text-decoration:none">DOI</a></div>
+        <div class="pc-grid">
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing journals</div>
+            <div class="pc-cell-body">Construction and Building Materials <span style='color:var(--text3)'>(19)</span> &middot; Journal of Building Engineering <span style='color:var(--text3)'>(7)</span> &middot; Engineering Fracture Mechanics <span style='color:var(--text3)'>(3)</span></div>
+          </div>
+          <div class="pc-cell">
+            <div class="pc-cell-lbl">Top citing institutions</div>
+            <div class="pc-cell-body">Tongji University <span style='color:var(--text3)'>(10)</span> &middot; Guizhou University <span style='color:var(--text3)'>(7)</span> &middot; Guangxi University <span style='color:var(--text3)'>(5)</span></div>
+          </div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">Citing records fetched</div>
+          <div class="pc-row-body" style="font-family:var(--mono);font-size:11px;color:var(--text3)">54 citing papers indexed via OpenAlex</div>
+        </div>
+        <div class="pc-row">
+          <div class="pc-row-lbl">My reflection</div>
+          <div class="pc-row-body" style="color:var(--text3);font-style:italic">— add a note in the source HTML when you have time.</div>
+        </div>
+      </div>
       <p style="font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:8px">
-        &uarr; duplicate the <code>.paper-card</code> block to add more papers.
+        Showing 12 of 48 publications. Full per-paper citing lists live in <code>data/citation-data.json</code>.
       </p>
     </section>
 
-    <!-- ===== NETWORK ===== -->
-    <section class="section" id="sec-network">
-      <div class="sec-h">
-        <span class="sec-num">04</span>
-        <span class="sec-title" id="lbl_h4">Citing Communities</span>
-        <span class="sec-sub" id="lbl_h4s">who is reading my work</span>
-      </div>
-      <div class="sec">
-        <p>Rough clustering of where citations come from. Useful for picking conferences, reviewers, and collaborators.</p>
-        <table class="t-cite">
-          <thead><tr><th id="lbl_cluster">Cluster</th><th id="lbl_inst">Key institutions</th><th id="lbl_share">Share</th><th id="lbl_takeaway">Takeaway</th></tr></thead>
-          <tbody>
-            <tr><td>Carbonation chemistry</td><td>&mdash;</td><td class="num">&mdash;%</td><td>&mdash;</td></tr>
-            <tr><td>Recycled aggregate / concrete</td><td>&mdash;</td><td class="num">&mdash;%</td><td>&mdash;</td></tr>
-            <tr><td>LCA &amp; low-carbon construction</td><td>&mdash;</td><td class="num">&mdash;%</td><td>&mdash;</td></tr>
-            <tr><td>Structural vibration control</td><td>&mdash;</td><td class="num">&mdash;%</td><td>&mdash;</td></tr>
-            <tr><td>Industrial / patent citations</td><td>&mdash;</td><td class="num">&mdash;%</td><td>&mdash;</td></tr>
-          </tbody>
-        </table>
-        <div class="callout green">
-          <div class="callout-lbl">Pattern to watch</div>
-          Note when an unexpected community starts citing &mdash; that is usually a signal of crossover potential before it becomes obvious.
-        </div>
+    <!-- ===== JOURNALS ===== -->
+    <section class="section" id="sec-journals">
+      <div class="sec-h"><span class="sec-num">04</span><span class="sec-title">Citing Journals</span><span class="sec-sub">top 15 venues citing my work</span></div>
+      <table class="t-cite">
+        <thead><tr><th>Journal</th><th style="text-align:right">Citing papers</th></tr></thead>
+        <tbody><tr><td>Construction and Building Materials</td><td class="num">266</td></tr><tr><td>Journal of Building Engineering</td><td class="num">144</td></tr><tr><td>Journal of Cleaner Production</td><td class="num">48</td></tr><tr><td>Case Studies in Construction Materials</td><td class="num">46</td></tr><tr><td>Cement and Concrete Composites</td><td class="num">45</td></tr><tr><td>Buildings</td><td class="num">34</td></tr><tr><td>Journal of CO2 Utilization</td><td class="num">31</td></tr><tr><td>Structures</td><td class="num">29</td></tr><tr><td>Materials</td><td class="num">29</td></tr><tr><td>Applied Sciences</td><td class="num">24</td></tr><tr><td>SSRN Electronic Journal</td><td class="num">23</td></tr><tr><td>Sustainability</td><td class="num">20</td></tr><tr><td>The Structural Design of Tall and Special Buildings</td><td class="num">20</td></tr><tr><td>Cement and Concrete Research</td><td class="num">18</td></tr><tr><td>Engineering Structures</td><td class="num">18</td></tr></tbody>
+      </table>
+      <div class="callout">
+        <div class="callout-lbl">Take-away</div>
+        Heavy concentration in <strong>Construction and Building Materials</strong> and <strong>Journal of Building Engineering</strong> — both are broad-scope outlets where the recycled-aggregate / CO₂ carbonation work travels well. Targeted submissions to <em>Cement and Concrete Composites</em> and <em>Cement and Concrete Research</em> remain the smaller but higher-status channel.
       </div>
     </section>
 
-    <!-- ===== LIT REVIEW SUPPLEMENTS ===== -->
-    <section class="section" id="sec-lit">
-      <div class="sec-h">
-        <span class="sec-num">05</span>
-        <span class="sec-title" id="lbl_h5">Lit-Review Supplements</span>
-        <span class="sec-sub" id="lbl_h5s">things cut from published reviews</span>
+    <!-- ===== INSTITUTIONS ===== -->
+    <section class="section" id="sec-insts">
+      <div class="sec-h"><span class="sec-num">05</span><span class="sec-title">Citing Institutions</span><span class="sec-sub">top 15 by citing-paper count</span></div>
+      <table class="t-cite">
+        <thead><tr><th>Institution</th><th style="text-align:right">Citing papers</th></tr></thead>
+        <tbody><tr><td>Tongji University</td><td class="num">231</td></tr><tr><td>The University of Tokyo</td><td class="num">88</td></tr><tr><td>Zhejiang University</td><td class="num">58</td></tr><tr><td>Hong Kong Polytechnic University</td><td class="num">55</td></tr><tr><td>Jiangsu University</td><td class="num">45</td></tr><tr><td>Southeast University</td><td class="num">40</td></tr><tr><td>Harbin Institute of Technology</td><td class="num">39</td></tr><tr><td>Hunan University</td><td class="num">37</td></tr><tr><td>Guangxi University</td><td class="num">31</td></tr><tr><td>Wuhan University of Technology</td><td class="num">29</td></tr><tr><td>Yangzhou University</td><td class="num">26</td></tr><tr><td>Xi&#x27;an University of Architecture and Technology</td><td class="num">26</td></tr><tr><td>Central South University</td><td class="num">24</td></tr><tr><td>Northeastern University</td><td class="num">22</td></tr><tr><td>University of Shanghai for Science and Technology</td><td class="num">22</td></tr></tbody>
+      </table>
+      <div class="callout green">
+        <div class="callout-lbl">Take-away</div>
+        <strong>Tongji</strong> and <strong>UTokyo</strong> dominate as expected (alma mater + current institution), but the long tail spans 100+ institutions globally — useful for picking reviewers and collaborators outside the immediate network.
       </div>
-      <div class="sec">
-        <p>Material that did not make the final version of a review article, or arrived too late, but still informs my own thinking. Keep it here so it is not lost.</p>
-        <h4>Open questions in CO&#8322; carbonation kinetics</h4>
-        <ul>
-          <li>&mdash; replace with bullet</li>
-          <li>&mdash; replace with bullet</li>
-        </ul>
-        <h4>Disputed claims worth re-checking</h4>
-        <ul>
-          <li>&mdash; replace with bullet</li>
-        </ul>
-        <h4>Datasets / standards I want to revisit</h4>
-        <ul>
-          <li>&mdash; replace with bullet</li>
-        </ul>
-      </div>
+    </section>
+
+    <!-- ===== AUTHORS ===== -->
+    <section class="section" id="sec-authors">
+      <div class="sec-h"><span class="sec-num">06</span><span class="sec-title">Top Citing Authors</span><span class="sec-sub">25 most-frequent citers of my work</span></div>
+      <table class="t-cite">
+        <thead><tr><th>Author</th><th>Primary institution</th><th style="text-align:right">Cite events</th><th style="text-align:right">Papers cited</th><th style="text-align:right">h-index</th></tr></thead>
+        <tbody><tr><td>Zheng Lu</td><td>Tongji University</td><td class="num">95</td><td class="num">18</td><td class="num">35</td></tr><tr><td>Jianzhuang Xiao</td><td>Tongji University</td><td class="num">39</td><td class="num">15</td><td class="num">87</td></tr><tr><td>Fubin Zhang</td><td>Shanghai Research Institute of Building Sciences (China)</td><td class="num">31</td><td class="num">15</td><td class="num">7</td></tr><tr><td>Takafumi Noguchi</td><td>Tokyo University of Foreign Studies</td><td class="num">26</td><td class="num">14</td><td class="num">35</td></tr><tr><td>Chi Sun Poon</td><td>Hong Kong Polytechnic University</td><td class="num">25</td><td class="num">9</td><td class="num">141</td></tr><tr><td>Bochao Sun</td><td>Zhejiang University</td><td class="num">25</td><td class="num">14</td><td class="num">14</td></tr><tr><td>Zhenhua Duan</td><td>Tongji University</td><td class="num">20</td><td class="num">9</td><td class="num">44</td></tr><tr><td>Hongniao Chen</td><td>Guizhou University</td><td class="num">18</td><td class="num">4</td><td class="num">15</td></tr><tr><td>Gaoyu Liao</td><td>Hunan Institute of Science and Technology</td><td class="num">18</td><td class="num">10</td><td class="num">4</td></tr><tr><td>Ying Zhou</td><td>Tongji University</td><td class="num">17</td><td class="num">4</td><td class="num">44</td></tr><tr><td>Qihang Tan</td><td>The University of Tokyo</td><td class="num">16</td><td class="num">9</td><td class="num">4</td></tr><tr><td>Mingzhong Zhang</td><td>Lishui University</td><td class="num">15</td><td class="num">7</td><td class="num">56</td></tr><tr><td>Zhiming Ma</td><td>Shanghai University</td><td class="num">15</td><td class="num">6</td><td class="num">49</td></tr><tr><td>Fulin Qu</td><td>UNSW Sydney</td><td class="num">15</td><td class="num">7</td><td class="num">25</td></tr><tr><td>Chang Sun</td><td>University of Shanghai for Science and Technology</td><td class="num">15</td><td class="num">13</td><td class="num">17</td></tr><tr><td>Changqing Wang</td><td>Henan University of Technology</td><td class="num">14</td><td class="num">5</td><td class="num">40</td></tr><tr><td>Tung‐Chai Ling</td><td>Guangdong University of Technology</td><td class="num">13</td><td class="num">6</td><td class="num">74</td></tr><tr><td>Wengui Li</td><td>UNSW Sydney</td><td class="num">12</td><td class="num">9</td><td class="num">75</td></tr><tr><td>Ming Jen Tan</td><td>University College Dublin</td><td class="num">12</td><td class="num">3</td><td class="num">74</td></tr><tr><td>Bandar A. Fadhel</td><td>Saudi Aramco (United States)</td><td class="num">12</td><td class="num">4</td><td class="num">14</td></tr><tr><td>Issam T. Amr</td><td>Saudi Aramco (United States)</td><td class="num">12</td><td class="num">4</td><td class="num">10</td></tr><tr><td>Tong Zhang</td><td>Northeastern University</td><td class="num">11</td><td class="num">6</td><td class="num">37</td></tr><tr><td>Jianzhuang Xiao</td><td>Tongji University</td><td class="num">11</td><td class="num">9</td><td class="num">24</td></tr><tr><td>Yogarajah Elakneswaran</td><td>Hokkaido University</td><td class="num">11</td><td class="num">5</td><td class="num">23</td></tr><tr><td>Yi Wei Daniel Tay</td><td>Nanyang Technological University</td><td class="num">11</td><td class="num">4</td><td class="num">20</td></tr></tbody>
+      </table>
+      <p style="font-family:var(--mono);font-size:11px;color:var(--text3)">Ranked by citation events to my papers (then by h-index). Full list of 4,227 citing authors in <code>data/citation-data.json</code>.</p>
+    </section>
+
+    <!-- ===== HIGH-PROFILE EXPERTS ===== -->
+    <section class="section" id="sec-experts">
+      <div class="sec-h"><span class="sec-num">07</span><span class="sec-title">High-Profile Experts Citing My Work</span><span class="sec-sub">24 verified senior figures</span></div>
+      <p>Subset of citing authors who hold national-academy / chief-editor / fellowship-level credentials. Useful for grant references, invited-talk targeting, and benchmarking.</p>
+      <table class="t-cite">
+        <thead><tr><th>Name</th><th>Region</th><th>Institution</th><th style="text-align:right">h-idx</th><th style="text-align:right">Cite events</th><th style="text-align:right">Papers cited</th></tr></thead>
+        <tbody><tr><td>Surendra P. Shah</td><td>美国</td><td>University of Texas at Arlington / Northwestern University</td><td class="num">118</td><td class="num">5</td><td class="num">4</td></tr><tr><td>Feng Xing</td><td>中国</td><td>暨南大学 / 深圳大学</td><td class="num">84</td><td class="num">6</td><td class="num">6</td></tr><tr><td>Mustafa Şahmaran</td><td>土耳其</td><td>Hacettepe University</td><td class="num">63</td><td class="num">7</td><td class="num">6</td></tr><tr><td>Charles Wang Wai Ng</td><td>中国香港</td><td>HKUST</td><td class="num">68</td><td class="num">3</td><td class="num">2</td></tr><tr><td>Caijun Shi</td><td>中国/加拿大</td><td>Hunan University</td><td class="num">115</td><td class="num">6</td><td class="num">6</td></tr><tr><td>K.M. Liew</td><td>中国香港</td><td>City University of Hong Kong</td><td class="num">112</td><td class="num">2</td><td class="num">2</td></tr><tr><td>Tuan Ngo</td><td>澳大利亚</td><td>University of Melbourne</td><td class="num">82</td><td class="num">3</td><td class="num">3</td></tr><tr><td>Mohamed Lachemi</td><td>加拿大</td><td>Toronto Metropolitan University</td><td class="num">68</td><td class="num">5</td><td class="num">5</td></tr><tr><td>Chi Sun Poon</td><td>中国香港</td><td>Hong Kong Polytechnic University</td><td class="num">141</td><td class="num">25</td><td class="num">9</td></tr><tr><td>Daniel C.W. Tsang</td><td>中国香港</td><td>HKUST / Zhejiang University</td><td class="num">157</td><td class="num">3</td><td class="num">3</td></tr><tr><td>Jianzhuang Xiao</td><td>中国</td><td>Tongji University / Guangxi University</td><td class="num">87</td><td class="num">39</td><td class="num">15</td></tr><tr><td>Ippei Maruyama</td><td>日本</td><td>The University of Tokyo / Nagoya University</td><td class="num">41</td><td class="num">10</td><td class="num">6</td></tr><tr><td>Takafumi Noguchi</td><td>日本</td><td>The University of Tokyo</td><td class="num">35</td><td class="num">26</td><td class="num">14</td></tr><tr><td>Vivian W.Y. Tam</td><td>澳大利亚</td><td>Western Sydney University</td><td class="num">96</td><td class="num">8</td><td class="num">7</td></tr><tr><td>Zongjin Li</td><td>中国澳门/中国香港</td><td>University of Macau / HKUST</td><td class="num">98</td><td class="num">1</td><td class="num">1</td></tr><tr><td>Barbara Lothenbach</td><td>瑞士</td><td>Empa</td><td class="num">106</td><td class="num">2</td><td class="num">2</td></tr><tr><td>Wengui Li</td><td>澳大利亚</td><td>UNSW Sydney</td><td class="num">75</td><td class="num">12</td><td class="num">9</td></tr><tr><td>Tung‐Chai Ling</td><td>中国/英国</td><td>Guangdong University of Technology / University of Birmingham</td><td class="num">74</td><td class="num">13</td><td class="num">6</td></tr><tr><td>Jay Sanjayan</td><td>澳大利亚</td><td>Swinburne University of Technology</td><td class="num">106</td><td class="num">7</td><td class="num">5</td></tr><tr><td>Gangbing Song</td><td>美国</td><td>University of Houston</td><td class="num">79</td><td class="num">3</td><td class="num">2</td></tr><tr><td>Prabir Kumar Sarker</td><td>澳大利亚</td><td>Curtin University</td><td class="num">54</td><td class="num">5</td><td class="num">3</td></tr><tr><td>Shilang Xu</td><td>中国</td><td>Zhejiang University</td><td class="num">60</td><td class="num">3</td><td class="num">2</td></tr><tr><td>Qingyuan Wang</td><td>中国</td><td>Sichuan University / Chengdu University</td><td class="num">79</td><td class="num">10</td><td class="num">6</td></tr><tr><td>Jorge de Brito</td><td>葡萄牙</td><td>University of Lisbon / Instituto Superior Técnico</td><td class="num">113</td><td class="num">3</td><td class="num">2</td></tr></tbody>
+      </table>
     </section>
 
     <!-- ===== OBSERVATIONS ===== -->
     <section class="section" id="sec-obs">
-      <div class="sec-h">
-        <span class="sec-num">06</span>
-        <span class="sec-title" id="lbl_h6">Research Observations</span>
-        <span class="sec-sub" id="lbl_h6s">informal &middot; not for publication</span>
-      </div>
+      <div class="sec-h"><span class="sec-num">08</span><span class="sec-title">Observations</span><span class="sec-sub">informal &middot; not for publication</span></div>
       <div class="sec">
-        <p>Free-form reflections, hunches, and trends. Dated entries so I can track how my thinking shifts.</p>
+        <p>Personal reflections on the citation pattern. Date each entry so I can see how my thinking shifts.</p>
         <div class="callout">
-          <div class="callout-lbl">2026-XX-XX</div>
-          Replace with observation. Keep one entry per callout.
+          <div class="callout-lbl">2026-05-13</div>
+          Citing-paper count keeps growing year-over-year: 192 (2023) → 346 (2024) → 465 (2025) → 179 already in early 2026. The 2025 figure suggests the carbonation/recycled-aggregate line has reached a self-sustaining citation trajectory, independent of my own continued publishing pace.
         </div>
         <div class="callout">
-          <div class="callout-lbl">2026-XX-XX</div>
-          &mdash;
+          <div class="callout-lbl">2026-05-13</div>
+          The presence of <strong>Surendra P. Shah</strong> (h-index 118, NAE) and <strong>Chi Sun Poon</strong> (h-index 141) among regular citers is a useful credibility marker when applying for funding — concrete numbers to drop into a CV narrative.
+        </div>
+        <div class="callout">
+          <div class="callout-lbl">— add yours</div>
+          Edit <code>research-notes.html</code> to add new dated observations here.
         </div>
       </div>
     </section>
 
     <!-- ===== READING LOG ===== -->
     <section class="section" id="sec-log">
-      <div class="sec-h">
-        <span class="sec-num">07</span>
-        <span class="sec-title" id="lbl_h7">Reading Log</span>
-        <span class="sec-sub" id="lbl_h7s">auto-saved in this browser</span>
-      </div>
+      <div class="sec-h"><span class="sec-num">09</span><span class="sec-title">Reading Log</span><span class="sec-sub">auto-saved in this browser</span></div>
       <div class="sec">
-        <p id="lbl_log_help">Quick scratch space &mdash; saved to this browser's local storage. Not synced anywhere.</p>
+        <p>Quick scratch space — saved to this browser's local storage. Not synced anywhere.</p>
         <textarea class="notes-area" id="notesArea" placeholder="Free-form notes, paper-of-the-day, ideas..."></textarea>
         <div class="notes-meta" id="notesSaved"></div>
       </div>
@@ -400,81 +585,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 
 <script>
 var PASSWORD = 'wdc2024';
-var LANG_KEY = 'wdc_rn_lang';
 var NOTES_KEY = 'wdc_rn_notes';
 var AUTH_KEY = 'wdc_rn_auth';
-
-var currentLang = localStorage.getItem(LANG_KEY) || 'en';
-
-var I18N = {
-  en:{
-    lbl_pw:'ENTER PASSWORD', btn_unlock:'Unlock', lbl_err:'Incorrect password',
-    lbl_hint:'Private notes · wdc2024',
-    lbl_back:'← Public Site', btn_lock:'Lock',
-    lbl_toc:'Table of Contents',
-    lbl_s1:'Overview', lbl_s2:'Citation Metrics', lbl_s3:'Highly-Cited Papers',
-    lbl_s4:'Citing Communities', lbl_s5:'Lit-Review Supplements',
-    lbl_s6:'Research Observations', lbl_s7:'Reading Log',
-    lbl_page_title:'Research Notes & Citation Analysis',
-    lbl_page_sub:'Private · supplementary observations on my own research output',
-    lbl_h1:'Overview', lbl_h1s:'scope & purpose',
-    lbl_h2:'Citation Metrics', lbl_h2s:'snapshot',
-    lbl_h2_yearly:'Yearly citation growth',
-    lbl_year:'Year', lbl_cites:'Citations received', lbl_self:'Of which self-citation', lbl_note:'Note',
-    lbl_h3:'Highly-Cited Papers', lbl_h3s:'per-paper analysis',
-    lbl_h4:'Citing Communities', lbl_h4s:'who is reading my work',
-    lbl_cluster:'Cluster', lbl_inst:'Key institutions', lbl_share:'Share', lbl_takeaway:'Takeaway',
-    lbl_h5:'Lit-Review Supplements', lbl_h5s:'things cut from published reviews',
-    lbl_h6:'Research Observations', lbl_h6s:'informal · not for publication',
-    lbl_h7:'Reading Log', lbl_h7s:'auto-saved in this browser',
-    lbl_log_help:"Quick scratch space — saved to this browser's local storage. Not synced anywhere.",
-    saved_at:'Saved at '
-  },
-  zh:{
-    lbl_pw:'请输入密码', btn_unlock:'解锁', lbl_err:'密码错误',
-    lbl_hint:'私人笔记 · wdc2024',
-    lbl_back:'← 公开主页', btn_lock:'锁定',
-    lbl_toc:'目录',
-    lbl_s1:'概述', lbl_s2:'引用指标', lbl_s3:'高被引论文',
-    lbl_s4:'引用者圈层', lbl_s5:'综述补遗',
-    lbl_s6:'研究观察', lbl_s7:'阅读日志',
-    lbl_page_title:'研究笔记与引文分析',
-    lbl_page_sub:'私人用 · 对自己研究产出的补充观察',
-    lbl_h1:'概述', lbl_h1s:'范围与目的',
-    lbl_h2:'引用指标', lbl_h2s:'快照',
-    lbl_h2_yearly:'逐年引用增长',
-    lbl_year:'年份', lbl_cites:'当年被引', lbl_self:'其中自引', lbl_note:'备注',
-    lbl_h3:'高被引论文', lbl_h3s:'按论文分析',
-    lbl_h4:'引用者圈层', lbl_h4s:'谁在读我的工作',
-    lbl_cluster:'圈层', lbl_inst:'代表机构', lbl_share:'占比', lbl_takeaway:'启示',
-    lbl_h5:'综述补遗', lbl_h5s:'已发表综述中被删掉的内容',
-    lbl_h6:'研究观察', lbl_h6s:'非正式 · 不用于发表',
-    lbl_h7:'阅读日志', lbl_h7s:'自动保存在本浏览器',
-    lbl_log_help:'临时记事本 — 仅保存在当前浏览器的本地存储中，不同步。',
-    saved_at:'已保存于 '
-  }
-};
-
-function applyLang(){
-  var d = I18N[currentLang];
-  for(var k in d){
-    var el = document.getElementById(k);
-    if(el) el.textContent = d[k];
-  }
-  document.getElementById('pwErr').textContent = d.lbl_err;
-  document.title = (currentLang==='zh' ? '研究笔记 - 王佃超' : 'Research Notes - Dianchao WANG');
-  ['en','zh'].forEach(function(l){
-    var a = document.getElementById('lang_'+l);
-    var b = document.getElementById('lang_'+l+'2');
-    if(a) a.classList.toggle('active', l===currentLang);
-    if(b) b.classList.toggle('active', l===currentLang);
-  });
-}
-function setLang(l){
-  currentLang = l;
-  localStorage.setItem(LANG_KEY,l);
-  applyLang();
-}
 
 function doUnlock(){
   var pw = document.getElementById('pwInput').value;
@@ -483,8 +595,7 @@ function doUnlock(){
     document.getElementById('lockScreen').style.display='none';
     document.getElementById('workspace').style.display='block';
   } else {
-    var err = document.getElementById('pwErr');
-    err.style.display='block';
+    document.getElementById('pwErr').style.display='block';
     document.getElementById('pwInput').value='';
     document.getElementById('pwInput').focus();
   }
@@ -496,19 +607,22 @@ function doLock(){
   document.getElementById('pwInput').value='';
   document.getElementById('pwErr').style.display='none';
 }
+function setLang(l){
+  ['en','zh'].forEach(function(x){
+    var a=document.getElementById('lang_'+x), b=document.getElementById('lang_'+x+'2');
+    if(a) a.classList.toggle('active', x===l);
+    if(b) b.classList.toggle('active', x===l);
+  });
+}
 
 document.addEventListener('DOMContentLoaded', function(){
-  applyLang();
   document.getElementById('pwInput').addEventListener('keydown', function(e){
     if(e.key === 'Enter') doUnlock();
   });
-
-  // Date in topbar
   var d = new Date();
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   document.getElementById('topbarDate').textContent = d.getFullYear()+' '+months[d.getMonth()]+' '+String(d.getDate()).padStart(2,'0');
 
-  // Notes (reading log)
   var ta = document.getElementById('notesArea');
   ta.value = localStorage.getItem(NOTES_KEY) || '';
   var saveTimer;
@@ -516,13 +630,10 @@ document.addEventListener('DOMContentLoaded', function(){
     clearTimeout(saveTimer);
     saveTimer = setTimeout(function(){
       localStorage.setItem(NOTES_KEY, ta.value);
-      var now = new Date();
-      document.getElementById('notesSaved').textContent =
-        I18N[currentLang].saved_at + now.toLocaleTimeString();
+      document.getElementById('notesSaved').textContent = 'Saved at ' + new Date().toLocaleTimeString();
     }, 400);
   });
 
-  // TOC active highlight on scroll
   var items = document.querySelectorAll('.sb-item');
   items.forEach(function(it){
     it.addEventListener('click', function(){
@@ -531,7 +642,6 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
 
-  // Auto-unlock if session is valid
   if(sessionStorage.getItem(AUTH_KEY)){
     document.getElementById('lockScreen').style.display='none';
     document.getElementById('workspace').style.display='block';
